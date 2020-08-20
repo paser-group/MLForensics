@@ -23,22 +23,24 @@ def doCleanUp(dir_name):
         with open(py_file, 'r') as fil:
             file_content = fil.read()
         py_file_count += 1 
-        dump_str = dump_str + '='*100
-        dump_str = dump_str + 'FILENAME:::' + py_file + ':::' 
-        dump_str = dump_str + '*'*25
-        dump_str = dump_str + 'COUNT:::' + str(py_file_count)
-        dump_str = dump_str + '*'*25
-        dump_str = dump_str + file_content        
-        dump_str = dump_str + '*'*25
-        dump_str = dump_str + '='*100        
+        dump_str = dump_str + '='*50 + '\n'
+        dump_str = dump_str + 'FILENAME:::' + py_file + ':::'  + '\n'
+        dump_str = dump_str + '*'*25 + '\n'
+        dump_str = dump_str + 'COUNT:::' + str(py_file_count) + '\n'
+        dump_str = dump_str + '*'*25  + '\n'
+        dump_str = dump_str + file_content     + '\n'     
+        dump_str = dump_str + '*'*25  + '\n'
+        dump_str = dump_str + 'DECISION:::'  + '\n'        
+        dump_str = dump_str + '*'*25  + '\n'
+        dump_str = dump_str + '='*50  + '\n'       
 
         
     dumpContentIntoFile( dump_str, 'QUAL.DATASET.RQ1.txt'  )
-    # for f_ in non_pp:
-    #     os.remove(f_)
+    for f_ in non_pp:
+        os.remove(f_)
     print("="*50)
     print(dir_name)
-    print('removed {} non-python files, kept {} Python files #savespace '.format(len(non_pp), len(pp_)) )
+    print('removed {} non-python files, kept {} Python files '.format(len(non_pp), len(pp_)) )
     print("="*50 )
 
 
