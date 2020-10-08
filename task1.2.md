@@ -101,3 +101,80 @@ num_inputs = env.observation_space.shape[0], observation_space = gym.spaces.Box(
 Candidate code elements:
 num_actions = env.action_space.shape[0], observation, reward, done, info = self.env.step(action), action_index = self._env.action(), selected_actions = np.argmax(actions, axis=-1), 'a': env.actions.index('left'),   if action == 'stop':, obs, reward, done, info = self._task.reward(obs, done, info)
 
+
+
+
+
+
+
+# After Discussion
+
+
+## Category-1: Data Loading
+
+### Category-1.1: Data loading
+
+Candidate code elements:
+model.load_state_dict(torch.load(data.load_model_dir)), data.load(data.dset_dir), pickle.load(fp), json.load(config_file), self.load_model_dir = None, ibrosa.load(filename, sr=sample_rate, mono=True), with open(args.wavenet_params, 'r') as f, load(saver, sess, restore_from), load_generic_audio(self.audio_dir, self.sample_rate), np.load(path), data_utils.DataLoader(), torch.load(checkpoint_path), load_audio(args.input_path), self.download_data(), download_an4(), wget.download(lm_path), latest_blob.download_to_filename(self.local_save_file), blob.upload_from_filename(self.local_save_file), if cfg.checkpointing.load_auto_checkpoint, visdom_logger.load_previous_values(state.epoch, state.results), TrainingState.load_state(), load_randomly_augmented_audio(audio_path, self.sample_rate), tf.saved_model.loader.load(), load_pretrained = hparams.load_pretrained, train_config.load_all_detection_checkpoint_vars, tf.resource_loader.get_data_files_path(), load_fine_tune_checkpoint(), _load_labelmap(), coco_gt.loadRes(predictions=coco_predictions), dataloader_utils.process_source_id(), mnist.download_and_prepare(), yaml.load(f), hub.load(params.hub_module_url), data_loader_factory.get_data_loader(dataloader_params).load(input_context), download_and_extract(), download_from_url(path, url), get_raw_files(FLAGS.data_dir, _TEST_DATA_SOURCES), _load_vocab_file(vocab_file, reserved_tokens), self.sp_model.Load(sp_model_file), TaggingDataLoader(data_config).load(), pd.read_csv(attributes_file), with h5py.File(hdf5_file, "a") as hf, with open(d_act_path, 'r') as f, dset.MNIST(root=".", download=True), data_utils.load_celebA(img_dim, image_data_format), load_image_dataset(dset, img_dim, image_data_format), mnist_loader = get_loader(config), tl.files.load_file_list(), data = np.frombuffer(f.read(), np.uint8, offset=8), words = f.read(), _download(filename, working_directory, url_source)
+tf.io.read_file(filename)
+tf.data.Dataset.from_tensor_slices(filenames)
+open(input_file,'r', encoding="utf8").readlines()
+
+### Category-1.2: Model loading
+
+Candidate code elements:
+load_model(cls, path), load_decoder(labels, cfg: LMConfig), load_previous_values(self, start_epoch, results_state), DeepSpeech.load_model_package(package), tf.keras.models.load_model(model_weights_path), load_pretrained(model, num_classes, settings), model.load_state_dict(torch.load(data.load_model_dir)), tag_seq = model(), model = SeqLabel(data), args1, auxs1 = load_checkpoint(prefix1, epoch1), load_param(prefix, begin_epoch, convert=True)
+
+## Category-2: Prediction Model
+
+### Category-2.1: Model Input/ Model features
+
+Candidate code elements:
+batch_size = data.HP_batch_size, features = [np.asarray(sent[1]) for sent in input_batch_list], input_shapes = []
+
+### Category-2.2: Input Labeling
+
+Candidate code elements:
+labels = [sent[3] for sent in input_batch_list]
+
+### Category-2.3: Model Output
+
+Candidate code elements:
+model.summary(), data.show_data_summary(), output_data = interpreter.get_tensor(output_details[0]['index']), model._feature_extractor
+
+### Category-2.4: Model Feedback
+
+Candidate code elements:
+pred_scores = evaluate(data, model, name, data.nbest), model.eval(), es = self.score(), confusion_matrix(y_test, y_predict, labels = [x for x in range(n_classes)]), f1_score(y_test, y_predict, average = None, labels = [x for x in range(n_classes)], f1_score(y_test, y_predict, average='macro'), accuracy_score(y_test, y_predict), total_loss = (reduced_loss + l2_regularization_strength * l2_loss), classification_loss(
+        truth=truth, predicted=predicted, weights=weights, is_one_hot=True)
+
+## Category-3: Data Pipelines
+
+Candidate code elements:
+argparse.ArgumentParser(description='Input pipeline'), pipeline_config = pipeline_pb2.TrainEvalPipelineConfig(), get_configs_from_pipeline_file(FLAGS.pipeline_config_path), configs['model'] = pipeline_config.model, data.Field(sequential=True, preprocessing=data.Pipeline(), input_pipeline_context=None, configs['model'] = pipeline_config.model
+
+## Category-4: Reinforcement learning
+
+### Category-4.1: Environment
+
+Candidate code elements:
+> *inner_next_obs, inner_reward, done = wrapped_env.step(action)*
+> *obs, reward, done, tt = env.step(action)* 
+> *state, reward, done, _ = env.step(action)*
+> *obs, reward, done, info = env.step(action)* 
+> *next_state, reward, done, _ = env.step(action)* 
+> *batch_ob, reward, done, info = self.env.step(action)* 
+> *state, reward, done, _ = env.step(action)*
+> *o, r, done, info = self.env.step(action)* 
+> *policy = torch.load(args.model_path)* 
+> *env = gym.make(params.env_name)* and *num_inputs = env.observation_space.shape[0]* and *num_outputs = env.action_space.shape[0]*
+
+### Category-4.2: State Observation
+
+Candidate code elements:
+> *obs, reward, done, tt = env.step(action)* 
+
+### Category-4.3: Action Selection
+
+Candidate code elements:
+> *obs, reward, done, tt = env.step(action)* 
