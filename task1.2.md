@@ -114,10 +114,11 @@ num_actions = env.action_space.shape[0], observation, reward, done, info = self.
 
 ### Category-1.1: Data loading
 
-Candidate code elements:
+#### Section-1.1.a 
+
 > The following code elements can be extracted using the `https://github.com/paser-group/MLForensics/blob/190f2e23b305618b5dc38095973450b98ccd5858/FAME-ML/py_parser.py#L17` . First get the class name, then the attribute 
 method name, then check arguments ... if the class name matches and the attribute method name matches, and no. of 
-function arguments is greater than 0, then flag as a detection 
+function arguments is greater than 0, then flag as a detection . Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection 
 
 - torch.load(data.load_model_dir)
 - data.load(data.dset_dir)
@@ -147,12 +148,17 @@ function arguments is greater than 0, then flag as a detection
 - Image.open(args.demo_image) 
 - agent.replay_buffer.load(self.rbuf_filename) 
 
-> You will write a separate method in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to detect the following ... some code from Workshop#4 will be helpful. 
+#### Section-1.1.b
+
+> You will write a separate method in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to detect the following ... some code from `py.traverse.py` file will be helpful. Also, write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection 
 
 - data = np.frombuffer(f.read(), np.uint8, offset=8)
 - mnist_loader = get_loader(config),
 
-> You will write a separate method in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to detect the following. FOr this methods you will detect function declarations with >0 function arguments ... match exact string 
+
+#### Section-1.1.c 
+
+> You will write a separate method in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to detect the following. For this methods you will detect function declarations with >0 function arguments ... match exact string. Also, write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection  
 
 - load_randomly_augmented_audio(audio_path, self.sample_rate)
 - _download(filename, working_directory, url_source)
@@ -175,22 +181,71 @@ function arguments is greater than 0, then flag as a detection
 
 ### Category-1.2: Model loading
 
-Candidate code elements:
-> load_model(cls, path), load_decoder(labels, cfg: LMConfig), load_previous_values(self, start_epoch, results_state), DeepSpeech.load_model_package(package), tf.keras.models.load_model(model_weights_path), load_pretrained(model, num_classes, settings), model.load_state_dict(torch.load(data.load_model_dir)), tag_seq = model(), model = SeqLabel(data), args1, auxs1 = load_checkpoint(prefix1, epoch1), load_param(prefix, begin_epoch, convert=True)
+#### Section-1.2.a 
 
-> model_dir_path = patch_path('models'), ref = CaffeFunction('VGG_ILSVRC_19_layers.caffemodel'),load_state_dict(), model_from_json(open()), network.load_net(), vgg.load_from_npy_file(), caffe_parser.read_caffemodel() , tf.train.Checkpoint(), get_network(args.network_name), tfhub.load(), scipy.misc.imresize()
+> The following code elements can be extracted using the `https://github.com/paser-group/MLForensics/blob/190f2e23b305618b5dc38095973450b98ccd5858/FAME-ML/py_parser.py#L17` . First get the class name, then the attribute 
+method name, then check arguments ... if the class name matches and the attribute method name matches, then flag as a detection. Match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection   
+
+- DeepSpeech.load_model_package(package)
+- tf.keras.models.load_model(model_weights_path) 
+- model.load_state_dict(torch.load(data.load_model_dir)) 
+- network.load_net() 
+- vgg.load_from_npy_file() 
+- caffe_parser.read_caffemodel() 
+- tf.train.Checkpoint()
+- tfhub.load()
+- scipy.misc.imresize()
+
+
+#### Section-1.2.b
+
+> You will use the method you wrote in `1.1.b` in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to detect the following ... some code from my `py.traverse.py` file  will be helpful.  
+
+- model_dir_path = patch_path('models')
+- ref = CaffeFunction('VGG_ILSVRC_19_layers.caffemodel') 
+
+#### Section-1.2.c
+
+> You will use the method you wrote in `1.1.c` in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to detect the following. For this methods you will detect function declarations with > 0 function arguments ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection    
+
+- load_model(cls, path)
+- load_decoder(labels, cfg: LMConfig)
+- load_previous_values(self, start_epoch, results_state)
+- load_pretrained(model, num_classes, settings)
+- model = SeqLabel(data), args1, auxs1 = load_checkpoint(prefix1, epoch1)
+- load_param(prefix, begin_epoch, convert=True)
+
+
 
 ## Category-2: Data  downloads 
 
-Candidate code elements: 
-> wget.download('http://www.speech.cs.cmu.edu/databases/an4/an4_raw.bigendian.tar.gz'), urllib.request.urlopen(request), model_zoo.load_url(url), prepare_url_image(url), urllib.urlretrieve(), agent.load(misc.download_model())
+#### Section-2.a
+
+> The following code elements can be extracted using the `https://github.com/paser-group/MLForensics/blob/190f2e23b305618b5dc38095973450b98ccd5858/FAME-ML/py_parser.py#L17` . First get the class name, then the attribute 
+method name, then check arguments ... if the class name matches and the attribute method name matches, then flag as a detection. Match exact string  
+
+
+- wget.download('http://www.speech.cs.cmu.edu/databases/an4/an4_raw.bigendian.tar.gz')
+- urllib.request.urlopen(request)
+- model_zoo.load_url(url)
+- urllib.urlretrieve() 
+- agent.load(misc.download_model())
+
+#### Section-2.b
+
+> You will write a separate method in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to detect the following. For this methods you will detect function declarations with > 0 function arguments ... match exact string 
+
+- prepare_url_image(url)
 
 ## Category-3: Prediction Model
 
 ### Category-3.1: Model Input/ Model features
 
 Candidate code elements:
-batch_size = data.HP_batch_size, features = [np.asarray(sent[1]) for sent in input_batch_list], input_shapes = []
+
+
+- batch_size = data.HP_batch_size, 
+- features = [np.asarray(sent[1]) for sent in input_batch_list]
 
 ### Category-3.2: Label manipulation 
 
