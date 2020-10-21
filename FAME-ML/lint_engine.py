@@ -11,10 +11,11 @@ import constants
 def getDataLoadCount( py_file ):
     data_load_count = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
-    func_def_list = py_parser.getPythonAtrributeFuncs( py_tree ) 
+    func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
+    print(func_def_list)
     for def_ in func_def_list:
-        class_name, func_name, func_line = def_ 
-        if(( class_name == constants.DATA_KW ) and (func_name == constants.LOAD_KW ) ):
+        class_name, func_name, func_line, arg_call_list = def_ 
+        if(( class_name == constants.DATA_KW ) and (func_name == constants.LOAD_KW ) and (len(arg_call_list) > 0) ):
             data_load_count += 1 
     return data_load_count 
 

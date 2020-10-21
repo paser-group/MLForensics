@@ -13,3 +13,4 @@ VALUE_KW = 'value'
 
 DATA_KW = 'data'
 LOAD_KW = 'load'
+INDEX_KW = 'INDEX'

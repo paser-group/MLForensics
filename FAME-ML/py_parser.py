@@ -15,7 +15,7 @@ def getPythonParseObject( pyFile ):
     return full_tree 
 
 def getPythonAtrributeFuncs(pyTree):
-    attrib_call_list = []
+    attrib_call_list  = [] 
     for stmt_ in pyTree.body:
         for node_ in ast.walk(stmt_):
             if isinstance(node_, ast.Call):
@@ -26,6 +26,15 @@ def getPythonAtrributeFuncs(pyTree):
                     # print(func_as_attrib_dict ) 
                     func_name    = func_as_attrib_dict[constants.ATTRIB_KW] 
                     func_parent  = func_as_attrib_dict[constants.VALUE_KW]
-                    if( isinstance(func_parent, ast.Name )   ):                    
-                        attrib_call_list.append( ( func_parent.id, func_name , funcLineNo  ) )
+                    if( isinstance(func_parent, ast.Name )   ):     
+                        call_arg_list = []                
+                        for x_ in range(len(funcArgs)):
+                            funcArg = funcArgs[x_] 
+                            if( isinstance(funcArg, ast.Name ) )  :
+                                call_arg_list.append( (  funcArg.id, constants.INDEX_KW + str(x_ + 1) )  ) 
+                            elif( isinstance(funcArg, ast.Attribute) ): 
+                                arg_dic  = funcArg.__dict__
+                                arg_name = arg_dic[constants.ATTRIB_KW] 
+                                call_arg_list.append( (  arg_name, constants.INDEX_KW + str(x_ + 1) )  ) 
+                        attrib_call_list.append( ( func_parent.id, func_name , funcLineNo, call_arg_list  ) )                
     return attrib_call_list 
