@@ -147,29 +147,6 @@ function arguments is greater than 0, then flag as a detection
 - Image.open(args.demo_image) 
 - agent.replay_buffer.load(self.rbuf_filename) 
 
-
-> We WILL NOT  detect the following in this round: 
-
-- data_utils.DataLoader()
-- tf.resource_loader.get_data_files_path() 
-- dataloader_utils.process_source_id(), 
-- mnist.download_and_prepare(), 
-- TrainingState.load_state()
-- tf.saved_model.loader.load()
-- self.download_data()
-- utils.pickle_load(filename) 
-- cv2.imread(path, cv2.CV_LOAD_IMAGE_GRAYSCALE)
-- download_an4()
-- load_fine_tune_checkpoint() 
-- get_dataset() 
-- _load_labelmap() 
-- download_and_extract() 
-
-> We WILL NOT detect the following 
-> datasets.ImageFolder(), torch.utils.data.DataLoader(),  load_image(), testLoader = DataLoader(),  glob.iglob(), codecs.open(), scipy.io.loadmat(), load_gt_roidb(), , Image.fromArray(), tf.gfile.GFile(), dataset.ReadDatasetFile(), tf.io.gfile.glob()
-
-
-
 > You will write a separate method in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to detect the following ... some code from Workshop#4 will be helpful. 
 
 - data = np.frombuffer(f.read(), np.uint8, offset=8)
