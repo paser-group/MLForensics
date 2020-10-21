@@ -10,3 +10,6 @@ ARGS_KW = 'args'
 LINE_NO_KW = 'lineno'
 ATTRIB_KW = 'attr'
 VALUE_KW = 'value'
+
+DATA_KW = 'data'
+LOAD_KW = 'load'
