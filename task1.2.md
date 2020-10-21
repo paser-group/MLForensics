@@ -107,7 +107,7 @@ num_actions = env.action_space.shape[0], observation, reward, done, info = self.
 
 
 
-# After Discussion
+# After Discussion and Validation 
 
 
 ## Category-1: Data Loading
@@ -115,9 +115,86 @@ num_actions = env.action_space.shape[0], observation, reward, done, info = self.
 ### Category-1.1: Data loading
 
 Candidate code elements:
-> model.load_state_dict(torch.load(data.load_model_dir)), data.load(data.dset_dir), pickle.load(fp), json.load(config_file), self.load_model_dir = None, ibrosa.load(filename, sr=sample_rate, mono=True), with open(args.wavenet_params, 'r') as f, load(saver, sess, restore_from), load_generic_audio(self.audio_dir, self.sample_rate), np.load(path), data_utils.DataLoader(), torch.load(checkpoint_path), load_audio(args.input_path), self.download_data(), download_an4(), wget.download(lm_path), latest_blob.download_to_filename(self.local_save_file), blob.upload_from_filename(self.local_save_file), if cfg.checkpointing.load_auto_checkpoint, visdom_logger.load_previous_values(state.epoch, state.results), TrainingState.load_state(), load_randomly_augmented_audio(audio_path, self.sample_rate), tf.saved_model.loader.load(), load_pretrained = hparams.load_pretrained, train_config.load_all_detection_checkpoint_vars, tf.resource_loader.get_data_files_path(), load_fine_tune_checkpoint(), _load_labelmap(), coco_gt.loadRes(predictions=coco_predictions), dataloader_utils.process_source_id(), mnist.download_and_prepare(), yaml.load(f), hub.load(params.hub_module_url), data_loader_factory.get_data_loader(dataloader_params).load(input_context), download_and_extract(), download_from_url(path, url), get_raw_files(FLAGS.data_dir, _TEST_DATA_SOURCES), _load_vocab_file(vocab_file, reserved_tokens), self.sp_model.Load(sp_model_file), TaggingDataLoader(data_config).load(), pd.read_csv(attributes_file), with h5py.File(hdf5_file, "a") as hf, with open(d_act_path, 'r') as f, dset.MNIST(root=".", download=True), data_utils.load_celebA(img_dim, image_data_format), load_image_dataset(dset, img_dim, image_data_format), mnist_loader = get_loader(config), tl.files.load_file_list(), data = np.frombuffer(f.read(), np.uint8, offset=8), words = f.read(), _download(filename, working_directory, url_source), tf.io.read_file(filename), tf.data.Dataset.from_tensor_slices(filenames), open(input_file,'r', encoding="utf8").readlines(), 
+> The following code elements can be extracted using the `https://github.com/paser-group/MLForensics/blob/190f2e23b305618b5dc38095973450b98ccd5858/FAME-ML/py_parser.py#L17` . First get the class name, then the attribute 
+method name, then check arguments ... if the class name matches and the attribute method name matches, and no. of 
+function arguments is greater than 0, then flag as a detection 
 
-> tarfile.open(target_file), get_dataset(), audio.load_wav(wav_path), with open("cmuarctic.data", "r") as f:, utils.pickle_load(filename), cv2.imread(path, cv2.CV_LOAD_IMAGE_GRAYSCALE), load_attribute_dataset(args.attr_file), datasets.ImageFolder(), torch.utils.data.DataLoader(), Image.open(args.demo_image), load_image(), testLoader = DataLoader(), read_h5file(os.path.join(os.getcwd(), 'train.h5')), load_lua(args.input_t7),  glob.iglob(), codecs.open(), scipy.io.loadmat(), load_gt_roidb(), agent.replay_buffer.load(self.rbuf_filename), Image.fromArray(), tf.gfile.GFile(), dataset.ReadDatasetFile(), tf.io.gfile.glob()
+- torch.load(data.load_model_dir)
+- data.load(data.dset_dir)
+- pickle.load(fp)
+- json.load(config_file)
+- np.load(path)
+- torch.load(checkpoint_path)
+- wget.download(lm_path)
+- latest_blob.download_to_filename(self.local_save_file)
+- blob.upload_from_filename(self.local_save_file)
+- visdom_logger.load_previous_values(state.epoch, state.results)
+- coco_gt.loadRes(predictions=coco_predictions)
+- yaml.load(f)
+- hub.load(params.hub_module_url)
+- data_loader_factory.get_data_loader(dataloader_params).load(input_context)
+- tf.io.read_file(filename)
+- tf.data.Dataset.from_tensor_slices(filenames)
+- self.sp_model.Load(sp_model_file)
+- TaggingDataLoader(data_config).load()
+- pd.read_csv(attributes_file)
+- tl.files.load_file_list() 
+- ibrosa.load(filename, sr=sample_rate, mono=True) 
+- data_utils.load_celebA(img_dim, image_data_format) 
+- dset.MNIST(root=".", download=True) 
+- tarfile.open(target_file)
+- audio.load_wav(wav_path)
+- Image.open(args.demo_image) 
+- agent.replay_buffer.load(self.rbuf_filename) 
+
+
+> We WILL NOT  detect the following in this round: 
+
+- data_utils.DataLoader()
+- tf.resource_loader.get_data_files_path() 
+- dataloader_utils.process_source_id(), 
+- mnist.download_and_prepare(), 
+- TrainingState.load_state()
+- tf.saved_model.loader.load()
+- self.download_data()
+- utils.pickle_load(filename) 
+- cv2.imread(path, cv2.CV_LOAD_IMAGE_GRAYSCALE)
+- download_an4()
+- load_fine_tune_checkpoint() 
+- get_dataset() 
+- _load_labelmap() 
+- download_and_extract() 
+
+> We WILL NOT detect the following 
+> datasets.ImageFolder(), torch.utils.data.DataLoader(),  load_image(), testLoader = DataLoader(),  glob.iglob(), codecs.open(), scipy.io.loadmat(), load_gt_roidb(), , Image.fromArray(), tf.gfile.GFile(), dataset.ReadDatasetFile(), tf.io.gfile.glob()
+
+
+
+> You will write a separate method in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to detect the following ... some code from Workshop#4 will be helpful. 
+
+- data = np.frombuffer(f.read(), np.uint8, offset=8)
+- mnist_loader = get_loader(config),
+
+> You will write a separate method in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to detect the following. FOr this methods you will detect function declarations with >0 function arguments ... match exact string 
+
+- load_randomly_augmented_audio(audio_path, self.sample_rate)
+- _download(filename, working_directory, url_source)
+- open(input_file,'r', encoding="utf8").readlines()
+- with open(args.wavenet_params, 'r') as f
+- load(saver, sess, restore_from)
+- load_generic_audio(self.audio_dir, self.sample_rate)
+- load_audio(args.input_path)
+- load_image_dataset(dset, img_dim, image_data_format) 
+- with h5py.File(hdf5_file, "a") as hf 
+- download_from_url(path, url)
+- get_raw_files(FLAGS.data_dir, _TEST_DATA_SOURCES)
+- _load_vocab_file(vocab_file, reserved_tokens)
+- load_attribute_dataset(args.attr_file) 
+- read_h5file(os.path.join(os.getcwd(), 'train.h5')) 
+- load_lua(args.input_t7) 
+
+
+
 
 ### Category-1.2: Model loading
 
