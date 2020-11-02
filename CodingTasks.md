@@ -282,8 +282,15 @@ configs['model'] = pipeline_config.model
 - model = Graph()
 - graph = VGG_16_graph() 
 
+### Category-7: Detect absence of Logging for Exception Handling 
 
-### Category-7: Incomplete Logging 
+> A lot of prior work has observed that exception handling is a common target of 
+logging, and absence of logging for exception is considered as a negative deevlopment practice. We will detect where exceptions are printed but not logged. Exceptions can happen for many reasons and not all of them are necessary to log. But the excpetions that developers already are capturing using `catch` need to be checked to see if they use logging for them. 
+
+> For this you will check `except` blocks and see what is inside the `except` block. If there is no logging then report an antipattern. 
+
+
+### Category-8: Incomplete Logging 
 
 > You will need your library import code from 6.1 to detect `import logging` and `from symnet.logger import logger` and `import tensorflow.compat.v1 as tf` and `import tensorflow as tf`. Then use your code from `1.1.a` to detect 
 the following: 
@@ -298,6 +305,8 @@ the following:
 
 - logger = logging.getLogger() #no mention of timestamp*
 
-### Category-8: Detect absence of Logging 
+### Category-9: Detect absence of Logging 
 
 > You will write a separate method that will report the presence (True) or absence (False) of logging in a Python file. The method will check for all the import-related statements and function declarations from `Category-7`. Detect presence for each of the imports and return it as a dictionary. If any of the import statement appears check for the presence of existence. Return presence or absence for the above-mentioned logging function declarations as a dictionary. If the input Python file has no logging import statements, then the dictionary will be empty. 
+
+ 
