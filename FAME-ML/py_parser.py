@@ -88,10 +88,10 @@ def commonAttribCallBody(node_):
         func_, funcArgs, funcLineNo =  funcDict[ constants.FUNC_KW ], funcDict[constants.ARGS_KW], funcDict[constants.LINE_NO_KW] 
         if( isinstance(func_, ast.Attribute ) ):
             func_as_attrib_dict = func_.__dict__ 
-            # print(func_as_attrib_dict ) 
+            #print(func_as_attrib_dict ) 
             func_name    = func_as_attrib_dict[constants.ATTRIB_KW] 
             func_parent  = func_as_attrib_dict[constants.VALUE_KW]
-            if( isinstance(func_parent, ast.Name )   ):     
+            if( isinstance(func_parent, ast.Name ) ):     
                 call_arg_list = []                
                 for x_ in range(len(funcArgs)):
                     funcArg = funcArgs[x_] 
@@ -104,6 +104,40 @@ def commonAttribCallBody(node_):
                     elif(isinstance( funcArg, ast.Str ) ):
                         call_arg_list.append( ( funcArg.s, constants.INDEX_KW + str( x_ + 1 )  ) )
                 full_list.append( ( func_parent.id, func_name , funcLineNo, call_arg_list  ) )        
+                
+                
+            if( isinstance(func_parent, ast.Attribute ) ):     
+                call_arg_list = []                
+                for x_ in range(len(funcArgs)):
+                    funcArg = funcArgs[x_] 
+                    if( isinstance(funcArg, ast.Name ) )  :
+                        call_arg_list.append( (  funcArg.id, constants.INDEX_KW + str(x_ + 1) )  ) 
+                    elif( isinstance(funcArg, ast.Attribute) ): 
+                        arg_dic  = funcArg.__dict__
+                        arg_name = arg_dic[constants.ATTRIB_KW] 
+                        call_arg_list.append( (  arg_name, constants.INDEX_KW + str(x_ + 1) )  ) 
+                    elif(isinstance( funcArg, ast.Str ) ):
+                        call_arg_list.append( ( funcArg.s, constants.INDEX_KW + str( x_ + 1 )  ) )
+                func_dic  = func_parent.__dict__
+                func_parent_name = func_dic[constants.ATTRIB_KW] 
+                full_list.append( ( func_parent_name, func_name , funcLineNo, call_arg_list  ) )    
+                
+            if( isinstance(func_parent, ast.Call ) ):     
+                call_arg_list = []                
+                for x_ in range(len(funcArgs)):
+                    funcArg = funcArgs[x_] 
+                    if( isinstance(funcArg, ast.Name ) )  :
+                        call_arg_list.append( (  funcArg.id, constants.INDEX_KW + str(x_ + 1) )  ) 
+                    elif( isinstance(funcArg, ast.Attribute) ): 
+                        arg_dic  = funcArg.__dict__
+                        arg_name = arg_dic[constants.ATTRIB_KW] 
+                        call_arg_list.append( (  arg_name, constants.INDEX_KW + str(x_ + 1) )  ) 
+                    elif(isinstance( funcArg, ast.Str ) ):
+                        call_arg_list.append( ( funcArg.s, constants.INDEX_KW + str( x_ + 1 )  ) )
+                func_dic  = func_parent.__dict__
+                func_parent_name = func_dic[constants.FUNC_KW] 
+                if( isinstance(func_parent_name, ast.Name ) ):  
+                	full_list.append( ( func_parent_name.id, func_name , funcLineNo, call_arg_list  ) )      
     return full_list             
 
 
