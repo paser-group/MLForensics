@@ -12,5 +12,8 @@ if __name__=='__main__':
     data_load_count = lint_engine.getDataLoadCount( TEST_ML_SCRIPT ) 
     print(data_load_count)
     
+    data_load_countb = lint_engine.getDataLoadCountb( TEST_ML_SCRIPT ) 
+    print(data_load_countb) 
+    
     # the following checks except related blocks 
     lint_engine.getExcepts( TEST_ML_SCRIPT ) 

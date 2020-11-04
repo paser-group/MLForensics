@@ -61,6 +61,8 @@ AUDIO_KW = 'audio'
 LOAD_WAV_KW = 'load_wav'
 IMAGE_KW = 'Image'
 
+GET_LOADER_KW = 'get_loader'
+FROM_BUFFER_KW = 'frombuffer'
 
 
 DUMMY_LOG_KW = 'pytorch'

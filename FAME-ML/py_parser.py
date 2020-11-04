@@ -91,6 +91,7 @@ def commonAttribCallBody(node_):
             #print(func_as_attrib_dict ) 
             func_name    = func_as_attrib_dict[constants.ATTRIB_KW] 
             func_parent  = func_as_attrib_dict[constants.VALUE_KW]
+            
             if( isinstance(func_parent, ast.Name ) ):     
                 call_arg_list = []                
                 for x_ in range(len(funcArgs)):
@@ -152,3 +153,31 @@ def getPythonAtrributeFuncs(pyTree):
                 attrib_call_list =  attrib_call_list + commonAttribCallBody( node_ )
 
     return attrib_call_list 
+    
+    
+def getFunctionAssignments(pyTree):
+    call_list = []
+    for stmt_ in pyTree.body:
+        for node_ in ast.walk(stmt_):
+            if isinstance(node_, ast.Assign):
+                lhs = ''
+                assign_dict = node_.__dict__
+                targets, value  =  assign_dict['targets'], assign_dict['value']
+                if isinstance(value, ast.Call):
+                    funcDict = value.__dict__ 
+                    funcName, funcArgs, funcLineNo =  funcDict[ constants.FUNC_KW ], funcDict[ constants.ARGS_KW ], funcDict['lineno'] 
+                    for target in targets:
+                    	if( isinstance(target, ast.Name) ):
+                            lhs = target.id 
+                    for x_ in range(len(funcArgs)):
+                        funcArg = funcArgs[x_] 
+                        if( isinstance(funcArg, ast.Name ) ) and ( isinstance(funcName, ast.Name ) ):
+                        	call_list.append( ( lhs, funcName.id, funcArg.id, funcLineNo, 'FUNC_CALL_ARG:' + str(x_ + 1) )  )
+                        if( isinstance(funcArg, ast.Call ) ) and ( isinstance(funcName, ast.Attribute ) ):
+                        	func_arg_dict  = funcArg.__dict__
+                        	func_arg = func_arg_dict[constants.FUNC_KW] 
+                        	func_name_dict  = funcName.__dict__
+                        	func_name = func_name_dict[constants.ATTRIB_KW] 
+                        	call_list.append( ( lhs, func_name, func_arg, funcLineNo, 'FUNC_CALL_ARG:' + str(x_ + 1) )  )
+    
+    return call_list 
