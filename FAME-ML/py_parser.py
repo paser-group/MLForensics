@@ -78,7 +78,7 @@ def checkAttribFuncsInExcept(expr_obj):
     return attrib_list 
 
 def getPythonParseObject( pyFile ): 
-    full_tree = ast.parse( open( pyFile  ).read() )    
+    full_tree = ast.parse( open( pyFile ).read() )    
     return full_tree 
 
 def commonAttribCallBody(node_):
@@ -181,3 +181,33 @@ def getFunctionAssignments(pyTree):
                         	call_list.append( ( lhs, func_name, func_arg, funcLineNo, 'FUNC_CALL_ARG:' + str(x_ + 1) )  )
     
     return call_list 
+    
+    
+def getFunctionDefinitions(pyTree):
+    func_list = []
+    func_var_list = []
+    for stmt_ in pyTree.body:
+        for node_ in ast.walk(stmt_):
+        	if isinstance(node_, ast.Call):
+        		funcDict = node_.__dict__ 
+        		func_, funcArgs, funcLineNo =  funcDict[ constants.FUNC_KW ], funcDict[constants.ARGS_KW], funcDict[constants.LINE_NO_KW] 
+        		if( isinstance(func_, ast.Name ) ):  
+        			func_name = func_.id 
+        			call_arg_list = []                
+        			for x_ in range(len(funcArgs)):
+        				funcArg = funcArgs[x_] 
+        				if( isinstance(funcArg, ast.Name ) )  :
+        					call_arg_list.append( (  funcArg.id, constants.INDEX_KW + str(x_ + 1) )  ) 
+        				elif( isinstance(funcArg, ast.Attribute) ): 
+        					arg_dic  = funcArg.__dict__
+        					arg_name = arg_dic[constants.ATTRIB_KW] 
+        					call_arg_list.append( (  arg_name, constants.INDEX_KW + str(x_ + 1) )  ) 
+        				elif(isinstance( funcArg, ast.Call ) ):
+        					func_arg_dict  = funcArg.__dict__
+        					func_arg = func_arg_dict[constants.FUNC_KW] 
+        					call_arg_list.append( ( func_arg, constants.INDEX_KW + str( x_ + 1 )  ) )
+        				elif(isinstance( funcArg, ast.Str ) ):
+        					call_arg_list.append( ( funcArg.s, constants.INDEX_KW + str( x_ + 1 )  ) )
+        			func_list.append( ( func_name , funcLineNo, call_arg_list  ) )        
+        			         
+    return func_list

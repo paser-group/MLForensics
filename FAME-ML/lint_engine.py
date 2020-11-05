@@ -121,6 +121,10 @@ def getDataLoadCount( py_file ):
         elif(( class_name == constants.REPLAY_BUFFER_KW ) and (func_name == constants.LOAD_KW ) ):
             data_load_count += 1 
             print(def_)
+            
+        elif(( class_name == constants.H5PY_KW ) and (func_name == constants.FILE_KW ) ):
+            data_load_count += 1 
+            print(def_)
 
     # LOGGING_IS_ON_FLAG = py_parser.checkLogging( py_tree,  func_def_list, 'akond' )
     # this will be used to check if the file_name passed in as file to read, is logged  
@@ -153,6 +157,74 @@ def getDataLoadCountb( py_file ):
     print(LOGGING_IS_ON_FLAG, data_load_countb) 
     return data_load_countb 
 
+
+def getDataLoadCountc( py_file ):
+    data_load_countc = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    func_assign_list  = py_parser.getFunctionDefinitions( py_tree ) 
+    print('----------------------------------------------')
+    print(func_assign_list)
+    print('----------------------------------------------')
+    for func_ in func_assign_list:
+        func_name, func_line, func_arg_list = func_ 
+        
+        if( (func_name == constants.LOAD_RANDOMLY_AUGMENTED_AUDIO_KW ) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+        if( (func_name == constants._DOWNLOAD_KW ) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+        if( (func_name == constants.OPEN_KW ) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+        if( (func_name == constants.LOAD_KW ) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+        if( (func_name == constants.LOAD_GENERIC_AUDIO_KW ) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+        if( (func_name == constants.LOAD_AUDIO_KW ) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+        if( (func_name == constants.LOAD_IMAGE_DATASET_KW ) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+        if( (func_name == constants.DOWNLOAD_FROM_URL_KW ) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+        if( (func_name == constants.GET_RAW_FILES_KW ) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+        if( (func_name == constants.LOAD_VOCAB_FILE_KW ) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+        if( (func_name == constants.LOAD_ATTRIBUTE_DATASET_KW ) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+        if( (func_name == constants.READ_H5FILE_KW ) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+        if( (func_name == constants.LOAD_LUA_KW) and (len(func_arg_list) > 0) ):
+            data_load_countc += 1 
+            print(func_)
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+
+    print(LOGGING_IS_ON_FLAG, data_load_countc) 
+    
+    return data_load_countc 
 
 
 def getExcepts( py_file ) :
