@@ -38,6 +38,7 @@ function arguments is greater than 0, then flag as a detection . Write a separat
 - audio.load_wav(wav_path)
 - Image.open(args.demo_image) 
 - agent.replay_buffer.load(self.rbuf_filename) 
+- h5py.File(hdf5_file, "a")
 
 #### Section-1.1.b
 
@@ -54,12 +55,11 @@ function arguments is greater than 0, then flag as a detection . Write a separat
 - load_randomly_augmented_audio(audio_path, self.sample_rate)
 - _download(filename, working_directory, url_source)
 - open(input_file,'r', encoding="utf8").readlines()
-- with open(args.wavenet_params, 'r') as f
+- open(args.wavenet_params, 'r')
 - load(saver, sess, restore_from)
 - load_generic_audio(self.audio_dir, self.sample_rate)
 - load_audio(args.input_path)
 - load_image_dataset(dset, img_dim, image_data_format) 
-- with h5py.File(hdf5_file, "a") as hf 
 - download_from_url(path, url)
 - get_raw_files(FLAGS.data_dir, _TEST_DATA_SOURCES)
 - _load_vocab_file(vocab_file, reserved_tokens)
