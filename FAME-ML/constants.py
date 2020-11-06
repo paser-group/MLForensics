@@ -85,5 +85,25 @@ LOAD_LUA_KW = 'load_lua'
 
 
 
+DEEP_SPEECH_KW = 'DeepSpeech'
+LOAD_MODEL_PACKAGE_KW = 'load_model_package'
+MODELS_KW = 'models'
+LOAD_MODEL_KW = 'load_model'
+MODEL_KW = 'model'
+LOAD_STATE_DICT_KW = 'load_state_dict'
+NETWORK_KW = 'network'
+LOAD_NET_KW = 'load_net'
+VGG_KW = 'vgg'
+LOAD_FROM_NPY_FILE_KW = 'load_from_npy_file'
+CAFFE_PARSER_KW = 'caffe_parser'
+READ_CAFFE_MODEL_KW = 'read_caffemodel'
+TRAIN_KW = 'train'
+CHECK_POINT_KW = 'Checkpoint'
+TF_HUB_KW = 'tfhub'
+MISC_KW = 'misc'
+IMRE_SIZE_KW = 'imresize'
+
+
+
 DUMMY_LOG_KW = 'pytorch'
 

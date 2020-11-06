@@ -25,5 +25,10 @@ if __name__=='__main__':
     data_load_countc = lint_engine.getDataLoadCountc( TEST_ML_SCRIPT ) 
     print(data_load_countc) 
     
+    print("*"*100)
+    print("Section 2.1a")
+    model_load_counta = lint_engine.getModelLoadCounta( TEST_ML_SCRIPT ) 
+    print(model_load_counta)
+    
     # the following checks except related blocks 
     lint_engine.getExcepts( TEST_ML_SCRIPT ) 
