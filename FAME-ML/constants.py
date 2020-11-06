@@ -105,5 +105,10 @@ IMRE_SIZE_KW = 'imresize'
 
 
 
+PATCH_PATH_KW = 'patch_path'
+CAFFE_FUNCTION_KW = 'CaffeFunction'
+
+
+
 DUMMY_LOG_KW = 'pytorch'
 

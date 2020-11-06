@@ -142,13 +142,13 @@ def getDataLoadCountb( py_file ):
     print(func_assign_list)
     print('----------------------------------------------')
     for assign_ in func_assign_list:
-        lhs, func_name, func_args, func_line, arg_call_list = assign_ 
+        lhs, func_name, func_line, func_arg_list = assign_ 
         
-        if( (func_name == constants.GET_LOADER_KW ) and (len(arg_call_list) > 0) ):
+        if( (func_name == constants.GET_LOADER_KW ) and (len(func_arg_list) > 0) ):
             data_load_countb += 1 
             print(assign_)
         
-        elif( (func_name == constants.FROM_BUFFER_KW ) and (len(arg_call_list) > 0) ):
+        elif( (func_name == constants.FROM_BUFFER_KW ) and (len(func_arg_list) > 0) ):
             data_load_countb += 1 
             print(assign_)
             
@@ -223,7 +223,6 @@ def getDataLoadCountc( py_file ):
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
 
     print(LOGGING_IS_ON_FLAG, data_load_countc) 
-    
     return data_load_countc 
 
 
@@ -277,6 +276,31 @@ def getModelLoadCounta( py_file ):
     
     print(LOGGING_IS_ON_FLAG, model_load_counta) 
     return model_load_counta 
+    
+    
+def getModelLoadCountb( py_file ):
+    model_load_countb = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    func_assign_list  = py_parser.getFunctionAssignments( py_tree ) 
+    print('----------------------------------------------')
+    print(func_assign_list)
+    print('----------------------------------------------')
+    for assign_ in func_assign_list:
+        lhs, func_name, func_line, func_arg_list = assign_ 
+        
+        if( (func_name == constants.PATCH_PATH_KW  ) and (len(func_arg_list) > 0) ):
+            model_load_countb += 1 
+            print(assign_)
+        
+        elif( (func_name == constants.CAFFE_FUNCTION_KW ) and (len(func_arg_list) > 0) ):
+            model_load_countb += 1 
+            print(assign_)
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+
+    print(LOGGING_IS_ON_FLAG, model_load_countb) 
+    return model_load_countb 
+    
 
 def getExcepts( py_file ) :
     py_tree = py_parser.getPythonParseObject(py_file)
