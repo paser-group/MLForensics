@@ -146,19 +146,20 @@ method name, then check arguments ... if the class name matches and the attribut
 > You will use the method you wrote in `1.1.b` in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this methods you will detect function declarations with > 0 function arguments ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection  
 
 
-> *train_data, train_label = read_h5file(os.path.join(os.getcwd(), 'train.h5'))*
-> *val_data, val_label = read_h5file(os.path.join(os.getcwd(), 'val.h5'))*
-> *label = np.array(hf.get('label'))* 
-> *label = load_image(f).convert('P')* 
-> *label = scipy.io.loadmat('{}/segmentation/img_{}.mat'.format(self.nyud_dir, idx))['segmentation'].astype(np.uint8)* 
-> *label = os.path.basename(os.path.dirname(one_file))* 
-> *raw_data,raw_label = load_data_and_labels(fenci_right_save_path,fenci_wrong_save_path)*
-> *label = hfw.create_dataset("labels", data=df_attr[list_col_labels].values)*
+- train_data, train_label = read_h5file(os.path.join(os.getcwd(), 'train.h5'))
+- val_data, val_label = read_h5file(os.path.join(os.getcwd(), 'val.h5'))
+- label = np.array(hf.get('label')) 
+- label = load_image(f).convert('P') 
+- label = scipy.io.loadmat('{}/segmentation/img_{}.mat'.format(self.nyud_dir, idx))['segmentation'].astype(np.uint8)
+- label = os.path.basename(os.path.dirname(one_file)) 
+- raw_data,raw_label = load_data_and_labels(fenci_right_save_path,fenci_wrong_save_path)
+- label = hfw.create_dataset("labels", data=df_attr[list_col_labels].values)
 
+#### 3.2.b 
 
 > You will write a separate method in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following . Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection  
 
-> *labels = [sent[3] for sent in input_batch_list]*
+- labels = [sent[3] for sent in input_batch_list]
 
 ### Category-3.3: Model Output
 
