@@ -26,15 +26,25 @@ if __name__=='__main__':
     print(data_load_countc) 
     
     print("*"*100)
-    print("Section 2.1a")
+    print("Section 1.2a")
     model_load_counta = lint_engine.getModelLoadCounta( TEST_ML_SCRIPT ) 
     print(model_load_counta)
     
     
     print("*"*100)
-    print("Section 2.1b")
+    print("Section 1.2b")
     model_load_countb = lint_engine.getModelLoadCountb( TEST_ML_SCRIPT ) 
     print(model_load_countb) 
+    
+    print("*"*100)
+    print("Section 1.2c")
+    model_load_countc = lint_engine.getModelLoadCountc( TEST_ML_SCRIPT ) 
+    print(model_load_countc) 
+    
+    print("*"*100)
+    print("Section 1.2d")
+    model_load_countd = lint_engine.getModelLoadCountd( TEST_ML_SCRIPT ) 
+    print(model_load_countd)
     
     # the following checks except related blocks 
     lint_engine.getExcepts( TEST_ML_SCRIPT ) 

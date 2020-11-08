@@ -301,6 +301,67 @@ def getModelLoadCountb( py_file ):
     print(LOGGING_IS_ON_FLAG, model_load_countb) 
     return model_load_countb 
     
+    
+def getModelLoadCountc( py_file ):
+    model_load_countc = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    func_assign_list  = py_parser.getFunctionDefinitions( py_tree ) 
+    print('----------------------------------------------')
+    print(func_assign_list)
+    print('----------------------------------------------')
+    for func_ in func_assign_list:
+        func_name, func_line, func_arg_list = func_ 
+        
+        if( (func_name == constants.LOAD_MODEL_KW ) and (len(func_arg_list) > 0) ):
+            model_load_countc += 1 
+            print(func_)
+            
+        elif( (func_name == constants.LOAD_DECODER_KW ) and (len(func_arg_list) > 0) ):
+            model_load_countc += 1 
+            print(func_)
+            
+        elif( (func_name == constants.LOAD_PREVIOUS_VALUES_KW ) and (len(func_arg_list) > 0) ):
+            model_load_countc += 1 
+            print(func_)
+            
+        elif( (func_name == constants.LOAD_PRETRAINED_KW ) and (len(func_arg_list) > 0) ):
+            model_load_countc += 1 
+            print(func_)
+            
+        elif( (func_name == constants.LOAD_PARAM_KW ) and (len(func_arg_list) > 0) ):
+            model_load_countc += 1 
+            print(func_)
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+
+    print(LOGGING_IS_ON_FLAG, model_load_countc) 
+    return model_load_countc 
+    
+    
+def getModelLoadCountd( py_file ):
+    model_load_countd = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    func_assign_list  = py_parser.getFunctionAssignmentsWithMultipleLHS( py_tree ) 
+    print('----------------------------------------------')
+    print(func_assign_list)
+    print('----------------------------------------------')
+    for assign_ in func_assign_list:
+        lhs, func_name, func_line, func_arg_list = assign_ 
+        
+        if( (func_name == constants.SEQ_LABEL_KW  ) and (len(func_arg_list) > 0) ):
+            model_load_countd += 1 
+            print(assign_)
+        
+        elif( (func_name == constants.LOAD_CHECKPOINT_KW ) and (len(func_arg_list) > 0) ):
+            model_load_countd += 1 
+            print(assign_)
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+
+    print(LOGGING_IS_ON_FLAG, model_load_countd) 
+    return model_load_countd 
+    
+    
 
 def getExcepts( py_file ) :
     py_tree = py_parser.getPythonParseObject(py_file)

@@ -109,6 +109,16 @@ PATCH_PATH_KW = 'patch_path'
 CAFFE_FUNCTION_KW = 'CaffeFunction'
 
 
+LOAD_MODEL_KW = 'load_model'
+LOAD_DECODER_KW = 'load_decoder'
+LOAD_PREVIOUS_VALUES_KW = 'load_previous_values'
+LOAD_PRETRAINED_KW = 'load_pretrained'
+LOAD_PARAM_KW = 'load_param'
+
+
+SEQ_LABEL_KW = 'SeqLabel'
+LOAD_CHECKPOINT_KW = 'load_checkpoint'
+
 
 DUMMY_LOG_KW = 'pytorch'
 
