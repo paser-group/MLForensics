@@ -25,8 +25,6 @@ TORCH_KW = 'torch'
 PICKLE_KW = 'pickle'
 JSON_KW = 'json'
 NP_KW = 'np'
-WGET_KW = 'wget' 
-DOWNLOAD_KW = 'download'
 LATEST_BLOB_KW = 'latest_blob'
 DOWNLOAD_TO_FILENAME_KW = 'download_to_filename'
 BLOB_KW = 'blob'
@@ -118,6 +116,22 @@ LOAD_PARAM_KW = 'load_param'
 
 SEQ_LABEL_KW = 'SeqLabel'
 LOAD_CHECKPOINT_KW = 'load_checkpoint'
+
+
+WGET_KW = 'wget' 
+DOWNLOAD_KW = 'download'
+REQUEST_KW = 'request'
+URL_OPEN_KW = 'urlopen'
+MODEL_ZOO_KW = 'model_zoo'
+LOAD_URL_KW = 'load_url'
+URL_LIB_KW = 'urllib'
+URL_RETRIEVE_KW = 'urlretrieve'
+AGENT_KW = 'agent'
+
+
+PREPARE_URL_IMAGE_KW = 'prepare_url_image'
+
+
 
 
 DUMMY_LOG_KW = 'pytorch'

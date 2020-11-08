@@ -38,10 +38,6 @@ def getDataLoadCount( py_file ):
             data_load_count += 1 
             print(def_)
             
-        elif(( class_name == constants.WGET_KW ) and (func_name == constants.DOWNLOAD_KW ) ):
-            data_load_count += 1 
-            print(def_)
-            
         elif(( class_name == constants.LATEST_BLOB_KW ) and (func_name == constants.DOWNLOAD_TO_FILENAME_KW ) ):
             data_load_count += 1 
             print(def_)
@@ -129,7 +125,6 @@ def getDataLoadCount( py_file ):
     # LOGGING_IS_ON_FLAG = py_parser.checkLogging( py_tree,  func_def_list, 'akond' )
     # this will be used to check if the file_name passed in as file to read, is logged  
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
-
     print(LOGGING_IS_ON_FLAG, data_load_count) 
     return data_load_count 
     
@@ -153,7 +148,6 @@ def getDataLoadCountb( py_file ):
             print(assign_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
-
     print(LOGGING_IS_ON_FLAG, data_load_countb) 
     return data_load_countb 
 
@@ -221,7 +215,6 @@ def getDataLoadCountc( py_file ):
             print(func_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
-
     print(LOGGING_IS_ON_FLAG, data_load_countc) 
     return data_load_countc 
 
@@ -272,8 +265,7 @@ def getModelLoadCounta( py_file ):
             model_load_counta += 1 
             print(def_)
             
-    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
-    
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW )    
     print(LOGGING_IS_ON_FLAG, model_load_counta) 
     return model_load_counta 
     
@@ -297,7 +289,6 @@ def getModelLoadCountb( py_file ):
             print(assign_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
-
     print(LOGGING_IS_ON_FLAG, model_load_countb) 
     return model_load_countb 
     
@@ -333,7 +324,6 @@ def getModelLoadCountc( py_file ):
             print(func_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
-
     print(LOGGING_IS_ON_FLAG, model_load_countc) 
     return model_load_countc 
     
@@ -357,10 +347,63 @@ def getModelLoadCountd( py_file ):
             print(assign_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
-
     print(LOGGING_IS_ON_FLAG, model_load_countd) 
     return model_load_countd 
     
+    
+def getDataDownLoadCount( py_file ):
+    data_download_count = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
+    print('----------------------------------------------')
+    print(func_def_list)
+    print('----------------------------------------------')
+    for def_ in func_def_list:
+        class_name, func_name, func_line, arg_call_list = def_ 
+        
+        if(( class_name == constants.WGET_KW ) and (func_name == constants.DOWNLOAD_KW ) ):
+            data_download_count += 1 
+            print(def_)
+            
+        elif(( class_name == constants.REQUEST_KW ) and (func_name == constants.URL_OPEN_KW ) ):
+            data_download_count += 1 
+            print(def_)
+            
+        elif(( class_name == constants.MODEL_ZOO_KW ) and (func_name == constants.LOAD_URL_KW ) ):
+            data_download_count += 1 
+            print(def_)
+            
+        elif(( class_name == constants.URL_LIB_KW  ) and (func_name == constants.URL_RETRIEVE_KW ) ):
+            data_download_count += 1 
+            print(def_)
+            
+        elif(( class_name == constants.AGENT_KW ) and (func_name == constants.LOAD_KW ) ):
+            data_download_count += 1 
+            print(def_)
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+    print(LOGGING_IS_ON_FLAG, data_download_count) 
+    return data_download_count 
+    
+    
+def getDataDownLoadCountb( py_file ):
+    data_download_countb = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    func_assign_list  = py_parser.getFunctionDefinitions( py_tree ) 
+    print('----------------------------------------------')
+    print(func_assign_list)
+    print('----------------------------------------------')
+    for func_ in func_assign_list:
+        func_name, func_line, func_arg_list = func_ 
+        
+        if( (func_name == constants.PREPARE_URL_IMAGE_KW ) and (len(func_arg_list) > 0) ):
+            data_download_countb += 1 
+            print(func_)
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+    print(LOGGING_IS_ON_FLAG, data_download_countb) 
+    return data_download_countb
+            
     
 
 def getExcepts( py_file ) :
