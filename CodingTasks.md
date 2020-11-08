@@ -100,7 +100,7 @@ method name, then check arguments ... if the class name matches and the attribut
 > You will use the method you wrote in `1.1.c` in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this methods you will detect function declarations with > 0 function arguments ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection    
 
 - load_model(cls, path)
-- load_decoder(labels, cfg: LMConfig)
+- load_decoder(labels, cfg= LMConfig)
 - load_previous_values(self, start_epoch, results_state)
 - load_pretrained(model, num_classes, settings)
 - load_param(prefix, begin_epoch, convert=True)
