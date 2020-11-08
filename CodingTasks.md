@@ -17,7 +17,6 @@ function arguments is greater than 0, then flag as a detection . Write a separat
 - json.load(config_file)
 - np.load(path)
 - torch.load(checkpoint_path)
-- wget.download(lm_path)
 - latest_blob.download_to_filename(self.local_save_file)
 - blob.upload_from_filename(self.local_save_file)
 - visdom_logger.load_previous_values(state.epoch, state.results)
