@@ -132,6 +132,8 @@ AGENT_KW = 'agent'
 PREPARE_URL_IMAGE_KW = 'prepare_url_image'
 
 
+DATA_KW = 'data'
+HP_BATCH_SIZE_KW = 'HP_batch_size'
 
 
 DUMMY_LOG_KW = 'pytorch'

@@ -404,6 +404,24 @@ def getDataDownLoadCountb( py_file ):
     print(LOGGING_IS_ON_FLAG, data_download_countb) 
     return data_download_countb
             
+            
+def getModelFeatureCount( py_file ):
+    model_feature_count = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    feature_list  = py_parser.getModelFeature( py_tree ) 
+    print('----------------------------------------------')
+    print(feature_list)
+    print('----------------------------------------------')
+    for feature_ in feature_list:
+        lhs, class_name, feature_name, feature_line = feature_ 
+        
+        if( (class_name == constants.DATA_KW ) and (feature_name == constants.HP_BATCH_SIZE_KW ) ):
+            model_feature_count += 1 
+            print(feature_)
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+    print(LOGGING_IS_ON_FLAG,  model_feature_count) 
+    return model_feature_count
     
 
 def getExcepts( py_file ) :

@@ -271,3 +271,24 @@ def getFunctionAssignmentsWithMultipleLHS(pyTree):
                     	call_list.append( ( lhs, func_name, funcLineNo, call_arg_list )  )
 
     return call_list 
+    
+
+def getModelFeature(pyTree):
+    feature_list = []
+    for stmt_ in pyTree.body:
+        for node_ in ast.walk(stmt_):
+            if isinstance(node_, ast.Assign):
+            	lhs = ''
+            	assign_dict = node_.__dict__
+            	targets, value  =  assign_dict['targets'], assign_dict['value']
+            	if isinstance(value, ast.Attribute):
+                    funcDict = value.__dict__ 
+                    className, featureName, funcLineNo =  funcDict[ constants.VALUE_KW ], funcDict[ constants.ATTRIB_KW ], funcDict['lineno'] 
+                    for target in targets:
+                    	if( isinstance(target, ast.Name) ):
+                            lhs = target.id 
+                    if( isinstance(className, ast.Name ) ): 
+                    	feature_list.append( ( lhs, className.id, featureName, funcLineNo)  )	
+    
+
+    return feature_list 
