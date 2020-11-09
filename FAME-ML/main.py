@@ -61,6 +61,16 @@ if __name__=='__main__':
     model_feature_count = lint_engine.getModelFeatureCount( TEST_ML_SCRIPT ) 
     print(model_feature_count) 
     
+    print("*"*100)
+    print("Section 3.2a")
+    model_label_count = lint_engine.getModelLabelCount( TEST_ML_SCRIPT ) 
+    print(model_label_count) 
+    
+    print("*"*100)
+    print("Section 3.2b")
+    model_label_countb = lint_engine.getModelLabelCountb( TEST_ML_SCRIPT ) 
+    print(model_label_countb) 
+    
     
     # the following checks except related blocks 
     lint_engine.getExcepts( TEST_ML_SCRIPT ) 

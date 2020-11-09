@@ -250,9 +250,17 @@ def getFunctionAssignmentsWithMultipleLHS(pyTree):
                     	for x_ in range(len(funcArgs)):
                     		funcArg = funcArgs[x_] 
                     		if( isinstance(funcArg, ast.Name ) ):
-                        		call_arg_list.append( ( funcArg.id, 'FUNC_CALL_ARG:' + str(x_ + 1) )  )
-                    		elif(isinstance( funcArg, ast.Str ) ):
-                        		call_arg_list.append( ( funcArg.s, 'FUNC_CALL_ARG:' + str(x_ + 1) )  )
+                    			call_arg_list.append( ( funcArg.id, 'FUNC_CALL_ARG:' + str(x_ + 1) ) )             
+                    		elif( isinstance( funcArg, ast.Str ) ):
+                    			call_arg_list.append( ( funcArg.s, 'FUNC_CALL_ARG:' + str(x_ + 1) ) )
+                    		elif( isinstance( funcArg, ast.Call ) ):
+                    			func_arg_dict  = funcArg.__dict__
+                    			func_arg = func_arg_dict[constants.FUNC_KW] 
+                    			call_arg_list.append( ( func_arg, 'FUNC_CALL_ARG:' + str(x_ + 1) ) )
+                    		elif( isinstance( funcArg, ast.Attribute ) ): 
+                    			func_arg_dic  = funcArg.__dict__
+                    			func_arg = func_arg_dic[constants.ATTRIB_KW] 
+                    			call_arg_list.append( ( func_arg, 'FUNC_CALL_ARG:' + str(x_ + 1) ) ) 
                     	call_list.append( ( lhs, funcName.id, funcLineNo, call_arg_list )  )	
                     elif( isinstance( funcName, ast.Attribute ) ):
                     	call_arg_list = []       
@@ -260,10 +268,14 @@ def getFunctionAssignmentsWithMultipleLHS(pyTree):
                     	func_name = func_name_dict[constants.ATTRIB_KW] 
                     	for x_ in range(len(funcArgs)):
                     		funcArg = funcArgs[x_] 
-                    		if( isinstance( funcArg, ast.Call ) ):
+                    		if( isinstance(funcArg, ast.Name ) ):
+                        		call_arg_list.append( ( funcArg.id, 'FUNC_CALL_ARG:' + str(x_ + 1) ) )
+                    		elif(isinstance( funcArg, ast.Str ) ):
+                        		call_arg_list.append( ( funcArg.s, 'FUNC_CALL_ARG:' + str(x_ + 1) ) )
+                    		elif( isinstance( funcArg, ast.Call ) ):
                         		func_arg_dict  = funcArg.__dict__
                         		func_arg = func_arg_dict[constants.FUNC_KW] 
-                        		call_arg_list.append( ( func_arg, 'FUNC_CALL_ARG:' + str(x_ + 1) )  )
+                        		call_arg_list.append( ( func_arg, 'FUNC_CALL_ARG:' + str(x_ + 1) ) )
                     		elif( isinstance(funcArg, ast.Attribute) ): 
                     			func_arg_dic  = funcArg.__dict__
                     			func_arg = func_arg_dic[constants.ATTRIB_KW] 
@@ -292,3 +304,35 @@ def getModelFeature(pyTree):
     
 
     return feature_list 
+    
+    
+def getTupAssiDetails(pyTree): 
+    var_assignment_list = []
+    for stmt_ in pyTree.body:
+        for node_ in ast.walk(stmt_):
+            if isinstance(node_, ast.Assign):
+            	lhs = ''
+            	assign_dict = node_.__dict__
+            	targets, value  =  assign_dict['targets'], assign_dict['value']
+            	if isinstance(value, ast.ListComp):
+                    varDict = value.__dict__ 
+                    varName, varValue, varLineNo =  varDict[ constants.ELT_KW ], varDict[ constants.GENERATORS_KW ], varDict['lineno'] 
+                    for target in targets:
+                    	if( isinstance(target, ast.Name) ):
+                            lhs = target.id 
+                    if isinstance(varName, ast.Subscript):
+                    	varName =  varName.value
+                    	if isinstance(varName, ast.Name):
+                    		varName = varName.id
+                    if isinstance(varValue, list):
+                    	varValue =  varValue[0]
+                    	if isinstance(varValue, ast.comprehension):
+                    		varIter = varValue.iter
+                    		if isinstance(varIter, ast.Name):
+                    			varIter = varIter.id
+                    		varValue = varValue.target
+                    		if isinstance(varValue, ast.Name):
+                    			varValue = varValue.id
+                    var_assignment_list.append( (lhs, varName, varValue, varIter, varLineNo) )
+
+    return var_assignment_list     

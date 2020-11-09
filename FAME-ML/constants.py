@@ -14,6 +14,8 @@ VALUE_KW = 'value'
 NAME_KW = 'name'
 NAMES_KW = 'names' 
 BODY_KW = 'body'
+ELT_KW = 'elt'
+GENERATORS_KW = 'generators'
 
 DATA_KW = 'data'
 LOAD_KW = 'load'
@@ -134,6 +136,17 @@ PREPARE_URL_IMAGE_KW = 'prepare_url_image'
 
 DATA_KW = 'data'
 HP_BATCH_SIZE_KW = 'HP_batch_size'
+
+
+ARRAY_KW = 'array'
+CONVERT_KW = 'convert'
+AS_TYPE_KW = 'astype'
+BASENAME_KW = 'basename'
+LOAD_DATA_AND_LABELS_KW = 'load_data_and_labels'
+CREATE_DATASET_KW = 'create_dataset'
+
+SENT_KW = 'sent'
+INPUT_BATCH_LIST_KW = 'input_batch_list'
 
 
 DUMMY_LOG_KW = 'pytorch'
