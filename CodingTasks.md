@@ -169,8 +169,6 @@ method name, then check arguments ... if the class name matches and the attribut
 
 - model.summary() 
 - data.show_data_summary()
-- model.eval()
-
 
 
 
@@ -179,16 +177,17 @@ method name, then check arguments ... if the class name matches and the attribut
 
 - output_data = interpreter.get_tensor(output_details[0]['index'])
 - pred_scores = evaluate(data, model, name, data.nbest)
+- model = model.eval()
 
 #### 3.3.c 
 > You will use the method you wrote in `1.1.c` in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this methods you will detect function declarations ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection  
 
 
-- confusion_matrix(y_test, y_predict, labels = [x for x in range(n_classes)])
-- f1_score(y_test, y_predict, average = None, labels = [x for x in range(n_classes)])
-- f1_score(y_test, y_predict, average='macro') 
-- accuracy_score(y_test, y_predict)
-- classification_loss( truth=truth, predicted=predicted, weights=weights, is_one_hot=True)
+- c_mat = confusion_matrix(y_test, y_predict, labels = [x for x in range(n_classes)])
+- f1 = f1_score(y_test, y_predict, average = None, labels = [x for x in range(n_classes)])
+- f1_macro = f1_score(y_test, y_predict, average='macro') 
+- acc = accuracy_score(y_test, y_predict)
+- classification_loss = classification_loss( truth=truth, predicted=predicted, weights=weights, is_one_hot=True)
 
 
 
