@@ -169,6 +169,7 @@ method name, then check arguments ... if the class name matches and the attribut
 
 - model.summary() 
 - data.show_data_summary()
+- model.eval()
 
 
 
@@ -177,7 +178,7 @@ method name, then check arguments ... if the class name matches and the attribut
 > You will use the method you wrote in `1.1.b` in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this methods you will detect function declarations with > 0 function arguments ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection  
 
 - output_data = interpreter.get_tensor(output_details[0]['index'])
-- pred_scores = evaluate(data, model, name, data.nbest), model.eval()
+- pred_scores = evaluate(data, model, name, data.nbest)
 
 #### 3.3.c 
 > You will use the method you wrote in `1.1.c` in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this methods you will detect function declarations ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection  
