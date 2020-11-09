@@ -185,7 +185,7 @@ method name, then check arguments ... if the class name matches and the attribut
 
 
 - confusion_matrix(y_test, y_predict, labels = [x for x in range(n_classes)])
-- f1_score(y_test, y_predict, average = None, labels = [x for x in range(n_classes)]
+- f1_score(y_test, y_predict, average = None, labels = [x for x in range(n_classes)])
 - f1_score(y_test, y_predict, average='macro') 
 - accuracy_score(y_test, y_predict)
 - classification_loss( truth=truth, predicted=predicted, weights=weights, is_one_hot=True)
