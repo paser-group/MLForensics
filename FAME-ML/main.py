@@ -71,6 +71,26 @@ if __name__=='__main__':
     model_label_countb = lint_engine.getModelLabelCountb( TEST_ML_SCRIPT ) 
     print(model_label_countb) 
     
+    print("*"*100)
+    print("Section 3.3a")
+    model_output_count = lint_engine.getModelOutputCount( TEST_ML_SCRIPT ) 
+    print(model_output_count) 
+    
+    print("*"*100)
+    print("Section 3.3b")
+    model_output_countb = lint_engine.getModelOutputCountb( TEST_ML_SCRIPT ) 
+    print(model_output_countb) 
+    
+    print("*"*100)
+    print("Section 3.3c")
+    model_output_countc = lint_engine.getModelOutputCountc( TEST_ML_SCRIPT ) 
+    print(model_output_countc) 
+    
+    print("*"*100)
+    print("Section 3.3d")
+    model_output_countd = lint_engine.getModelOutputCountd( TEST_ML_SCRIPT ) 
+    print(model_output_countd) 
+    
     
     # the following checks except related blocks 
     lint_engine.getExcepts( TEST_ML_SCRIPT ) 

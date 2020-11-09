@@ -16,6 +16,7 @@ NAMES_KW = 'names'
 BODY_KW = 'body'
 ELT_KW = 'elt'
 GENERATORS_KW = 'generators'
+KEY_WORDS_KW = 'keywords'
 
 DATA_KW = 'data'
 LOAD_KW = 'load'
@@ -145,8 +146,25 @@ BASENAME_KW = 'basename'
 LOAD_DATA_AND_LABELS_KW = 'load_data_and_labels'
 CREATE_DATASET_KW = 'create_dataset'
 
+
 SENT_KW = 'sent'
 INPUT_BATCH_LIST_KW = 'input_batch_list'
+
+
+MODEL_KW = 'model'
+SUMMARY_KW = 'summary'
+SHOW_DATA_SUMMARY_KW = 'show_data_summary' 
+EVAL_KW = 'eval'
+
+
+GET_TENSOR_KW = 'get_tensor'
+EVALUATE_KW = 'evaluate'
+
+
+CONFUSION_MATRIX_KW = 'confusion_matrix'
+F1_SCORE_KW = 'f1_score'
+ACCURACY_SCORE_KW = 'accuracy_score'
+CLASSIFICATION_LOSS_KW = 'classification_loss'
 
 
 DUMMY_LOG_KW = 'pytorch'
