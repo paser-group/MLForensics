@@ -202,7 +202,7 @@ method name, then check arguments ... if the class name matches and the attribut
 #### 4.2
 > You will use the method you wrote in `1.1.b` in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this methods you will detect function declarations ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection 
 
-pipeline_config = pipeline_pb2.TrainEvalPipelineConfig() 
+- pipeline_config = pipeline_pb2.TrainEvalPipelineConfig() 
 
 
 #### 4.3
@@ -216,7 +216,7 @@ pipeline_config = pipeline_pb2.TrainEvalPipelineConfig()
 
 > You will write a new method in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this methods you will detect variable assignments that look liek the following ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection 
 
-configs['model'] = pipeline_config.model
+- configs['model'] = pipeline_config.model
 
 ## Category-5: Reinforcement learning
 
@@ -225,28 +225,28 @@ configs['model'] = pipeline_config.model
 > You will use the method you wrote in `1.1.a` in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this methods you will detect function declarations ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection  
 
 
-> *inner_next_obs, inner_reward, done = wrapped_env.step(action)*
-> *obs, reward, done, tt = env.step(action)* 
-> *state, reward, done, _ = env.step(action)*
-> *obs, reward, done, info = env.step(action)* 
-> *next_state, reward, done, _ = env.step(action)* 
-> *batch_ob, reward, done, info = self.env.step(action)* 
-> *state, reward, done, _ = env.step(action)*
-> *o, r, done, info = self.env.step(action)* 
-> *policy = torch.load(args.model_path)* 
-> *env = gym.make(params.env_name)* 
+- inner_next_obs, inner_reward, done = wrapped_env.step(action)
+- obs, reward, done, tt = env.step(action)
+- state, reward, done, _ = env.step(action)
+- obs, reward, done, info = env.step(action)
+- next_state, reward, done, _ = env.step(action) 
+- batch_ob, reward, done, info = self.env.step(action) 
+- state, reward, done, _ = env.step(action)
+- o, r, done, info = self.env.step(action) 
+- policy = torch.load(args.model_path) 
+- env = gym.make(params.env_name) 
 
 
 > You will use the method developed in `4.4` inside  `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this methods you will detect variable assignments that look liek the following ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection 
 
-> *num_inputs = env.observation_space.shape[0]* 
-> *num_outputs = env.action_space.shape[0]*
+- num_inputs = env.observation_space.shape[0] 
+- num_outputs = env.action_space.shape[0]
 
 ### Category-5.2: State Observation
 
 > You will use the method you wrote in `1.1.a` in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this methods you will detect function declarations ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection  
 
-> *obs, reward, done, tt = env.step(action)* 
+- obs, reward, done, tt = env.step(action) 
 
 
 ## Category-6: Classification decision of DNNs
