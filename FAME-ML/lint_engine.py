@@ -504,10 +504,6 @@ def getModelOutputCount( py_file ):
             model_output_count += 1 
             print(def_)
             
-        elif(( class_name == constants.MODEL_KW ) and (func_name == constants.EVAL_KW ) ):
-            model_output_count += 1 
-            print(def_)
-            
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     print(LOGGING_IS_ON_FLAG, model_output_count) 
     return model_output_count 
@@ -530,6 +526,10 @@ def getModelOutputCountb( py_file ):
         elif( (func_name == constants.EVALUATE_KW ) and (len(func_arg_list) > 0) ):
             model_output_countb += 1 
             print(assign_)
+                          
+        elif(( func_name == constants.EVAL_KW ) ):
+            model_output_countb += 1 
+            print(assign_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     print(LOGGING_IS_ON_FLAG, model_output_countb) 
@@ -539,12 +539,12 @@ def getModelOutputCountb( py_file ):
 def getModelOutputCountc( py_file ):
     model_output_countc = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
-    func_assign_list  = py_parser.getFunctionDefinitions( py_tree ) 
+    func_assign_list  = py_parser.getFunctionAssignments( py_tree ) 
     print('----------------------------------------------')
     print(func_assign_list)
     print('----------------------------------------------')
     for func_ in func_assign_list:
-        func_name, func_line, func_arg_list = func_ 
+        lhs, func_name, func_line, func_arg_list = func_ 
         
         if( (func_name == constants.CONFUSION_MATRIX_KW ) and (len(func_arg_list) > 0) ):
             model_output_countc += 1 
@@ -558,28 +558,88 @@ def getModelOutputCountc( py_file ):
             model_output_countc += 1 
             print(func_)
             
+        elif( (func_name == constants.CLASSIFICATION_LOSS_KW ) and (len(func_arg_list) > 0) ):
+            model_output_countc += 1 
+            print(func_)
+            
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     print(LOGGING_IS_ON_FLAG, model_output_countc) 
     return model_output_countc 
     
-
-def getModelOutputCountd( py_file ):
-    model_output_countd = 0 
+    
+def getDataPipelineCount( py_file ):
+    data_pipeline_count = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
-    func_assign_list  = py_parser.getFunctionDefinitionsWithKeyword( py_tree ) 
+    func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
+    print('----------------------------------------------')
+    print(func_def_list)
+    print('----------------------------------------------')
+    for def_ in func_def_list:
+        class_name, func_name, func_line, arg_call_list = def_ 
+        
+        if(( class_name == constants.ARG_PARSE_KW ) and (func_name == constants.ARGUMENT_PARSER_KW ) and (len(arg_call_list) > 0)):
+            data_pipeline_count += 1 
+            print(def_)
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+    print(LOGGING_IS_ON_FLAG, data_pipeline_count) 
+    return data_pipeline_count 
+    
+    
+def getDataPipelineCountb( py_file ):
+    data_pipeline_countb = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    func_assign_list  = py_parser.getFunctionAssignments( py_tree ) 
+    print('----------------------------------------------')
+    print(func_assign_list)
+    print('----------------------------------------------')
+    for assign_ in func_assign_list:
+        lhs, func_name, func_line, func_arg_list = assign_ 
+        
+        if( (func_name == constants.TRAIN_EVAL_PIPELINE_CONFIG_KW ) ):
+            data_pipeline_countb += 1 
+            print(assign_)
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+    print(LOGGING_IS_ON_FLAG, data_pipeline_countb) 
+    return data_pipeline_countb 
+
+
+def getDataPipelineCountc( py_file ):
+    data_pipeline_countc = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    func_assign_list  = py_parser.getFunctionDefinitions( py_tree ) 
     print('----------------------------------------------')
     print(func_assign_list)
     print('----------------------------------------------')
     for func_ in func_assign_list:
         func_name, func_line, func_arg_list = func_ 
         
-        if( (func_name == constants.CLASSIFICATION_LOSS_KW ) and (len(func_arg_list) > 0) ):
-            model_output_countd += 1 
+        if( (func_name == constants.GET_CONFIGS_FROM_PIPELINE_FILE_KW ) and (len(func_arg_list) > 0) ):
+            data_pipeline_countc += 1 
             print(func_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
-    print(LOGGING_IS_ON_FLAG, model_output_countd) 
-    return model_output_countd 
+    print(LOGGING_IS_ON_FLAG, data_pipeline_countc) 
+    
+
+def getDataPipelineCountd( py_file ):
+	data_pipeline_countd = 0 
+	py_tree = py_parser.getPythonParseObject(py_file)
+	feature_list  = py_parser.getModelFeature( py_tree ) 
+	print('----------------------------------------------')
+	print(feature_list)
+	print('----------------------------------------------')
+	for feature_ in feature_list:
+		lhs, class_name, feature_name, feature_line = feature_ 
+		
+		if( (class_name == constants.PIPELINE_CONFIG_KW  ) and (feature_name == constants.MODEL_KW ) ):
+			data_pipeline_countd += 1 
+			print(feature_)
+			
+	LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+	print(LOGGING_IS_ON_FLAG,  data_pipeline_countd) 
+	return data_pipeline_countd
     
 
 def getExcepts( py_file ) :

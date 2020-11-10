@@ -154,17 +154,27 @@ INPUT_BATCH_LIST_KW = 'input_batch_list'
 MODEL_KW = 'model'
 SUMMARY_KW = 'summary'
 SHOW_DATA_SUMMARY_KW = 'show_data_summary' 
-EVAL_KW = 'eval'
 
 
 GET_TENSOR_KW = 'get_tensor'
 EVALUATE_KW = 'evaluate'
+EVAL_KW = 'eval'
 
 
 CONFUSION_MATRIX_KW = 'confusion_matrix'
 F1_SCORE_KW = 'f1_score'
 ACCURACY_SCORE_KW = 'accuracy_score'
 CLASSIFICATION_LOSS_KW = 'classification_loss'
+
+
+ARG_PARSE_KW = 'argparse'
+ARGUMENT_PARSER_KW = 'ArgumentParser'
+
+TRAIN_EVAL_PIPELINE_CONFIG_KW = 'TrainEvalPipelineConfig'
+
+GET_CONFIGS_FROM_PIPELINE_FILE_KW = 'get_configs_from_pipeline_file'
+
+PIPELINE_CONFIG_KW = 'pipeline_config'
 
 
 DUMMY_LOG_KW = 'pytorch'

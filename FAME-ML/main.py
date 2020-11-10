@@ -86,10 +86,27 @@ if __name__=='__main__':
     model_output_countc = lint_engine.getModelOutputCountc( TEST_ML_SCRIPT ) 
     print(model_output_countc) 
     
+        
     print("*"*100)
-    print("Section 3.3d")
-    model_output_countd = lint_engine.getModelOutputCountd( TEST_ML_SCRIPT ) 
-    print(model_output_countd) 
+    print("Section 4.1")
+    data_pipeline_count = lint_engine.getDataPipelineCount( TEST_ML_SCRIPT ) 
+    print(data_pipeline_count) 
+    
+    print("*"*100)
+    print("Section 4.2")
+    data_pipeline_countb = lint_engine.getDataPipelineCountb( TEST_ML_SCRIPT ) 
+    print(data_pipeline_countb) 
+    
+    print("*"*100)
+    print("Section 4.3")
+    data_pipeline_countc = lint_engine.getDataPipelineCountc( TEST_ML_SCRIPT ) 
+    print(data_pipeline_countc) 
+    
+    print("*"*100)
+    print("Section 4.4")
+    data_pipeline_countd = lint_engine.getDataPipelineCountd( TEST_ML_SCRIPT ) 
+    print(data_pipeline_countd) 
+
     
     
     # the following checks except related blocks 
