@@ -180,7 +180,7 @@ method name, then check arguments ... if the class name matches and the attribut
 - model = model.eval()
 
 #### 3.3.c 
-> You will use the method you wrote in `1.1.c` in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this methods you will detect function declarations ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection  
+> You will use the method you wrote in `1.1.b` in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this methods you will detect function declarations ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection  
 
 
 - c_mat = confusion_matrix(y_test, y_predict, labels = [x for x in range(n_classes)])
@@ -261,7 +261,7 @@ method name, then check arguments ... if the class name matches and the attribut
 - *from keras.models import Model*
 
 ### 6.2 
-> You will use your method developed in 1.1.a in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this method you will detect function declarations ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection:
+> You will use your method developed in 1.1.b in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this method you will detect function declarations ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection:
 - model.compile() 
 - model.compile(optimizer=Adam(lr=1e-5), loss=dice_coef_loss, metrics=[dice_coef])
 
