@@ -263,12 +263,13 @@ method name, then check arguments ... if the class name matches and the attribut
 ### 6.2 
 > You will use your method developed in 1.1.a in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this method you will detect function declarations ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection:
 - model.compile() 
-- graph.predict()
-- graph.fit() 
-- model_from_file.fit()
-- model_from_file.evaluate()
 - model.compile(optimizer=Adam(lr=1e-5), loss=dice_coef_loss, metrics=[dice_coef])
-- nn.ReLU()
+
+- res = graph.predict({'input':X_check}, verbose=2)
+- history = graph.fit({'input':X_train, 'output1':y_train, 'output2':y2_train}, nb_epoch=1000, verbose=2)
+- logs = model.fit(dataset, epochs=1, steps_per_epoch=2)
+- score = model_from_file.evaluate(X_test, Y_test, show_accuracy=True, verbose=0)
+- self.relu = nn.ReLU()
 
 > You will use your method developed in 1.1.b in `https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/py_parser.py` to parse the following. For this method you will detect function declarations ... match exact string. Write a separate method in https://github.com/paser-group/MLForensics/blob/farzana/FAME-ML/lint_engine.py for detection:
 
