@@ -186,5 +186,24 @@ OBSERVATION_SPACE_KW = 'observation_space'
 ACTION_SPACE_KW = 'action_space'
 SHAPE_KW = 'shape'
 
-DUMMY_LOG_KW = 'pytorch'
 
+KERAS_KW = 'keras'
+TORCH_KW = 'torch'
+
+PREDICT_KW = 'predict'
+FIT_KW = 'fit'
+EVALUATE_KW = 'evaluate'
+RELU_KW = 'ReLU'
+
+POINT_NET_CLS_KW = 'PointNetCls'
+CLS_KW = 'cls'
+CASCADED_MODEL_KW = 'cascaded_model'
+MODEL_KW = 'model'
+PERMUTE_KW = 'permute'
+MINIMUM_KW = 'minimum'
+MODEL_C_KW = 'Model'
+GRAPH_KW = 'Graph'
+VGG_16_GRAPH_KW = 'VGG_16_graph'
+
+
+DUMMY_LOG_KW = 'pytorch'

@@ -122,6 +122,15 @@ if __name__=='__main__':
     state_observe_count = lint_engine.getStateObserveCount( TEST_ML_SCRIPT ) 
     print(state_observe_count) 
     
+    print("*"*100)
+    print("Section 6.1")
+    dnn_decision_count = lint_engine.getDNNDecisionCount( TEST_ML_SCRIPT ) 
+    print(dnn_decision_count) 
+    
+    print("*"*100)
+    print("Section 6.2")
+    dnn_decision_countb = lint_engine.getDNNDecisionCountb( TEST_ML_SCRIPT ) 
+    print(dnn_decision_countb) 
     
     # the following checks except related blocks 
     lint_engine.getExcepts( TEST_ML_SCRIPT ) 

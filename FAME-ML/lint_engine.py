@@ -714,6 +714,99 @@ def getStateObserveCount( py_file ):
     print(LOGGING_IS_ON_FLAG, state_observe_count) 
     return state_observe_count 
     
+    
+def getDNNDecisionCount( py_file ):
+    dnn_decision_count = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    import_list  = py_parser.getImport( py_tree ) 
+    print('----------------------------------------------')
+    print(import_list)
+    print('----------------------------------------------')
+    for import_ in import_list:
+        library_ = import_ 
+        
+        if( (library_ == constants.KERAS_KW ) ):
+            dnn_decision_count += 1 
+            print(library_)
+            
+        if( (library_ == constants.TORCH_KW ) ):
+            dnn_decision_count += 1 
+            print(library_)
+        
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+    print(LOGGING_IS_ON_FLAG, dnn_decision_count) 
+    return dnn_decision_count 
+
+    
+def getDNNDecisionCountb( py_file ):
+    dnn_decision_countb = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    func_assign_list  = py_parser.getFunctionAssignments( py_tree ) 
+    print('----------------------------------------------')
+    print(func_assign_list)
+    print('----------------------------------------------')
+    for assign_ in func_assign_list:
+        lhs, func_name, func_line, func_arg_list = assign_ 
+        
+        if( (func_name == constants.PREDICT_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+        
+        elif( (func_name == constants.FIT_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+            
+        elif( (func_name == constants.EVALUATE_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+            
+        elif( (func_name == constants.RELU_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+            
+        elif( (func_name == constants.POINT_NET_CLS_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+            
+        elif( (func_name == constants.CLS_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+            
+        elif( (func_name == constants.CASCADED_MODEL_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+            
+        elif( (func_name == constants.MODEL_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+            
+        elif( (func_name == constants.PERMUTE_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+            
+        elif( (func_name == constants.MINIMUM_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+            
+        elif( (func_name == constants.MODEL_C_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+            
+        elif( (func_name == constants.GRAPH_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+            
+        elif( (func_name == constants.VGG_16_GRAPH_KW ) ):
+            dnn_decision_countb += 1 
+            print(assign_)
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+    print(LOGGING_IS_ON_FLAG, dnn_decision_countb) 
+    return dnn_decision_countb 
+    
+    
+    
 
 def getExcepts( py_file ) :
     py_tree = py_parser.getPythonParseObject(py_file)

@@ -408,3 +408,40 @@ def getTupAssiDetails(pyTree):
                     var_assignment_list.append( (lhs, varName, varValue, varIter, varLineNo) )
 
     return var_assignment_list     
+    
+    
+def getImport(pyTree): 
+    import_list = []
+    for stmt_ in pyTree.body:
+        for node_ in ast.walk(stmt_):
+        	if isinstance(node_, ast.Import):
+        		for name in node_.names:
+        			import_list.append( (name.name.split('.')[0] ) )
+        	elif isinstance(node_, ast.ImportFrom):
+        		import_list.append( ( node_.module.split('.')[0] ) )
+        	# if isinstance(node_, ast.Assign):
+#             	lhs = ''
+#             	assign_dict = node_.__dict__
+#             	targets, value  =  assign_dict['targets'], assign_dict['value']
+#             	if isinstance(value, ast.ListComp):
+#                     varDict = value.__dict__ 
+#                     varName, varValue, varLineNo =  varDict[ constants.ELT_KW ], varDict[ constants.GENERATORS_KW ], varDict['lineno'] 
+#                     for target in targets:
+#                     	if( isinstance(target, ast.Name) ):
+#                             lhs = target.id 
+#                     if isinstance(varName, ast.Subscript):
+#                     	varName =  varName.value
+#                     	if isinstance(varName, ast.Name):
+#                     		varName = varName.id
+#                     if isinstance(varValue, list):
+#                     	varValue =  varValue[0]
+#                     	if isinstance(varValue, ast.comprehension):
+#                     		varIter = varValue.iter
+#                     		if isinstance(varIter, ast.Name):
+#                     			varIter = varIter.id
+#                     		varValue = varValue.target
+#                     		if isinstance(varValue, ast.Name):
+#                     			varValue = varValue.id
+#                     var_assignment_list.append( (lhs, varName, varValue, varIter, varLineNo) )
+
+    return import_list 
