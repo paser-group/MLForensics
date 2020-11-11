@@ -176,6 +176,15 @@ GET_CONFIGS_FROM_PIPELINE_FILE_KW = 'get_configs_from_pipeline_file'
 
 PIPELINE_CONFIG_KW = 'pipeline_config'
 
+WRAPPED_ENV_KW = 'wrapped_env'
+STEP_KW = 'step'
+ENV_KW = 'env'
+GYM_KW = 'gym'
+MAKE_KW = 'make'
+
+OBSERVATION_SPACE_KW = 'observation_space'
+ACTION_SPACE_KW = 'action_space'
+SHAPE_KW = 'shape'
 
 DUMMY_LOG_KW = 'pytorch'
 

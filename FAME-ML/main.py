@@ -106,7 +106,21 @@ if __name__=='__main__':
     print("Section 4.4")
     data_pipeline_countd = lint_engine.getDataPipelineCountd( TEST_ML_SCRIPT ) 
     print(data_pipeline_countd) 
-
+    
+    print("*"*100)
+    print("Section 5.1")
+    environment_count = lint_engine.getEnvironmentCount( TEST_ML_SCRIPT ) 
+    print(environment_count) 
+    
+    print("*"*100)
+    print("Section 5.1b")
+    environment_countb = lint_engine.getEnvironmentCountb( TEST_ML_SCRIPT ) 
+    print(environment_countb) 
+    
+    print("*"*100)
+    print("Section 5.2")
+    state_observe_count = lint_engine.getStateObserveCount( TEST_ML_SCRIPT ) 
+    print(state_observe_count) 
     
     
     # the following checks except related blocks 

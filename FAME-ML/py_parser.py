@@ -360,7 +360,20 @@ def getModelFeature(pyTree):
                             lhs = target.id 
                     if( isinstance(className, ast.Name ) ): 
                     	feature_list.append( ( lhs, className.id, featureName, funcLineNo)  )	
-    
+            	if isinstance(value, ast.Subscript):
+                	value =  value.value
+                	if isinstance(value, ast.Attribute):
+                		funcDict = value.__dict__ 
+                		className, featureName, funcLineNo =  funcDict[ constants.VALUE_KW ], funcDict[ constants.ATTRIB_KW ], funcDict['lineno'] 
+                		for target in targets:
+                			if( isinstance(target, ast.Name) ):
+                				lhs = target.id 
+                		if( isinstance(className, ast.Name ) ): 
+                			feature_list.append( ( lhs, className.id, featureName, funcLineNo)  )
+                		elif( isinstance(className, ast.Attribute ) ): 
+                			class_dic  = className.__dict__
+                			class_name = class_dic[constants.ATTRIB_KW] 
+                			feature_list.append( ( lhs, class_name, featureName, funcLineNo)  )	
 
     return feature_list 
     

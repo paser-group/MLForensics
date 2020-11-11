@@ -640,6 +640,79 @@ def getDataPipelineCountd( py_file ):
 	LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
 	print(LOGGING_IS_ON_FLAG,  data_pipeline_countd) 
 	return data_pipeline_countd
+	
+
+def getEnvironmentCount( py_file ):
+    environment_count = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
+    print('----------------------------------------------')
+    print(func_def_list)
+    print('----------------------------------------------')
+    for def_ in func_def_list:
+        class_name, func_name, func_line, arg_call_list = def_ 
+        
+        if(( class_name == constants.WRAPPED_ENV_KW ) and (func_name == constants.STEP_KW ) and (len(arg_call_list) > 0)):
+            environment_count += 1 
+            print(def_)
+            
+        elif(( class_name == constants.ENV_KW ) and (func_name == constants.STEP_KW ) and (len(arg_call_list) > 0)):
+            environment_count += 1 
+            print(def_)
+            
+        elif(( class_name == constants.TORCH_KW ) and (func_name == constants.LOAD_KW ) and (len(arg_call_list) > 0)):
+            environment_count += 1 
+            print(def_)
+            
+        elif(( class_name == constants.GYM_KW ) and (func_name == constants.MAKE_KW ) and (len(arg_call_list) > 0)):
+            environment_count += 1 
+            print(def_)
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+    print(LOGGING_IS_ON_FLAG, environment_count) 
+    return environment_count 
+	
+
+def getEnvironmentCountb( py_file ):
+	environment_countb = 0 
+	py_tree = py_parser.getPythonParseObject(py_file)
+	feature_list  = py_parser.getModelFeature( py_tree ) 
+	print('----------------------------------------------')
+	print(feature_list)
+	print('----------------------------------------------')
+	for feature_ in feature_list:
+		lhs, class_name, feature_name, feature_line = feature_ 
+		
+		if( (class_name == constants.OBSERVATION_SPACE_KW  ) and (feature_name == constants.SHAPE_KW ) ):
+			environment_countb += 1 
+			print(feature_)
+			
+		elif( (class_name == constants.ACTION_SPACE_KW  ) and (feature_name == constants.SHAPE_KW ) ):
+			environment_countb += 1 
+			print(feature_)
+			
+	LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+	print(LOGGING_IS_ON_FLAG, environment_countb) 
+	return environment_countb
+	
+
+def getStateObserveCount( py_file ):
+    state_observe_count = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
+    print('----------------------------------------------')
+    print(func_def_list)
+    print('----------------------------------------------')
+    for def_ in func_def_list:
+        class_name, func_name, func_line, arg_call_list = def_ 
+        
+        if(( class_name == constants.ENV_KW ) and (func_name == constants.STEP_KW ) and (len(arg_call_list) > 0)):
+            state_observe_count += 1 
+            print(def_)
+            
+    LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+    print(LOGGING_IS_ON_FLAG, state_observe_count) 
+    return state_observe_count 
     
 
 def getExcepts( py_file ) :
