@@ -138,7 +138,7 @@ PREPARE_URL_IMAGE_KW = 'prepare_url_image'
 DATA_KW = 'data'
 HP_BATCH_SIZE_KW = 'HP_batch_size'
 
-
+LABEL_KW = 'label'
 ARRAY_KW = 'array'
 CONVERT_KW = 'convert'
 AS_TYPE_KW = 'astype'
@@ -204,6 +204,17 @@ MINIMUM_KW = 'minimum'
 MODEL_C_KW = 'Model'
 GRAPH_KW = 'Graph'
 VGG_16_GRAPH_KW = 'VGG_16_graph'
+
+LOGGING_KW = 'logging'
+TENSORFLOW_KW = 'tensorflow'
+SYMNET_KW = 'symnet'
+
+GET_LOGGER_KW = 'getLogger'
+SET_LEVEL_KW = 'setLevel'
+BASIC_CONFIG_KW = 'basicConfig'
+LOGGER_KW = 'logger'
+INFO_KW = 'info'
+TF_KW = 'tf'
 
 
 DUMMY_LOG_KW = 'pytorch'

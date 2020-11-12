@@ -434,33 +434,35 @@ def getModelLabelCount( py_file ):
     for assign_ in func_assign_list:
         lhs, func_name, func_line, func_arg_list = assign_ 
         
-        if( (func_name == constants.READ_H5FILE_KW  ) and (len(func_arg_list) > 0) ):
-            model_label_count += 1 
-            print(assign_)
+        for var_name in lhs:
+        	if ( constants.LABEL_KW in var_name):
+        		if( (func_name == constants.READ_H5FILE_KW  ) and (len(func_arg_list) > 0) ):
+        			model_label_count += 1 
+        			print(assign_)
             
-        elif( (func_name == constants.ARRAY_KW ) and (len(func_arg_list) > 0) ):
-            model_label_count += 1 
-            print(assign_)
+        		elif( (func_name == constants.ARRAY_KW ) and (len(func_arg_list) > 0) ):
+        			model_label_count += 1 
+        			print(assign_)
             
-        elif( (func_name == constants.CONVERT_KW ) and (len(func_arg_list) > 0) ):
-            model_label_count += 1 
-            print(assign_)
+        		elif( (func_name == constants.CONVERT_KW ) and (len(func_arg_list) > 0) ):
+        			model_label_count += 1 
+        			print(assign_)
             
-        elif( (func_name == constants.AS_TYPE_KW ) and (len(func_arg_list) > 0) ):
-            model_label_count += 1 
-            print(assign_)
+        		elif( (func_name == constants.AS_TYPE_KW ) and (len(func_arg_list) > 0) ):
+        			model_label_count += 1 
+        			print(assign_)
             
-        elif( (func_name == constants.BASENAME_KW ) and (len(func_arg_list) > 0) ):
-            model_label_count += 1 
-            print(assign_)
+        		elif( (func_name == constants.BASENAME_KW ) and (len(func_arg_list) > 0) ):
+        			model_label_count += 1 
+        			print(assign_)
             
-        elif( (func_name == constants.LOAD_DATA_AND_LABELS_KW ) and (len(func_arg_list) > 0) ):
-            model_label_count += 1 
-            print(assign_)
+        		elif( (func_name == constants.LOAD_DATA_AND_LABELS_KW ) and (len(func_arg_list) > 0) ):
+        			model_label_count += 1 
+        			print(assign_)
             
-        elif( (func_name == constants.CREATE_DATASET_KW ) and (len(func_arg_list) > 0) ):
-            model_label_count += 1 
-            print(assign_)
+        		elif( (func_name == constants.CREATE_DATASET_KW ) and (len(func_arg_list) > 0) ):
+        			model_label_count += 1 
+        			print(assign_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     print(LOGGING_IS_ON_FLAG, model_label_count) 
@@ -477,9 +479,11 @@ def getModelLabelCountb( py_file ):
     for assign_ in func_assign_list:
         lhs, var_s, var_d, rhs_var_iter, func_line = assign_ 
         
-        if ( (var_s == constants.SENT_KW ) and (var_d == constants.SENT_KW )  and (rhs_var_iter == constants.INPUT_BATCH_LIST_KW ) ):
-            model_label_countb += 1 
-            print(assign_)
+        if ( constants.LABEL_KW in lhs):
+        
+        	if ( (var_s == constants.SENT_KW ) and (var_d == constants.SENT_KW )  and (rhs_var_iter == constants.INPUT_BATCH_LIST_KW ) ):
+        		model_label_countb += 1 
+        		print(assign_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     print(LOGGING_IS_ON_FLAG, model_label_countb) 
@@ -805,8 +809,6 @@ def getDNNDecisionCountb( py_file ):
     print(LOGGING_IS_ON_FLAG, dnn_decision_countb) 
     return dnn_decision_countb 
     
-    
-    
 
 def getExcepts( py_file ) :
     py_tree = py_parser.getPythonParseObject(py_file)
@@ -814,3 +816,56 @@ def getExcepts( py_file ) :
     except_func_list = py_parser.checkAttribFuncsInExcept( except_list )    
     EXCEPT_LOGGING_IS_ON_FLAG = py_parser.checkExceptLogging( except_func_list )      
     print(EXCEPT_LOGGING_IS_ON_FLAG) 
+    
+
+def checkLoggingLibrary( py_file ):
+    incomplete_logging_count = 0 
+    py_tree = py_parser.getPythonParseObject(py_file)
+    import_list  = py_parser.getImport( py_tree ) 
+    print('----------------------------------------------')
+    print(import_list)
+    print('----------------------------------------------')
+    for import_ in import_list:
+        library_ = import_ 
+        
+        if( (library_ == constants.LOGGING_KW ) or (library_ == constants.TENSORFLOW_KW ) or (library_ == constants.SYMNET_KW )):
+        	print(library_)
+        	return true
+        else:
+        	return false
+    
+
+def getIncompleteLoggingCount( py_file ):
+	incomplete_logging_count = 0 
+	if(checkLoggingLibrary):
+		py_tree = py_parser.getPythonParseObject(py_file)
+		func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
+		print('----------------------------------------------')
+		print(func_def_list)
+		print('----------------------------------------------')
+		for def_ in func_def_list:
+			class_name, func_name, func_line, arg_call_list = def_ 
+			
+			if(( class_name == constants.LOGGING_KW  ) and (func_name == constants.GET_LOGGER_KW ) and (len(arg_call_list) < 3) ):
+				incomplete_logging_count += 1 
+				print(def_)
+
+			elif(( class_name == constants.LOGGING_KW ) and (func_name == constants.BASIC_CONFIG_KW ) and (len(arg_call_list) < 3) ):
+				incomplete_logging_count += 1 
+				print(def_) 
+            
+			elif(( class_name == constants.LOGGER_KW ) and (func_name == constants.INFO_KW ) and (len(arg_call_list) < 3) ):
+				incomplete_logging_count += 1 
+				print(def_)
+				
+			elif(( class_name == constants.TF_KW ) and (func_name == constants.LOGGING_KW ) and (len(arg_call_list) < 3) ):
+				incomplete_logging_count += 1 
+				print(def_)
+				
+			elif(( class_name == constants.LOGGING_KW ) and (func_name == constants.INFO_KW) and (len(arg_call_list) < 3) ):
+				incomplete_logging_count += 1 
+				print(def_)
+				
+	LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
+	print(LOGGING_IS_ON_FLAG, incomplete_logging_count) 
+	return incomplete_logging_count 

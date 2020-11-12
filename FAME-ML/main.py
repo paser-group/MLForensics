@@ -132,5 +132,12 @@ if __name__=='__main__':
     dnn_decision_countb = lint_engine.getDNNDecisionCountb( TEST_ML_SCRIPT ) 
     print(dnn_decision_countb) 
     
+    print("*"*100)
+    print("Section 7")
     # the following checks except related blocks 
     lint_engine.getExcepts( TEST_ML_SCRIPT ) 
+    
+    print("*"*100)
+    print("Section 8")
+    incomplete_logging_count = lint_engine.getIncompleteLoggingCount( TEST_ML_SCRIPT ) 
+    print(incomplete_logging_count) 
