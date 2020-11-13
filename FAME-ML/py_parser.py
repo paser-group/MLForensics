@@ -78,8 +78,14 @@ def checkAttribFuncsInExcept(expr_obj):
     return attrib_list 
 
 def getPythonParseObject( pyFile ): 
-    full_tree = ast.parse( open( pyFile ).read() )    
-    return full_tree 
+	try:
+		full_tree = ast.parse( open( pyFile ).read())    
+	except SyntaxError:
+		print("##"*100)
+		print(pyFile )
+		print("##"*100)
+		full_tree = ast.parse("") 
+	return full_tree 
 
 def commonAttribCallBody(node_):
     full_list = []
@@ -418,30 +424,7 @@ def getImport(pyTree):
         		for name in node_.names:
         			import_list.append( (name.name.split('.')[0] ) )
         	elif isinstance(node_, ast.ImportFrom):
-        		import_list.append( ( node_.module.split('.')[0] ) )
-        	# if isinstance(node_, ast.Assign):
-#             	lhs = ''
-#             	assign_dict = node_.__dict__
-#             	targets, value  =  assign_dict['targets'], assign_dict['value']
-#             	if isinstance(value, ast.ListComp):
-#                     varDict = value.__dict__ 
-#                     varName, varValue, varLineNo =  varDict[ constants.ELT_KW ], varDict[ constants.GENERATORS_KW ], varDict['lineno'] 
-#                     for target in targets:
-#                     	if( isinstance(target, ast.Name) ):
-#                             lhs = target.id 
-#                     if isinstance(varName, ast.Subscript):
-#                     	varName =  varName.value
-#                     	if isinstance(varName, ast.Name):
-#                     		varName = varName.id
-#                     if isinstance(varValue, list):
-#                     	varValue =  varValue[0]
-#                     	if isinstance(varValue, ast.comprehension):
-#                     		varIter = varValue.iter
-#                     		if isinstance(varIter, ast.Name):
-#                     			varIter = varIter.id
-#                     		varValue = varValue.target
-#                     		if isinstance(varValue, ast.Name):
-#                     			varValue = varValue.id
-#                     var_assignment_list.append( (lhs, varName, varValue, varIter, varLineNo) )
+        		if(node_.module is not None):
+        			import_list.append( ( node_.module.split('.')[0] ) )
 
     return import_list 

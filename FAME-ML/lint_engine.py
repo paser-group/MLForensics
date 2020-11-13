@@ -12,9 +12,9 @@ def getDataLoadCount( py_file ):
     data_load_count = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
-    print('----------------------------------------------')
-    print(func_def_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_def_list)
+#     print('----------------------------------------------')
     for def_ in func_def_list:
         class_name, func_name, func_line, arg_call_list = def_ 
         
@@ -133,9 +133,9 @@ def getDataLoadCountb( py_file ):
     data_load_countb = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getFunctionAssignments( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for assign_ in func_assign_list:
         lhs, func_name, func_line, func_arg_list = assign_ 
         
@@ -156,9 +156,9 @@ def getDataLoadCountc( py_file ):
     data_load_countc = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getFunctionDefinitions( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for func_ in func_assign_list:
         func_name, func_line, func_arg_list = func_ 
         
@@ -223,9 +223,9 @@ def getModelLoadCounta( py_file ):
     model_load_counta = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
-    print('----------------------------------------------')
-    print(func_def_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_def_list)
+#     print('----------------------------------------------')
     for def_ in func_def_list:
         class_name, func_name, func_line, arg_call_list = def_ 
         
@@ -274,9 +274,9 @@ def getModelLoadCountb( py_file ):
     model_load_countb = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getFunctionAssignments( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for assign_ in func_assign_list:
         lhs, func_name, func_line, func_arg_list = assign_ 
         
@@ -297,9 +297,9 @@ def getModelLoadCountc( py_file ):
     model_load_countc = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getFunctionDefinitions( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for func_ in func_assign_list:
         func_name, func_line, func_arg_list = func_ 
         
@@ -332,9 +332,9 @@ def getModelLoadCountd( py_file ):
     model_load_countd = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getFunctionAssignmentsWithMultipleLHS( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for assign_ in func_assign_list:
         lhs, func_name, func_line, func_arg_list = assign_ 
         
@@ -355,9 +355,9 @@ def getDataDownLoadCount( py_file ):
     data_download_count = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
-    print('----------------------------------------------')
-    print(func_def_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_def_list)
+#     print('----------------------------------------------')
     for def_ in func_def_list:
         class_name, func_name, func_line, arg_call_list = def_ 
         
@@ -390,9 +390,9 @@ def getDataDownLoadCountb( py_file ):
     data_download_countb = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getFunctionDefinitions( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for func_ in func_assign_list:
         func_name, func_line, func_arg_list = func_ 
         
@@ -409,9 +409,9 @@ def getModelFeatureCount( py_file ):
     model_feature_count = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     feature_list  = py_parser.getModelFeature( py_tree ) 
-    print('----------------------------------------------')
-    print(feature_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(feature_list)
+#     print('----------------------------------------------')
     for feature_ in feature_list:
         lhs, class_name, feature_name, feature_line = feature_ 
         
@@ -428,9 +428,9 @@ def getModelLabelCount( py_file ):
     model_label_count = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getFunctionAssignmentsWithMultipleLHS( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for assign_ in func_assign_list:
         lhs, func_name, func_line, func_arg_list = assign_ 
         
@@ -473,9 +473,9 @@ def getModelLabelCountb( py_file ):
     model_label_countb = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getTupAssiDetails( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for assign_ in func_assign_list:
         lhs, var_s, var_d, rhs_var_iter, func_line = assign_ 
         
@@ -494,9 +494,9 @@ def getModelOutputCount( py_file ):
     model_output_count = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
-    print('----------------------------------------------')
-    print(func_def_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_def_list)
+#     print('----------------------------------------------')
     for def_ in func_def_list:
         class_name, func_name, func_line, arg_call_list = def_ 
         
@@ -517,9 +517,9 @@ def getModelOutputCountb( py_file ):
     model_output_countb = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getFunctionAssignments( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for assign_ in func_assign_list:
         lhs, func_name, func_line, func_arg_list = assign_ 
         
@@ -544,9 +544,9 @@ def getModelOutputCountc( py_file ):
     model_output_countc = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getFunctionAssignments( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for func_ in func_assign_list:
         lhs, func_name, func_line, func_arg_list = func_ 
         
@@ -575,9 +575,9 @@ def getDataPipelineCount( py_file ):
     data_pipeline_count = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
-    print('----------------------------------------------')
-    print(func_def_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_def_list)
+#     print('----------------------------------------------')
     for def_ in func_def_list:
         class_name, func_name, func_line, arg_call_list = def_ 
         
@@ -594,9 +594,9 @@ def getDataPipelineCountb( py_file ):
     data_pipeline_countb = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getFunctionAssignments( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for assign_ in func_assign_list:
         lhs, func_name, func_line, func_arg_list = assign_ 
         
@@ -613,9 +613,9 @@ def getDataPipelineCountc( py_file ):
     data_pipeline_countc = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getFunctionDefinitions( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for func_ in func_assign_list:
         func_name, func_line, func_arg_list = func_ 
         
@@ -625,15 +625,16 @@ def getDataPipelineCountc( py_file ):
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     print(LOGGING_IS_ON_FLAG, data_pipeline_countc) 
+    return data_pipeline_countc
     
 
 def getDataPipelineCountd( py_file ):
 	data_pipeline_countd = 0 
 	py_tree = py_parser.getPythonParseObject(py_file)
 	feature_list  = py_parser.getModelFeature( py_tree ) 
-	print('----------------------------------------------')
-	print(feature_list)
-	print('----------------------------------------------')
+# 	print('----------------------------------------------')
+# 	print(feature_list)
+# 	print('----------------------------------------------')
 	for feature_ in feature_list:
 		lhs, class_name, feature_name, feature_line = feature_ 
 		
@@ -650,9 +651,9 @@ def getEnvironmentCount( py_file ):
     environment_count = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
-    print('----------------------------------------------')
-    print(func_def_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_def_list)
+#     print('----------------------------------------------')
     for def_ in func_def_list:
         class_name, func_name, func_line, arg_call_list = def_ 
         
@@ -681,9 +682,9 @@ def getEnvironmentCountb( py_file ):
 	environment_countb = 0 
 	py_tree = py_parser.getPythonParseObject(py_file)
 	feature_list  = py_parser.getModelFeature( py_tree ) 
-	print('----------------------------------------------')
-	print(feature_list)
-	print('----------------------------------------------')
+# 	print('----------------------------------------------')
+# 	print(feature_list)
+# 	print('----------------------------------------------')
 	for feature_ in feature_list:
 		lhs, class_name, feature_name, feature_line = feature_ 
 		
@@ -704,9 +705,9 @@ def getStateObserveCount( py_file ):
     state_observe_count = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
-    print('----------------------------------------------')
-    print(func_def_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_def_list)
+#     print('----------------------------------------------')
     for def_ in func_def_list:
         class_name, func_name, func_line, arg_call_list = def_ 
         
@@ -723,9 +724,9 @@ def getDNNDecisionCount( py_file ):
     dnn_decision_count = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     import_list  = py_parser.getImport( py_tree ) 
-    print('----------------------------------------------')
-    print(import_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(import_list)
+#     print('----------------------------------------------')
     for import_ in import_list:
         library_ = import_ 
         
@@ -747,9 +748,9 @@ def getDNNDecisionCountb( py_file ):
     dnn_decision_countb = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     func_assign_list  = py_parser.getFunctionAssignments( py_tree ) 
-    print('----------------------------------------------')
-    print(func_assign_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(func_assign_list)
+#     print('----------------------------------------------')
     for assign_ in func_assign_list:
         lhs, func_name, func_line, func_arg_list = assign_ 
         
@@ -816,15 +817,16 @@ def getExcepts( py_file ) :
     except_func_list = py_parser.checkAttribFuncsInExcept( except_list )    
     EXCEPT_LOGGING_IS_ON_FLAG = py_parser.checkExceptLogging( except_func_list )      
     print(EXCEPT_LOGGING_IS_ON_FLAG) 
+    return EXCEPT_LOGGING_IS_ON_FLAG
     
 
 def checkLoggingLibrary( py_file ):
     incomplete_logging_count = 0 
     py_tree = py_parser.getPythonParseObject(py_file)
     import_list  = py_parser.getImport( py_tree ) 
-    print('----------------------------------------------')
-    print(import_list)
-    print('----------------------------------------------')
+#     print('----------------------------------------------')
+#     print(import_list)
+#     print('----------------------------------------------')
     for import_ in import_list:
         library_ = import_ 
         
@@ -840,9 +842,9 @@ def getIncompleteLoggingCount( py_file ):
 	if(checkLoggingLibrary):
 		py_tree = py_parser.getPythonParseObject(py_file)
 		func_def_list  = py_parser.getPythonAtrributeFuncs( py_tree ) 
-		print('----------------------------------------------')
-		print(func_def_list)
-		print('----------------------------------------------')
+# 		print('----------------------------------------------')
+# 		print(func_def_list)
+# 		print('----------------------------------------------')
 		for def_ in func_def_list:
 			class_name, func_name, func_line, arg_call_list = def_ 
 			
