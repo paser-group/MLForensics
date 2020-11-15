@@ -21,6 +21,7 @@ def giveTimeStamp():
 def getCSVData(dic_, dir_repo):
 	temp_list = []
 	for TEST_ML_SCRIPT in dic_:
+		print(constants.ANALYZING_KW + TEST_ML_SCRIPT) 
 		# Section 1.1a
 		data_load_counta = lint_engine.getDataLoadCount( TEST_ML_SCRIPT ) 
 
@@ -114,6 +115,7 @@ def getCSVData(dic_, dir_repo):
   				  dnn_decision_count, incomplete_logging_count, except_flag)
   				  
 		temp_list.append( the_tup )
+		print('='*25)
 	return temp_list
   
   
@@ -128,20 +130,21 @@ def getAllPythonFilesinRepo(path2dir):
 
 
 def runFameML(inp_dir, csv_fil):
-    output_event_dict = {}
-    df_list = [] 
-    list_subfolders_with_paths = [f.path for f in os.scandir(inp_dir) if f.is_dir()]
-    for subfolder in list_subfolders_with_paths: 
-        events_with_dic =  getAllPythonFilesinRepo(subfolder)  
-        if subfolder not in output_event_dict:
-          output_event_dict[subfolder] = events_with_dic
-        print(constants.ANALYZING_KW, subfolder)
-        temp_list  = getCSVData(events_with_dic, subfolder)
-        df_list    = df_list + temp_list 
-    full_df = pd.DataFrame( df_list ) 
-    # print(full_df.head())
-    full_df.to_csv(csv_fil, header= constants.CSV_HEADER, index=False, encoding= constants.UTF_ENCODING)     
-    return output_event_dict
+	output_event_dict = {}
+	df_list = [] 
+	list_subfolders_with_paths = [f.path for f in os.scandir(inp_dir) if f.is_dir()]
+	for subfolder in list_subfolders_with_paths: 
+		events_with_dic =  getAllPythonFilesinRepo(subfolder)  
+		if subfolder not in output_event_dict:
+			output_event_dict[subfolder] = events_with_dic
+		print(constants.ANALYZING_KW, subfolder)
+		temp_list  = getCSVData(events_with_dic, subfolder)
+		df_list    = df_list + temp_list 
+		print('-'*50)
+	full_df = pd.DataFrame( df_list ) 
+	# print(full_df.head())
+	full_df.to_csv(csv_fil, header= constants.CSV_HEADER, index=False, encoding= constants.UTF_ENCODING)     
+	return output_event_dict
 
 
 if __name__=='__main__':
@@ -151,7 +154,7 @@ if __name__=='__main__':
 	print('*'*100 )
 	
 	repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
-	output_csv = '../../Output/v1_OUTPUT_MODELZOO.csv'
+	output_csv = '../../Output/V2_OUTPUT_MODELZOO.csv'
 	full_dict = runFameML(repo_dir, output_csv)
 	
 	print('*'*100 )

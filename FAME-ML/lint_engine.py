@@ -390,7 +390,7 @@ def getModelFeatureCount( py_file ):
         
         if( (class_name == constants.DATA_KW ) and (feature_name == constants.HP_BATCH_SIZE_KW ) ):
             model_feature_count += 1 
-            print(feature_)
+            # print(feature_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG,  model_feature_count) 
@@ -435,7 +435,7 @@ def getModelLabelCount( py_file ):
         			# print(assign_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
-    print(LOGGING_IS_ON_FLAG, model_label_count) 
+    # print(LOGGING_IS_ON_FLAG, model_label_count) 
     return model_label_count 
     
 
@@ -453,7 +453,7 @@ def getModelLabelCountb( py_file ):
         		# print(assign_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
-    print(LOGGING_IS_ON_FLAG, model_label_countb) 
+    # print(LOGGING_IS_ON_FLAG, model_label_countb) 
     return model_label_countb 
     
     
@@ -759,7 +759,7 @@ def checkLoggingLibrary( py_file ):
         library_ = import_ 
         
         if( (library_ == constants.LOGGING_KW ) or (library_ == constants.TENSORFLOW_KW ) or (library_ == constants.SYMNET_KW )):
-        	print(library_)
+        	# print(library_)
         	return True
         else:
         	return False 
