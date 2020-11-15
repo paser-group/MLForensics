@@ -45,9 +45,12 @@ Use the following table to find what are verb object pairs
 | model.load_state_dict(torch.load())    | load_state_dict() | data.load_model_dir |  Load pre-trained model state from directory | Load pre-trained model |
 | caffe_parser.read_caffemodel()    | read_caffemodel() | XXX |  Load pre-trained Caffe model from file | Load pre-trained model | 
 | vgg.load_from_npy_file()     | load_from_npy_file() | XXX |  Load pre-trained VGG Neural Network model from NPY file | Load pre-trained model |
-| network.load_net()     | load_net() | XXX |  Load pre-trained neural network model from file | Load pre-trained model | 
-| vgg.load_from_npy_file()     | load_from_npy_file() | XXX |  Load pre-trained VGG Neural Network model from NPY file | Load pre-trained model |
-
+| load_model(cls, path)     | load_model() | cls, path |  Load pre-trained model from file | Load pre-trained model | 
+| load_decoder(labels, cfg= LMConfig)     | load_decoder() | labels |  Load pre-trained DNN decoder  | Load pre-trained model |
+| load_previous_values(results_state)    | load_previous_values() | results_state |  Load pre-trained model state | Load pre-trained model | 
+| load_pretrained(model, num_classes, settings)  | load_pretrained() | model |  Load pre-trained model state | Load pre-trained model | 
+| load_param(prefix, begin_epoch, convert=True) | load_param() | prefix |  Load pre-trained model parameters | Load pre-trained model | 
+| model = SeqLabel(data), args1, auxs1 = load_checkpoint(prefix1, epoch1)  | load_checkpoint() | prefix1 |  Load model checkpoint | Load pre-trained model | 
 
 
 ### To be added in table soon ... 
@@ -73,3 +76,5 @@ Use the following table to find what are verb object pairs
 - tf.train.Checkpoint()
 - tfhub.load()
 - scipy.misc.imresize()
+- model_dir_path = patch_path('models')
+- ref = CaffeFunction('VGG_ILSVRC_19_layers.caffemodel') 
