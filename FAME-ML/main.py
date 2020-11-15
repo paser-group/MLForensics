@@ -166,13 +166,13 @@ if __name__=='__main__':
 	print('Started at:', giveTimeStamp() )
 	print('*'*100 )
 	
-	# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
-	# output_csv = '../../Output/V2_OUTPUT_MODELZOO.csv'
-	# full_dict = runFameML(repo_dir, output_csv)
+	repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
+	output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V2_OUTPUT_MODELZOO.csv'
+	full_dict  = runFameML(repo_dir, output_csv)
 
-	repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/TEST/'
-	output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V2_OUTPUT_TEST.csv'
-	full_dict = runFameML(repo_dir, output_csv)
+	# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/TEST/'
+	# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V2_OUTPUT_TEST.csv'
+	# full_dict = runFameML(repo_dir, output_csv)
 
 	print('*'*100 )
 	print('Ended at:', giveTimeStamp() )

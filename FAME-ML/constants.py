@@ -17,6 +17,7 @@ BODY_KW = 'body'
 ELT_KW = 'elt'
 GENERATORS_KW = 'generators'
 KEY_WORDS_KW = 'keywords'
+EMPTY_STRING = ""
 
 DATA_KW = 'data'
 LOAD_KW = 'load'
@@ -220,6 +221,7 @@ TF_KW = 'tf'
 DUMMY_LOG_KW = 'pytorch'
 PY_FILE_EXTENSION = '.py'
 ANALYZING_KW = 'Analyzing:'
+PARSING_ERROR_KW = 'Due to parsing errors skipping file:'
 
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 UTF_ENCODING   = 'utf-8'
