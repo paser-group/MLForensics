@@ -59,6 +59,15 @@ Use the following table to find what are verb object pairs
 | latest_blob.download_to_filename(self.local_save_file)  | latest_blob.download_to_filename() | self.local_save_file |  Download file from remote source using URL  | Download data from remote source | 
 | _download(filename, working_directory, url_source)  | _download() | filename, working_directory, url_source |  Download file from remote source using URL  | Download data from remote source | 
 | download_from_url(path, url)  | download_from_url() | path, url |  Download file from remote source using URL  | Download data from remote source | 
+| train_data, train_label = read_h5file(os.path.join(os.getcwd(), 'train.h5'))  | read_h5file() | 'train.h5' |  Load classification labels from H5 binary file  | Load classification labels from file |
+| val_data, val_label = read_h5file(os.path.join(os.getcwd(), 'val.h5'))  | read_h5file() | 'val.h5' |  Load classification labels from H5 binary file  | Load classification labels from file |
+| label = np.array(hf.get('label'))   | hf.get() | 'label' |  Load classification labels from local file  | Load classification labels from file |
+| label = load_image(f).convert('P')    | load_image(f) | 'f' |  Load classification labels from image file  | Load classification labels from file |
+| label = scipy.io.loadmat('{}/segmentation/img_{}.mat'.format(self.nyud_dir, idx))['segmentation'].astype(np.uint8)    | scipy.io.loadmat('{}/segmentaion/') | '{}/segmentaion/' |  Load classification labels as a matrix  | Load classification labels from file |
+|  raw_data,raw_label = load_data_and_labels(fenci_right_save_path,fenci_wrong_save_path)   | load_data_and_labels(fenci_right_save_path,fenci_wrong_save_path) | fenci_right_save_path,fenci_wrong_save_path |  Load classification labels and training data  | Load classification labels from file |
+|  label = hfw.create_dataset("labels", data=df_attr[list_col_labels].values)  | hfw.create_dataset() | 'labels' |  Load classification labels from dataset  | Load classification labels from file |
+|  output_data = interpreter.get_tensor(output_details[0]['index'])  | interpreter.get_tensor() | output_details[0]['index'] |  Load classification output from dataset  | Load classification labels from file |
+|  pred_scores = evaluate(data, model, name, data.nbest)  | evaluate() | data, model, name, data.nbest |  Load classification output from dataset  | Load classification labels from file |
 
 
 
@@ -72,7 +81,16 @@ Use the following table to find what are verb object pairs
 
 ### Need to exclude from FAME-ML 
 
-- 
+- data.show_data_summary()
+- label = os.path.basename(os.path.dirname(one_file)) 
+- labels = [sent[3] for sent in input_batch_list]
+- model.summary() 
+- c_mat = confusion_matrix(y_test, y_predict, labels = [x for x in range(n_classes)])
+- f1 = f1_score(y_test, y_predict, average = None, labels = [x for x in range(n_classes)])
+- f1_macro = f1_score(y_test, y_predict, average='macro') 
+- acc = accuracy_score(y_test, y_predict)
+- classification_loss = classification_loss( truth=truth, predicted=predicted, weights=weights, is_one_hot=True)
+- batch_size = data.HP_batch_size 
 - prepare_url_image(url)
 - urllib.urlretrieve() 
 - visdom_logger.load_previous_values(state.epoch, state.results)
