@@ -44,9 +44,10 @@ def getDataLoadCount( py_file ):
             data_load_count += 1 
             # print(def_)
             
-        elif(( class_name == constants.VISDOM_LOGGER_KW ) and (func_name == constants.LOAD_PREVIOUS_VALUES_KW ) ):
-            data_load_count += 1 
-            # print(def_)
+        # # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md 
+        # elif(( class_name == constants.VISDOM_LOGGER_KW ) and (func_name == constants.LOAD_PREVIOUS_VALUES_KW ) ):
+        #     data_load_count += 1 
+        #     # print(def_)
             
         elif(( class_name == constants.COCO_GT_KW ) and (func_name == constants.LOADRES_KW ) ):
             data_load_count += 1 
@@ -84,9 +85,10 @@ def getDataLoadCount( py_file ):
             data_load_count += 1 
             # print(def_)
             
-        elif(( class_name == constants.FILES_KW ) and (func_name == constants.LOAD_FILES_LIST_KW ) ):
-            data_load_count += 1 
-            # print(def_)
+        # # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md
+        # elif(( class_name == constants.FILES_KW ) and (func_name == constants.LOAD_FILES_LIST_KW ) ):
+        #     data_load_count += 1 
+        #     # print(def_)
             
         elif(( class_name == constants.IBROSA_KW ) and (func_name == constants.LOAD_KW ) ):
             data_load_count += 1 
@@ -243,17 +245,20 @@ def getModelLoadCounta( py_file ):
             model_load_counta += 1 
             # print(def_)
             
-        elif(( class_name == constants.TRAIN_KW ) and (func_name == constants.CHECK_POINT_KW) ):
-            model_load_counta += 1 
-            # print(def_)
+        # # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md     
+        # elif(( class_name == constants.TRAIN_KW ) and (func_name == constants.CHECK_POINT_KW) ):
+        #     model_load_counta += 1 
+        #     # print(def_)
             
-        elif(( class_name == constants.TF_HUB_KW ) and (func_name == constants.LOAD_KW) ):
-            model_load_counta += 1 
-            # print(def_)
+        # # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md     
+        # elif(( class_name == constants.TF_HUB_KW ) and (func_name == constants.LOAD_KW) ):
+        #     model_load_counta += 1 
+        #     # print(def_)
             
-        elif(( class_name == constants.MISC_KW ) and (func_name == constants.IMRE_SIZE_KW) ):
-            model_load_counta += 1 
-            # print(def_)
+        # # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md     
+        # elif(( class_name == constants.MISC_KW ) and (func_name == constants.IMRE_SIZE_KW) ):
+        #     model_load_counta += 1 
+        #     # print(def_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW )    
     # print(LOGGING_IS_ON_FLAG, model_load_counta) 
@@ -272,9 +277,10 @@ def getModelLoadCountb( py_file ):
             model_load_countb += 1 
             # print(assign_)
         
-        elif( (func_name == constants.CAFFE_FUNCTION_KW ) and (len(func_arg_list) > 0) ):
-            model_load_countb += 1 
-            # print(assign_)
+        # # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md     
+        # elif( (func_name == constants.CAFFE_FUNCTION_KW ) and (len(func_arg_list) > 0) ):
+        #     model_load_countb += 1 
+        #     # print(assign_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG, model_load_countb) 
@@ -352,9 +358,10 @@ def getDataDownLoadCount( py_file ):
             data_download_count += 1 
             # print(def_)
             
-        elif(( class_name == constants.URL_LIB_KW  ) and (func_name == constants.URL_RETRIEVE_KW ) ):
-            data_download_count += 1 
-            # print(def_)
+        # # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md
+        # elif(( class_name == constants.URL_LIB_KW  ) and (func_name == constants.URL_RETRIEVE_KW ) ):
+        #     data_download_count += 1 
+        #     # print(def_)
             
         elif(( class_name == constants.AGENT_KW ) and (func_name == constants.LOAD_KW ) ):
             data_download_count += 1 
@@ -422,9 +429,11 @@ def getModelLabelCount( py_file ):
         			model_label_count += 1 
         			# print(assign_)
             
-        		elif( (func_name == constants.BASENAME_KW ) and (len(func_arg_list) > 0) ):
-        			model_label_count += 1 
-        			# print(assign_)
+
+                # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md
+        		# elif( (func_name == constants.BASENAME_KW ) and (len(func_arg_list) > 0) ):
+        		# 	model_label_count += 1 
+        		# 	# print(assign_)
             
         		elif( (func_name == constants.LOAD_DATA_AND_LABELS_KW ) and (len(func_arg_list) > 0) ):
         			model_label_count += 1 
@@ -464,11 +473,12 @@ def getModelOutputCount( py_file ):
     for def_ in func_def_list:
         class_name, func_name, func_line, arg_call_list = def_ 
         
-        if(( class_name == constants.MODEL_KW ) and (func_name == constants.SUMMARY_KW ) ):
-            model_output_count += 1 
-            # print(def_)
+        # # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md 
+        # if(( class_name == constants.MODEL_KW ) and (func_name == constants.SUMMARY_KW ) ):
+        #     model_output_count += 1 
+        #     # print(def_)
             
-        elif(( class_name == constants.DATA_KW ) and (func_name == constants.SHOW_DATA_SUMMARY_KW ) ):
+        if(( class_name == constants.DATA_KW ) and (func_name == constants.SHOW_DATA_SUMMARY_KW ) ):
             model_output_count += 1 
             # print(def_)
             
@@ -508,11 +518,12 @@ def getModelOutputCountc( py_file ):
     for func_ in func_assign_list:
         lhs, func_name, func_line, func_arg_list = func_ 
         
-        if( (func_name == constants.CONFUSION_MATRIX_KW ) and (len(func_arg_list) > 0) ):
-            model_output_countc += 1 
-            # print(func_)
+        # # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md 
+        # if( (func_name == constants.CONFUSION_MATRIX_KW ) and (len(func_arg_list) > 0) ):
+        #     model_output_countc += 1 
+        #     # print(func_)
             
-        elif( (func_name == constants.F1_SCORE_KW ) and (len(func_arg_list) > 0) ):
+        if( (func_name == constants.F1_SCORE_KW ) and (len(func_arg_list) > 0) ):
             model_output_countc += 1 
             # print(func_)
             

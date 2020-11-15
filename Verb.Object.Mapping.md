@@ -90,13 +90,20 @@ Use the following table to find what are verb object pairs
 |  score = model_from_file.evaluate(X_test, Y_test, show_accuracy=True, verbose=0)   | model_from_file.evaluate()  | X_test, Y_test, show_accuracy=True, verbose=0 |  Create a NN graph model with paramters | Create a model based on neural network |
 |  G=model(D, label_images)    | model()  | D, label_images|  Create a NN graph model with paramters | Create a model based on neural network |
 |  model = Model(inputs=[inputs], outputs=[conv10])     | Model()  | inputs=[inputs], outputs=[conv10]|  Create a NN graph model with paramters | Create a model based on neural network |
+|  data.show_data_summary()   | show_data_summary()  | data|  Show model data summary | Read model results  |
+|  prepare_url_image(url)   | prepare_url_image()  | url|  Download external image from URL | Dowload data from external source   |
+|  data.show_data_summary()   | show_data_summary()  | data|  Show model data summary | Read model results  |
+|  load(saver, sess, restore_from)   | load()  | saver, sess, restore_from|  Load data from external file | Load training data  |
+|  data_utils.load_celebA()   | load_celebA()  | img_dim, image_data_format|  Load image data from external file | Load training data  |
+|  get_raw_files()   | get_raw_files()  | FLAGS.data_dir, _TEST_DATA_SOURCES|  Load data from external directory | Load training data  |
+|  load_attribute_dataset()    | load_attribute_dataset()  | args.attr_file|  Load feature data from external directory | Load training data  |
+|  load_lua()     | load_lua()  | args.input_t7|  Load Lua data from external directory | Load training data  |
+|  model_dir_path = patch_path('models')     | patch_path()    | 'models'|  Load model data from external directory | Load pre-trained model  |
 
-### To be added in table soon ... 
+### To be added in table done
+ 
 
-- 
-
-
-### Need to exclude from FAME-ML
+### Need to exclude from FAME-ML 
 - Generator=G.permute(0,2,3,1)  
 - model = Graph()
 - graph = VGG_16_graph() 
@@ -108,7 +115,6 @@ Use the following table to find what are verb object pairs
 - num_inputs = env.observation_space.shape[0] 
 - num_outputs = env.action_space.shape[0]
 - configs['model'] = pipeline_config.model
-- data.show_data_summary()
 - label = os.path.basename(os.path.dirname(one_file)) 
 - labels = [sent[3] for sent in input_batch_list]
 - model.summary() 
@@ -118,17 +124,5 @@ Use the following table to find what are verb object pairs
 - acc = accuracy_score(y_test, y_predict)
 - classification_loss = classification_loss( truth=truth, predicted=predicted, weights=weights, is_one_hot=True)
 - batch_size = data.HP_batch_size 
-- prepare_url_image(url)
-- urllib.urlretrieve() 
-- visdom_logger.load_previous_values(state.epoch, state.results)
-- tl.files.load_file_list() 
-- load(saver, sess, restore_from)
-- data_utils.load_celebA(img_dim, image_data_format)
-- get_raw_files(FLAGS.data_dir, _TEST_DATA_SOURCES)
-- load_attribute_dataset(args.attr_file) 
-- load_lua(args.input_t7) 
-- tf.train.Checkpoint()
-- tfhub.load()
-- scipy.misc.imresize()
-- model_dir_path = patch_path('models')
+- visdom_logger.load_previous_values(state.epoch, state.results)  
 - ref = CaffeFunction('VGG_ILSVRC_19_layers.caffemodel') 
