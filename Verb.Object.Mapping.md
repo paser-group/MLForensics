@@ -40,7 +40,17 @@ Use the following table to find what are verb object pairs
 | load_audio()  | load_audio() | dset |   Load image file for training  | Load training data| 
 | _load_vocab_file()  | _load_vocab_file() | vocab_file |   Load vocabulary file file for training  | Load training data| 
 | read_h5file(os.path.join()   | read_h5file() | train.h5 |  Load H5 binary file file for training  | Load training data| 
+| DeepSpeech.load_model_package()   | load_model_package() | package |  Load pre-trained model from file | Load pre-trained model | 
+| tf.keras.models.load_model()   | load_model() | model_weights_path |  Load pre-trained Terraform model from file | Load pre-trained model | 
+| model.load_state_dict(torch.load())    | load_state_dict() | data.load_model_dir |  Load pre-trained model state from directory | Load pre-trained model |
+| caffe_parser.read_caffemodel()    | read_caffemodel() | XXX |  Load pre-trained Caffe model from file | Load pre-trained model | 
+| vgg.load_from_npy_file()     | load_from_npy_file() | XXX |  Load pre-trained VGG Neural Network model from NPY file | Load pre-trained model |
+| network.load_net()     | load_net() | XXX |  Load pre-trained neural network model from file | Load pre-trained model | 
+| vgg.load_from_npy_file()     | load_from_npy_file() | XXX |  Load pre-trained VGG Neural Network model from NPY file | Load pre-trained model |
 
+
+
+### To be added in table soon ... 
 
 - latest_blob.download_to_filename(self.local_save_file)
 - _download(filename, working_directory, url_source)
@@ -60,3 +70,6 @@ Use the following table to find what are verb object pairs
 - get_raw_files(FLAGS.data_dir, _TEST_DATA_SOURCES)
 - load_attribute_dataset(args.attr_file) 
 - load_lua(args.input_t7) 
+- tf.train.Checkpoint()
+- tfhub.load()
+- scipy.misc.imresize()
