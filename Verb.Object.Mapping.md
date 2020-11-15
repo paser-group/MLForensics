@@ -68,6 +68,11 @@ Use the following table to find what are verb object pairs
 |  label = hfw.create_dataset("labels", data=df_attr[list_col_labels].values)  | hfw.create_dataset() | 'labels' |  Load classification labels from dataset  | Load classification labels from file |
 |  output_data = interpreter.get_tensor(output_details[0]['index'])  | interpreter.get_tensor() | output_details[0]['index'] |  Load classification output from dataset  | Load classification labels from file |
 |  pred_scores = evaluate(data, model, name, data.nbest)  | evaluate() | data, model, name, data.nbest |  Load classification output from dataset  | Load classification labels from file |
+|  coco_gt.loadRes(predictions=coco_predictions)  | loadRes()  | predictions=coco_predictions |  Load classification output from dataset  | Load classification labels from file |
+|  argparse.ArgumentParser(description='Input pipeline') | ArgumentParser()  | description='Input pipeline' |  Load pipeline configuration from a file | Load pipeline configuration |
+|  pipeline_config = pipeline_pb2.TrainEvalPipelineConfig()  | TrainEvalPipelineConfig()  | XXX |  Load pipeline configuration from a file | Load pipeline configuration |
+|  get_configs_from_pipeline_file(FLAGS.pipeline_config_path) | get_configs_from_pipeline_file()  | FLAGS.pipeline_config_path |  Load pipeline configuration from a file | Load piepeline configuration |
+
 
 
 
@@ -75,12 +80,13 @@ Use the following table to find what are verb object pairs
 ### To be added in table soon ... 
 
 
-- coco_gt.loadRes(predictions=coco_predictions)
+- 
 - 
 
 
 ### Need to exclude from FAME-ML 
 
+- configs['model'] = pipeline_config.model
 - data.show_data_summary()
 - label = os.path.basename(os.path.dirname(one_file)) 
 - labels = [sent[3] for sent in input_batch_list]
