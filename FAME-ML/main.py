@@ -21,85 +21,83 @@ def giveTimeStamp():
 def getCSVData(dic_, dir_repo):
 	temp_list = []
 	for TEST_ML_SCRIPT in dic_:
-	
-		print("*"*100)
-		print("Section 1.1a")
+		# Section 1.1a
 		data_load_counta = lint_engine.getDataLoadCount( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 1.1b")
+
+		# Section 1.1b
 		data_load_countb = lint_engine.getDataLoadCountb( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 1.1c")
+
+		# Section 1.1c
 		data_load_countc = lint_engine.getDataLoadCountc( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 1.2a")
+
+		# Section 1.2a
 		model_load_counta = lint_engine.getModelLoadCounta( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 1.2b")
+
+		# Section 1.2b
 		model_load_countb = lint_engine.getModelLoadCountb( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 1.2c")
+
+		# Section 1.2c
 		model_load_countc = lint_engine.getModelLoadCountc( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 1.2d")
+
+		# Section 1.2d
 		model_load_countd = lint_engine.getModelLoadCountd( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 2.1a")
+
+		# Section 2.1a
 		data_download_counta = lint_engine.getDataDownLoadCount( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 2.1b")
+
+		# Section 2.1b
 		data_download_countb = lint_engine.getDataDownLoadCountb( TEST_ML_SCRIPT )
-		print("*"*100)
-		print("Section 3.1") 
+
+		# Section 3.1
 		model_feature_count = lint_engine.getModelFeatureCount( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 3.2a")
+
+		# Section 3.2a
 		model_label_counta = lint_engine.getModelLabelCount( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 3.2b")
+	
+		# Section 3.2b
 		model_label_countb = lint_engine.getModelLabelCountb( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 3.3a")
+
+		# Section 3.3a
 		model_output_counta = lint_engine.getModelOutputCount( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 3.3a")
+	
+		# Section 3.3a
 		model_output_countb = lint_engine.getModelOutputCountb( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 3.3a")
+
+		# Section 3.3a
 		model_output_countc = lint_engine.getModelOutputCountc( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 4.1")
+
+		# Section 4.1
 		data_pipeline_counta = lint_engine.getDataPipelineCount( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 4.2")
+
+		# Section 4.2
 		data_pipeline_countb = lint_engine.getDataPipelineCountb( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 4.3")
+
+		# Section 4.3
 		data_pipeline_countc = lint_engine.getDataPipelineCountc( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 4.4")
+
+		# Section 4.4
 		data_pipeline_countd = lint_engine.getDataPipelineCountd( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 5.1a")
+
+		# Section 5.1a
 		environment_counta = lint_engine.getEnvironmentCount( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 5.1b")
+
+		# Section 5.1b
 		environment_countb = lint_engine.getEnvironmentCountb( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 5.2")
+
+		# Section 5.2
 		state_observe_count = lint_engine.getStateObserveCount( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 6.1")
+
+		# Section 6.1
 		dnn_decision_counta = lint_engine.getDNNDecisionCount( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 6.2")
+
+		# Section 6.2
 		dnn_decision_countb = lint_engine.getDNNDecisionCountb( TEST_ML_SCRIPT ) 
 		# the following checks except related blocks 
-		print("*"*100)
-		print("Section 7")
+
+		# Section 7
 		except_flag = lint_engine.getExcepts( TEST_ML_SCRIPT ) 
-		print("*"*100)
-		print("Section 8")
+
+		# Section 8
 		incomplete_logging_count = lint_engine.getIncompleteLoggingCount( TEST_ML_SCRIPT ) 
 		
 		data_load_count = data_load_counta + data_load_countb + data_load_countc
@@ -124,7 +122,7 @@ def getAllPythonFilesinRepo(path2dir):
     for root_, dirnames, filenames in os.walk(path2dir):
         for file_ in filenames:
             full_path_file = os.path.join(root_, file_) 
-            if (file_.endswith( '.py' ) ):
+            if (file_.endswith( constants.PY_FILE_EXTENSION ) ):
                 valid_list.append(full_path_file) 
     return valid_list
 
@@ -137,7 +135,7 @@ def runFameML(inp_dir, csv_fil):
         events_with_dic =  getAllPythonFilesinRepo(subfolder)  
         if subfolder not in output_event_dict:
           output_event_dict[subfolder] = events_with_dic
-        print(subfolder)
+        print(constants.ANALYZING_KW, subfolder)
         temp_list  = getCSVData(events_with_dic, subfolder)
         df_list    = df_list + temp_list 
     full_df = pd.DataFrame( df_list ) 
@@ -152,8 +150,8 @@ if __name__=='__main__':
 	print('Started at:', giveTimeStamp() )
 	print('*'*100 )
 	
-	repo_dir   = '../MODELZOO'
-	output_csv = '../Data/EVENT_COUNT.csv'
+	repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
+	output_csv = '../../Output/v1_OUTPUT_MODELZOO.csv'
 	full_dict = runFameML(repo_dir, output_csv)
 	
 	print('*'*100 )
@@ -166,137 +164,3 @@ if __name__=='__main__':
 	print('*'*100 )
 
 
-    # TEST_ML_SCRIPT = '../Data/sample.py' 
-#     # the followign checks all data loading related methods 
-#     
-#     print("*"*100)
-#     print("Section 1.1a")
-#     data_load_count = lint_engine.getDataLoadCount( TEST_ML_SCRIPT ) 
-#     print(data_load_count)
-#     
-#     print("*"*100)
-#     print("Section 1.1b")
-#     data_load_countb = lint_engine.getDataLoadCountb( TEST_ML_SCRIPT ) 
-#     print(data_load_countb) 
-#     
-#     print("*"*100)
-#     print("Section 1.1c")
-#     data_load_countc = lint_engine.getDataLoadCountc( TEST_ML_SCRIPT ) 
-#     print(data_load_countc) 
-#     
-#     print("*"*100)
-#     print("Section 1.2a")
-#     model_load_counta = lint_engine.getModelLoadCounta( TEST_ML_SCRIPT ) 
-#     print(model_load_counta)
-#     
-#     
-#     print("*"*100)
-#     print("Section 1.2b")
-#     model_load_countb = lint_engine.getModelLoadCountb( TEST_ML_SCRIPT ) 
-#     print(model_load_countb) 
-#     
-#     print("*"*100)
-#     print("Section 1.2c")
-#     model_load_countc = lint_engine.getModelLoadCountc( TEST_ML_SCRIPT ) 
-#     print(model_load_countc) 
-#     
-#     print("*"*100)
-#     print("Section 1.2d")
-#     model_load_countd = lint_engine.getModelLoadCountd( TEST_ML_SCRIPT ) 
-#     print(model_load_countd)
-#     
-#     print("*"*100)
-#     print("Section 2.1a")
-#     data_download_count = lint_engine.getDataDownLoadCount( TEST_ML_SCRIPT ) 
-#     print(data_download_count)
-# 
-#     print("*"*100)
-#     print("Section 2.2b")
-#     data_download_countb = lint_engine.getDataDownLoadCountb( TEST_ML_SCRIPT ) 
-#     print(data_download_countb) 
-#     
-#     print("*"*100)
-#     print("Section 3.1")
-#     model_feature_count = lint_engine.getModelFeatureCount( TEST_ML_SCRIPT ) 
-#     print(model_feature_count) 
-#     
-#     print("*"*100)
-#     print("Section 3.2a")
-#     model_label_count = lint_engine.getModelLabelCount( TEST_ML_SCRIPT ) 
-#     print(model_label_count) 
-#     
-#     print("*"*100)
-#     print("Section 3.2b")
-#     model_label_countb = lint_engine.getModelLabelCountb( TEST_ML_SCRIPT ) 
-#     print(model_label_countb) 
-#     
-#     print("*"*100)
-#     print("Section 3.3a")
-#     model_output_count = lint_engine.getModelOutputCount( TEST_ML_SCRIPT ) 
-#     print(model_output_count) 
-#     
-#     print("*"*100)
-#     print("Section 3.3b")
-#     model_output_countb = lint_engine.getModelOutputCountb( TEST_ML_SCRIPT ) 
-#     print(model_output_countb) 
-#     
-#     print("*"*100)
-#     print("Section 3.3c")
-#     model_output_countc = lint_engine.getModelOutputCountc( TEST_ML_SCRIPT ) 
-#     print(model_output_countc) 
-#     
-#         
-#     print("*"*100)
-#     print("Section 4.1")
-#     data_pipeline_count = lint_engine.getDataPipelineCount( TEST_ML_SCRIPT ) 
-#     print(data_pipeline_count) 
-#     
-#     print("*"*100)
-#     print("Section 4.2")
-#     data_pipeline_countb = lint_engine.getDataPipelineCountb( TEST_ML_SCRIPT ) 
-#     print(data_pipeline_countb) 
-#     
-#     print("*"*100)
-#     print("Section 4.3")
-#     data_pipeline_countc = lint_engine.getDataPipelineCountc( TEST_ML_SCRIPT ) 
-#     print(data_pipeline_countc) 
-#     
-#     print("*"*100)
-#     print("Section 4.4")
-#     data_pipeline_countd = lint_engine.getDataPipelineCountd( TEST_ML_SCRIPT ) 
-#     print(data_pipeline_countd) 
-#     
-#     print("*"*100)
-#     print("Section 5.1")
-#     environment_count = lint_engine.getEnvironmentCount( TEST_ML_SCRIPT ) 
-#     print(environment_count) 
-#     
-#     print("*"*100)
-#     print("Section 5.1b")
-#     environment_countb = lint_engine.getEnvironmentCountb( TEST_ML_SCRIPT ) 
-#     print(environment_countb) 
-#     
-#     print("*"*100)
-#     print("Section 5.2")
-#     state_observe_count = lint_engine.getStateObserveCount( TEST_ML_SCRIPT ) 
-#     print(state_observe_count) 
-#     
-#     print("*"*100)
-#     print("Section 6.1")
-#     dnn_decision_count = lint_engine.getDNNDecisionCount( TEST_ML_SCRIPT ) 
-#     print(dnn_decision_count) 
-#     
-#     print("*"*100)
-#     print("Section 6.2")
-#     dnn_decision_countb = lint_engine.getDNNDecisionCountb( TEST_ML_SCRIPT ) 
-#     print(dnn_decision_countb) 
-#     
-#     print("*"*100)
-#     print("Section 7")
-#     # the following checks except related blocks 
-#     lint_engine.getExcepts( TEST_ML_SCRIPT ) 
-#     
-#     print("*"*100)
-#     print("Section 8")
-#     incomplete_logging_count = lint_engine.getIncompleteLoggingCount( TEST_ML_SCRIPT ) 
-#     print(incomplete_logging_count) 

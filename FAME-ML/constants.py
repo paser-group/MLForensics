@@ -218,6 +218,8 @@ TF_KW = 'tf'
 
 
 DUMMY_LOG_KW = 'pytorch'
+PY_FILE_EXTENSION = '.py'
+ANALYZING_KW = 'Analyzing:'
 
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 UTF_ENCODING   = 'utf-8'
