@@ -697,45 +697,53 @@ def getDNNDecisionCountb( py_file ):
             dnn_decision_countb += 1 
             # print(assign_)
             
-        elif( (func_name == constants.RELU_KW ) ):
-            dnn_decision_countb += 1 
-            # print(assign_)
+        # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md
+        # elif( (func_name == constants.RELU_KW ) ):
+        #     dnn_decision_countb += 1 
+        #     # print(assign_)
             
-        elif( (func_name == constants.POINT_NET_CLS_KW ) ):
-            dnn_decision_countb += 1 
-            # print(assign_)
+        # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md
+        # elif( (func_name == constants.POINT_NET_CLS_KW ) ):
+        #     dnn_decision_countb += 1 
+        #     # print(assign_)
             
-        elif( (func_name == constants.CLS_KW ) ):
-            dnn_decision_countb += 1 
-            # print(assign_)
+        # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md
+        # elif( (func_name == constants.CLS_KW ) ):
+        #     dnn_decision_countb += 1 
+        #     # print(assign_)
             
-        elif( (func_name == constants.CASCADED_MODEL_KW ) ):
-            dnn_decision_countb += 1 
-            # print(assign_)
+        # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md
+        # elif( (func_name == constants.CASCADED_MODEL_KW ) ):
+        #     dnn_decision_countb += 1 
+        #     # print(assign_)
             
         elif( (func_name == constants.MODEL_KW ) ):
             dnn_decision_countb += 1 
             # print(assign_)
             
-        elif( (func_name == constants.PERMUTE_KW ) ):
-            dnn_decision_countb += 1 
-            # print(assign_)
+        # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md
+        # elif( (func_name == constants.PERMUTE_KW ) ):
+        #     dnn_decision_countb += 1 
+        #     # print(assign_)
             
-        elif( (func_name == constants.MINIMUM_KW ) ):
-            dnn_decision_countb += 1 
-            # print(assign_)
+        # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md
+        # elif( (func_name == constants.MINIMUM_KW ) ):
+        #     dnn_decision_countb += 1 
+        #     # print(assign_)
             
         elif( (func_name == constants.MODEL_C_KW ) ):
             dnn_decision_countb += 1 
             # print(assign_)
-            
-        elif( (func_name == constants.GRAPH_KW ) ):
-            dnn_decision_countb += 1 
-            # print(assign_)
-            
-        elif( (func_name == constants.VGG_16_GRAPH_KW ) ):
-            dnn_decision_countb += 1 
-            # print(assign_)
+
+        # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md            
+        # elif( (func_name == constants.GRAPH_KW ) ):
+        #     dnn_decision_countb += 1 
+        #     # print(assign_)
+
+        # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md             
+        # elif( (func_name == constants.VGG_16_GRAPH_KW ) ):
+        #     dnn_decision_countb += 1 
+        #     # print(assign_)
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG, dnn_decision_countb) 
