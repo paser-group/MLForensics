@@ -30,9 +30,21 @@ Use the following table to find what are verb object pairs
 | Image.open() | open() | args.demo_image|   Load training data from local directory | Load training data| 
 | agent.replay_buffer.load()  | load() | self.rbuf_filename|   Load training data from local directory | Load training data| 
 | h5py.File()  | File() | hdf5_file|   Load training data of H5 binary type from local directory | Load training data| 
+| np.frombuffer()  | frombuffer() | f.read|   Load training data from local directory | Load training data| 
+| get_loader()  | get_loader() | config |   Load training data from local directory | Load training data| 
+| load_randomly_augmented_audio()  | load_randomly_augmented_audio() | audio_path |   Load  audio data for training from local directory | Load training data| 
+| open()  | open() | input_file |   Load  file for training from local directory | Load training data| 
+| open()  | open() | args.wavenet_params |   Load wavenet file for training from local directory | Load training data| 
+| load_generic_audio(self.audio_dir)  | load_generic_audio() | self.audio_dir |   Load audio file for training  | Load training data|
+| load_audio(args.input_path)  | load_audio() | args.input_path |   Load audio file for training  | Load training data| 
+| load_audio()  | load_audio() | dset |   Load image file for training  | Load training data| 
+| _load_vocab_file()  | _load_vocab_file() | vocab_file |   Load vocabulary file file for training  | Load training data| 
+| read_h5file(os.path.join()   | read_h5file() | train.h5 |  Load H5 binary file file for training  | Load training data| 
 
 
 - latest_blob.download_to_filename(self.local_save_file)
+- _download(filename, working_directory, url_source)
+- download_from_url(path, url)
 - coco_gt.loadRes(predictions=coco_predictions)
 - self.sp_model.Load(sp_model_file)
 
@@ -43,4 +55,8 @@ Use the following table to find what are verb object pairs
 
 - visdom_logger.load_previous_values(state.epoch, state.results)
 - tl.files.load_file_list() 
+- load(saver, sess, restore_from)
 - data_utils.load_celebA(img_dim, image_data_format)
+- get_raw_files(FLAGS.data_dir, _TEST_DATA_SOURCES)
+- load_attribute_dataset(args.attr_file) 
+- load_lua(args.input_t7) 
