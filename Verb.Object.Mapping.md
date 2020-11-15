@@ -51,21 +51,30 @@ Use the following table to find what are verb object pairs
 | load_pretrained(model, num_classes, settings)  | load_pretrained() | model |  Load pre-trained model state | Load pre-trained model | 
 | load_param(prefix, begin_epoch, convert=True) | load_param() | prefix |  Load pre-trained model parameters | Load pre-trained model | 
 | model = SeqLabel(data), args1, auxs1 = load_checkpoint(prefix1, epoch1)  | load_checkpoint() | prefix1 |  Load model checkpoint | Load pre-trained model | 
+| self.sp_model.Load(sp_model_file)  | sp_model.Load() | sp_model_file |  Load model  | Load pre-trained model | 
+| wget.download('http://www.speech.cs.cmu.edu/databases/an4/an4_raw.bigendian.tar.gz')  | wget.download() | 'http://www.speech.cs.cmu.edu/databases/an4/an4_raw.bigendian.tar.gz' |  Download TAR file from remote source  | Download data from remote source | 
+| urllib.request.urlopen()  | urlopen() | request |  Download file from remote source using URL  | Download data from remote source | 
+| model_zoo.load_url(url)  | load_url() | url |  Download file from remote source using URL  | Download data from remote source | 
+| agent.load(misc.download_model())  | misc.download_model() | XXX |  Download file from remote source using URL  | Download data from remote source | 
+| latest_blob.download_to_filename(self.local_save_file)  | latest_blob.download_to_filename() | self.local_save_file |  Download file from remote source using URL  | Download data from remote source | 
+| _download(filename, working_directory, url_source)  | _download() | filename, working_directory, url_source |  Download file from remote source using URL  | Download data from remote source | 
+| download_from_url(path, url)  | download_from_url() | path, url |  Download file from remote source using URL  | Download data from remote source | 
+
+
 
 
 ### To be added in table soon ... 
 
-- latest_blob.download_to_filename(self.local_save_file)
-- _download(filename, working_directory, url_source)
-- download_from_url(path, url)
+
 - coco_gt.loadRes(predictions=coco_predictions)
-- self.sp_model.Load(sp_model_file)
+- 
 
 
 ### Need to exclude from FAME-ML 
 
-
-
+- 
+- prepare_url_image(url)
+- urllib.urlretrieve() 
 - visdom_logger.load_previous_values(state.epoch, state.results)
 - tl.files.load_file_list() 
 - load(saver, sess, restore_from)
