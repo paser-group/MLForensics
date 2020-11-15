@@ -72,20 +72,41 @@ Use the following table to find what are verb object pairs
 |  argparse.ArgumentParser(description='Input pipeline') | ArgumentParser()  | description='Input pipeline' |  Load pipeline configuration from a file | Load pipeline configuration |
 |  pipeline_config = pipeline_pb2.TrainEvalPipelineConfig()  | TrainEvalPipelineConfig()  | XXX |  Load pipeline configuration from a file | Load pipeline configuration |
 |  get_configs_from_pipeline_file(FLAGS.pipeline_config_path) | get_configs_from_pipeline_file()  | FLAGS.pipeline_config_path |  Load pipeline configuration from a file | Load piepeline configuration |
-
-
-
-
+| obs, reward, done, tt =  env.step(action) | env.step()  | action |  Update in reinforcement learning environment to get reward | Update in reinforcement learning environment |
+|  env.step(action) | env.step()  | action |  Update in reinforcement learning environment to get reward | Update in reinforcement learning environment |
+|  env = gym.make(params.env_name)  | gym.make() | params.env_name |  Create reinforcement learning environment | Create reinforcement learning environment |
+|  policy = torch.load(args.model_path)   | torch.load()  | args.model_path |  Read policy data to create reinforcement learning environment | Create reinforcement learning environment |
+|  o, r, done, info = self.env.step(action)  | self.env.step()  | action |  Update in reinforcement learning environment to get info | Update in reinforcement learning environment |
+|  obs, reward, done, info = env.step(action)  | env.step()  | action |  Update in reinforcement learning environment to get info | Update in reinforcement learning environment |
+|  next_state, reward, done, _ = env.step(action)   | env.step()  | action |  Update in reinforcement learning environment to get info | Update in reinforcement learning environment |
+|  batch_ob, reward, done, info = self.env.step(action)   | self.env.step()  | action |  Update in reinforcement learning environment to get info | Update in reinforcement learning environment |
+|  state, reward, done, _ = env.step(action)  | env.step()  | action |  Update in reinforcement learning environment to get info | Update in reinforcement learning environment |
+|  inner_next_obs, inner_reward, done = wrapped_env.step(action)  | wrapped_env.step()  | action |  Update in reinforcement learning environment to get info | Update in reinforcement learning environment |
+|  model.compile()   | model.compile()  | XXX |  Create a NN model without paramters | Create a model based on neural network |
+|  model.compile(optimizer=Adam(lr=1e-5), loss=dice_coef_loss, metrics=[dice_coef])   | model.compile()  | ptimizer=Adam(lr=1e-5), loss=dice_coef_loss, metrics=[dice_coef] |  Create a NN model with paramters | Create a model based on neural network |
+|  res = graph.predict({'input':X_check}, verbose=2)   | graph.predict()  | {'input':X_check}, verbose=2 |  Create a NN graph model with paramters | Create a model based on neural network |
+|  history = graph.fit()   | graph.fit()  | {'input':X_train, 'output1':y_train, 'output2':y2_train}, nb_epoch=1000, verbose=2 |  Create a NN graph model with paramters | Create a model based on neural network |
+|  logs = model.fit()   | model.fit()  | dataset, epochs=1, steps_per_epoch=2 |  Create a NN graph model with paramters | Create a model based on neural network |
+|  score = model_from_file.evaluate(X_test, Y_test, show_accuracy=True, verbose=0)   | model_from_file.evaluate()  | X_test, Y_test, show_accuracy=True, verbose=0 |  Create a NN graph model with paramters | Create a model based on neural network |
+|  G=model(D, label_images)    | model()  | D, label_images|  Create a NN graph model with paramters | Create a model based on neural network |
+|  model = Model(inputs=[inputs], outputs=[conv10])     | Model()  | inputs=[inputs], outputs=[conv10]|  Create a NN graph model with paramters | Create a model based on neural network |
 
 ### To be added in table soon ... 
 
-
-- 
 - 
 
 
-### Need to exclude from FAME-ML 
-
+### Need to exclude from FAME-ML
+- Generator=G.permute(0,2,3,1)  
+- model = Graph()
+- graph = VGG_16_graph() 
+- output=np.minimum(np.maximum(Generator,0.0), 255.0)  
+- cls = PointNetCls(k = 5) 
+- out, _, _ = cls(sim_data)
+- model=cascaded_model(D_m) 
+- self.relu = nn.ReLU()
+- num_inputs = env.observation_space.shape[0] 
+- num_outputs = env.action_space.shape[0]
 - configs['model'] = pipeline_config.model
 - data.show_data_summary()
 - label = os.path.basename(os.path.dirname(one_file)) 
