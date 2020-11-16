@@ -81,7 +81,7 @@ def getPythonParseObject( pyFile ):
 	try:
 		full_tree = ast.parse( open( pyFile ).read())    
 	except SyntaxError:
-		print(constants.PARSING_ERROR_KW, pyFile )
+		# print(constants.PARSING_ERROR_KW, pyFile )
 		full_tree = ast.parse(constants.EMPTY_STRING) 
 	return full_tree 
 

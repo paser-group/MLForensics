@@ -95,9 +95,6 @@ def getCSVData(dic_, dir_repo):
 		# Section 5.2
 		state_observe_count = lint_engine.getStateObserveCount( TEST_ML_SCRIPT ) 
 
-		# Section 6.1
-		dnn_decision_counta = lint_engine.getDNNDecisionCount( TEST_ML_SCRIPT ) 
-
 		# Section 6.2
 		dnn_decision_countb = lint_engine.getDNNDecisionCountb( TEST_ML_SCRIPT ) 
 		# the following checks except related blocks 
@@ -118,8 +115,8 @@ def getCSVData(dic_, dir_repo):
 		# data_pipeline_count = data_pipeline_counta + data_pipeline_countb + data_pipeline_countc + data_pipeline_countd
 		data_pipeline_count = data_pipeline_counta + data_pipeline_countb + data_pipeline_countc 
 		# environment_count = environment_counta + environment_countb
-		environment_count = environment_counta 
-		dnn_decision_count = dnn_decision_counta + dnn_decision_countb
+		environment_count  = environment_counta 
+		dnn_decision_count = dnn_decision_countb
 		
 		# the_tup = ( dir_repo, TEST_ML_SCRIPT, data_load_count, model_load_count, data_download_count, model_feature_count, \
   		# 		  model_label_count, model_output_count, data_pipeline_count, environment_count, state_observe_count, \
@@ -187,13 +184,13 @@ if __name__=='__main__':
 			full_dict  = runFameML(repo_dir, output_csv)
 
 	else: 
-		repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
-		output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V3_OUTPUT_MODELZOO.csv'
-		full_dict  = runFameML(repo_dir, output_csv)
+		# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
+		# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V3_OUTPUT_MODELZOO.csv'
+		# full_dict  = runFameML(repo_dir, output_csv)
 		
-		# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/TEST/'
-		# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V3_OUTPUT_TEST.csv'
-		# full_dict = runFameML(repo_dir, output_csv)
+		repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/TEST/'
+		output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V3_OUTPUT_TEST.csv'
+		full_dict = runFameML(repo_dir, output_csv)
 
 	print('*'*100 )
 	print('Ended at:', giveTimeStamp() )

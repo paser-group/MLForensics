@@ -70,7 +70,8 @@ if __name__=='__main__':
     reportProportion( RESULTS_FILE )
     print('*'*100) 
     reportEventDensity(  RESULTS_FILE )
-    
+    print('*'*100) 
+
     print('*'*100 )
     print('Ended at:', giveTimeStamp() )
     print('*'*100 )

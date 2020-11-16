@@ -224,6 +224,12 @@ ANALYZING_KW = 'Analyzing:'
 PARSING_ERROR_KW = 'Due to parsing errors skipping file:'
 ASK_INPUT_FROM_USER = 'Please type the directory to your machine learning repository and then hit enter:'
 
+CONSOLE_STR_DISPLAY   = 'Detected {}, at line {}, in {}'
+CONSOLE_STR_DATA_LOAD = 'DATA_LOAD_EVENT'
+CONSOLE_STR_MODEL_LOAD= 'MODEL_LOAD_EVENT'
+CONSOLE_STR_DATA_DLOAD= 'DATA_DOWNLOAD_EVENT'
+CONSOLE_STR_MODEL_FEATURE= 'MODEL_FEATURE_EVENT'
+
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 UTF_ENCODING   = 'utf-8'
 # CSV_HEADER = ['REPO_FULL_PATH','FILE_FULL_PATH','DATA_LOAD_COUNT', 'MODEL_LOAD_COUNT','DATA_DOWNLOAD_COUNT',\
