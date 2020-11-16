@@ -406,38 +406,26 @@ def getModelLabelCount( py_file ):
     func_assign_list  = py_parser.getFunctionAssignmentsWithMultipleLHS( py_tree ) 
     for assign_ in func_assign_list:
         lhs, func_name, func_line, func_arg_list = assign_ 
-        
         for var_name in lhs:
-        	if ( constants.LABEL_KW in var_name):
-        		if( (func_name == constants.READ_H5FILE_KW  ) and (len(func_arg_list) > 0) ):
-        			model_label_count += 1 
-        			# print(assign_)
-            
-        		elif( (func_name == constants.ARRAY_KW ) and (len(func_arg_list) > 0) ):
-        			model_label_count += 1 
-        			# print(assign_)
-            
-        		elif( (func_name == constants.CONVERT_KW ) and (len(func_arg_list) > 0) ):
-        			model_label_count += 1 
-        			# print(assign_)
-            
-        		elif( (func_name == constants.AS_TYPE_KW ) and (len(func_arg_list) > 0) ):
-        			model_label_count += 1 
-        			# print(assign_)
-            
-
-                # skipping as per https://github.com/paser-group/MLForensics/blob/farzana/Verb.Object.Mapping.md
-        		# elif( (func_name == constants.BASENAME_KW ) and (len(func_arg_list) > 0) ):
-        		# 	model_label_count += 1 
-        		# 	# print(assign_)
-            
-        		elif( (func_name == constants.LOAD_DATA_AND_LABELS_KW ) and (len(func_arg_list) > 0) ):
-        			model_label_count += 1 
-        			# print(assign_)
-            
-        		elif( (func_name == constants.CREATE_DATASET_KW ) and (len(func_arg_list) > 0) ):
-        			model_label_count += 1 
-        			# print(assign_)
+            if ( constants.LABEL_KW in var_name):
+                if( (func_name == constants.READ_H5FILE_KW  ) and (len(func_arg_list) > 0) ):
+                    model_label_count += 1 
+                    print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_LABEL, func_line , py_file  ) )
+                elif( (func_name == constants.ARRAY_KW ) and (len(func_arg_list) > 0) ):
+                    model_label_count += 1 
+                    print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_LABEL, func_line , py_file  ) )
+                elif( (func_name == constants.CONVERT_KW ) and (len(func_arg_list) > 0) ):
+                    model_label_count += 1 
+                    print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_LABEL, func_line , py_file  ) )
+                elif( (func_name == constants.AS_TYPE_KW ) and (len(func_arg_list) > 0) ):
+                    model_label_count += 1 
+                    print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_LABEL, func_line , py_file  ) )
+                elif( (func_name == constants.LOAD_DATA_AND_LABELS_KW ) and (len(func_arg_list) > 0) ):
+                    model_label_count += 1 
+                    print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_LABEL, func_line , py_file  ) )
+                elif( (func_name == constants.CREATE_DATASET_KW ) and (len(func_arg_list) > 0) ):
+                    model_label_count += 1 
+                    print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_LABEL, func_line , py_file  ) )
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG, model_label_count) 
@@ -455,7 +443,7 @@ def getModelLabelCountb( py_file ):
         
         	if ( (var_s == constants.SENT_KW ) and (var_d == constants.SENT_KW )  and (rhs_var_iter == constants.INPUT_BATCH_LIST_KW ) ):
         		model_label_countb += 1 
-        		# print(assign_)
+        		print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_LABEL, func_line , py_file  ) )
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG, model_label_countb) 
@@ -476,7 +464,7 @@ def getModelOutputCount( py_file ):
             
         if(( class_name == constants.DATA_KW ) and (func_name == constants.SHOW_DATA_SUMMARY_KW ) ):
             model_output_count += 1 
-            # print(def_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_OUTPUT, func_line , py_file  ) )
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG, model_output_count) 
@@ -492,15 +480,15 @@ def getModelOutputCountb( py_file ):
         
         if( (func_name == constants.GET_TENSOR_KW ) and (len(func_arg_list) > 0) ):
             model_output_countb += 1 
-            # print(assign_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_OUTPUT, func_line , py_file  ) )
             
         elif( (func_name == constants.EVALUATE_KW ) and (len(func_arg_list) > 0) ):
             model_output_countb += 1 
-            # print(assign_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_OUTPUT, func_line , py_file  ) )
                           
         elif(( func_name == constants.EVAL_KW ) ):
             model_output_countb += 1 
-            # print(assign_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_OUTPUT, func_line , py_file  ) )
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG, model_output_countb) 
@@ -521,15 +509,15 @@ def getModelOutputCountc( py_file ):
             
         if( (func_name == constants.F1_SCORE_KW ) and (len(func_arg_list) > 0) ):
             model_output_countc += 1 
-            # print(func_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_OUTPUT, func_line , py_file  ) )
             
         elif( (func_name == constants.ACCURACY_SCORE_KW ) and (len(func_arg_list) > 0) ):
             model_output_countc += 1 
-            # print(func_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_OUTPUT, func_line , py_file  ) )
             
         elif( (func_name == constants.CLASSIFICATION_LOSS_KW ) and (len(func_arg_list) > 0) ):
             model_output_countc += 1 
-            # print(func_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_MODEL_OUTPUT, func_line , py_file  ) )
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG, model_output_countc) 
@@ -545,7 +533,7 @@ def getDataPipelineCount( py_file ):
         
         if(( class_name == constants.ARG_PARSE_KW ) and (func_name == constants.ARGUMENT_PARSER_KW ) and (len(arg_call_list) > 0)):
             data_pipeline_count += 1 
-            # print(def_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_PIPELINE, func_line , py_file  ) )
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG, data_pipeline_count) 
@@ -561,7 +549,7 @@ def getDataPipelineCountb( py_file ):
         
         if( (func_name == constants.TRAIN_EVAL_PIPELINE_CONFIG_KW ) ):
             data_pipeline_countb += 1 
-            # print(assign_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_PIPELINE, func_line , py_file  ) )
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG, data_pipeline_countb) 
@@ -577,7 +565,7 @@ def getDataPipelineCountc( py_file ):
         
         if( (func_name == constants.GET_CONFIGS_FROM_PIPELINE_FILE_KW ) and (len(func_arg_list) > 0) ):
             data_pipeline_countc += 1 
-            # print(func_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_PIPELINE, func_line , py_file  ) )
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG, data_pipeline_countc) 
@@ -593,7 +581,7 @@ def getDataPipelineCountd( py_file ):
 		
 		if( (class_name == constants.PIPELINE_CONFIG_KW  ) and (feature_name == constants.MODEL_KW ) ):
 			data_pipeline_countd += 1 
-			# print(feature_)
+			print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_PIPELINE, feature_line , py_file  ) )
 			
 	LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
 	# print(LOGGING_IS_ON_FLAG,  data_pipeline_countd) 
@@ -609,19 +597,15 @@ def getEnvironmentCount( py_file ):
         
         if(( class_name == constants.WRAPPED_ENV_KW ) and (func_name == constants.STEP_KW ) and (len(arg_call_list) > 0)):
             environment_count += 1 
-            # print(def_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_REL_ENV, func_line , py_file  ) )
             
         elif(( class_name == constants.ENV_KW ) and (func_name == constants.STEP_KW ) and (len(arg_call_list) > 0)):
             environment_count += 1 
-            # print(def_)
-            
-        elif(( class_name == constants.TORCH_KW ) and (func_name == constants.LOAD_KW ) and (len(arg_call_list) > 0)):
-            environment_count += 1 
-            # print(def_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_REL_ENV, func_line , py_file  ) )
             
         elif(( class_name == constants.GYM_KW ) and (func_name == constants.MAKE_KW ) and (len(arg_call_list) > 0)):
             environment_count += 1 
-            # print(def_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_REL_ENV, func_line , py_file  ) )
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG, environment_count) 
@@ -637,11 +621,11 @@ def getEnvironmentCountb( py_file ):
 		
 		if( (class_name == constants.OBSERVATION_SPACE_KW  ) and (feature_name == constants.SHAPE_KW ) ):
 			environment_countb += 1 
-			# print(feature_)
+			print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_REL_ENV, feature_line , py_file  ) )
 			
 		elif( (class_name == constants.ACTION_SPACE_KW  ) and (feature_name == constants.SHAPE_KW ) ):
 			environment_countb += 1 
-			# print(feature_)
+			print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_REL_ENV, feature_line , py_file  ) )
 			
 	LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
 	# print(LOGGING_IS_ON_FLAG, environment_countb) 
@@ -657,7 +641,7 @@ def getStateObserveCount( py_file ):
         
         if(( class_name == constants.ENV_KW ) and (func_name == constants.STEP_KW ) and (len(arg_call_list) > 0)):
             state_observe_count += 1 
-            # print(def_)
+            print( constants.CONSOLE_STR_DISPLAY.format( constants.CONSOLE_STR_REL_ENV, func_line , py_file  ) )
             
     LOGGING_IS_ON_FLAG = py_parser.checkLoggingPerData( py_tree, constants.DUMMY_LOG_KW ) 
     # print(LOGGING_IS_ON_FLAG, state_observe_count) 

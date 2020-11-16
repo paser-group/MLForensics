@@ -23,7 +23,7 @@ def giveTimeStamp():
 def getCSVData(dic_, dir_repo):
 	temp_list = []
 	for TEST_ML_SCRIPT in dic_:
-		print(constants.ANALYZING_KW + TEST_ML_SCRIPT) 
+		# print(constants.ANALYZING_KW + TEST_ML_SCRIPT) 
 		# Section 1.1a
 		data_load_counta = lint_engine.getDataLoadCount( TEST_ML_SCRIPT ) 
 
@@ -95,15 +95,15 @@ def getCSVData(dic_, dir_repo):
 		# Section 5.2
 		state_observe_count = lint_engine.getStateObserveCount( TEST_ML_SCRIPT ) 
 
-		# Section 6.2
-		dnn_decision_countb = lint_engine.getDNNDecisionCountb( TEST_ML_SCRIPT ) 
+		# Section 6.2 , skipping as syntax analysis will yield false positives 
+		# dnn_decision_countb = lint_engine.getDNNDecisionCountb( TEST_ML_SCRIPT ) 
 		# the following checks except related blocks 
 
 		# Section 7
-		except_flag = lint_engine.getExcepts( TEST_ML_SCRIPT ) 
+		# except_flag = lint_engine.getExcepts( TEST_ML_SCRIPT ) 
 
 		# Section 8
-		incomplete_logging_count = lint_engine.getIncompleteLoggingCount( TEST_ML_SCRIPT ) 
+		# incomplete_logging_count = lint_engine.getIncompleteLoggingCount( TEST_ML_SCRIPT ) 
 		
 		data_load_count = data_load_counta + data_load_countb + data_load_countc
 		model_load_count = model_load_counta + model_load_countb + model_load_countc + model_load_countd
@@ -116,7 +116,7 @@ def getCSVData(dic_, dir_repo):
 		data_pipeline_count = data_pipeline_counta + data_pipeline_countb + data_pipeline_countc 
 		# environment_count = environment_counta + environment_countb
 		environment_count  = environment_counta 
-		dnn_decision_count = dnn_decision_countb
+		# dnn_decision_count = dnn_decision_countb
 		
 		# the_tup = ( dir_repo, TEST_ML_SCRIPT, data_load_count, model_load_count, data_download_count, model_feature_count, \
   		# 		  model_label_count, model_output_count, data_pipeline_count, environment_count, state_observe_count, \
@@ -127,14 +127,13 @@ def getCSVData(dic_, dir_repo):
 		
 		total_event_count = data_load_count   + model_load_count    + data_download_count + \
 		                    model_label_count + model_output_count  + data_pipeline_count + \
-							environment_count + state_observe_count + dnn_decision_count
+							environment_count + state_observe_count 
 		
 		the_tup = ( dir_repo, TEST_ML_SCRIPT, data_load_count, model_load_count, data_download_count, \
-  				  model_label_count, model_output_count, data_pipeline_count, environment_count, state_observe_count, \
-  				  dnn_decision_count, incomplete_logging_count, except_flag, total_event_count )
+  				  model_label_count, model_output_count, data_pipeline_count, environment_count, state_observe_count, total_event_count )
 
 		temp_list.append( the_tup )
-		print('='*25)
+		# print('='*25)
 	return temp_list
   
   
@@ -157,9 +156,9 @@ def runFameML(inp_dir, csv_fil):
 		events_with_dic =  getAllPythonFilesinRepo(subfolder)  
 		if subfolder not in output_event_dict:
 			output_event_dict[subfolder] = events_with_dic
-		print(constants.ANALYZING_KW, subfolder)
 		temp_list  = getCSVData(events_with_dic, subfolder)
 		df_list    = df_list + temp_list 
+		print(constants.ANALYZING_KW, subfolder)
 		print('-'*50)
 	full_df = pd.DataFrame( df_list ) 
 	# print(full_df.head())
@@ -180,17 +179,17 @@ if __name__=='__main__':
 		if(os.path.exists( dir_path ) ):
 			repo_dir    = dir_path 
 			output_file = dir_path.split('/')[-2]
-			output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V3_' + output_file + '.csv'
+			output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V4_' + output_file + '.csv'
 			full_dict  = runFameML(repo_dir, output_csv)
 
 	else: 
-		# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
-		# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V3_OUTPUT_MODELZOO.csv'
-		# full_dict  = runFameML(repo_dir, output_csv)
+		repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
+		output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V4_OUTPUT_MODELZOO.csv'
+		full_dict  = runFameML(repo_dir, output_csv)
 		
-		repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/TEST/'
-		output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V3_OUTPUT_TEST.csv'
-		full_dict = runFameML(repo_dir, output_csv)
+		# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/TEST/'
+		# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V4_OUTPUT_TEST.csv'
+		# full_dict = runFameML(repo_dir, output_csv)
 
 	print('*'*100 )
 	print('Ended at:', giveTimeStamp() )
