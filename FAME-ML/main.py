@@ -172,6 +172,7 @@ def runFameML(inp_dir, csv_fil):
 
 if __name__=='__main__':
 	command_line_flag = False ## after acceptance   
+
 	t1 = time.time()
 	print('Started at:', giveTimeStamp() )
 	print('*'*100 )
