@@ -426,3 +426,12 @@ def getImport(pyTree):
         			import_list.append( ( node_.module.split('.')[0] ) )
 
     return import_list 
+
+def checkIfParsablePython( pyFile ):
+	flag = True 
+	try:
+		flag = True 
+	except SyntaxError:
+		flag = False 
+
+	return flag 	

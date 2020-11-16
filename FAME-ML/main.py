@@ -10,6 +10,8 @@ import time
 import datetime 
 import os 
 import pandas as pd
+import py_parser 
+import numpy as np 
 
 
 def giveTimeStamp():
@@ -122,10 +124,17 @@ def getCSVData(dic_, dir_repo):
 		# the_tup = ( dir_repo, TEST_ML_SCRIPT, data_load_count, model_load_count, data_download_count, model_feature_count, \
   		# 		  model_label_count, model_output_count, data_pipeline_count, environment_count, state_observe_count, \
   		# 		  dnn_decision_count, incomplete_logging_count, except_flag)
-
+		'''
+		Total security-related logging event count 
+		'''
+		
+		total_event_count = data_load_count   + model_load_count    + data_download_count + \
+		                    model_label_count + model_output_count  + data_pipeline_count + \
+							environment_count + state_observe_count + dnn_decision_count
+		
 		the_tup = ( dir_repo, TEST_ML_SCRIPT, data_load_count, model_load_count, data_download_count, \
   				  model_label_count, model_output_count, data_pipeline_count, environment_count, state_observe_count, \
-  				  dnn_decision_count, incomplete_logging_count, except_flag)
+  				  dnn_decision_count, incomplete_logging_count, except_flag, total_event_count )
 
 		temp_list.append( the_tup )
 		print('='*25)
@@ -133,13 +142,14 @@ def getCSVData(dic_, dir_repo):
   
   
 def getAllPythonFilesinRepo(path2dir):
-    valid_list = []
-    for root_, dirnames, filenames in os.walk(path2dir):
-        for file_ in filenames:
-            full_path_file = os.path.join(root_, file_) 
-            if (file_.endswith( constants.PY_FILE_EXTENSION ) ):
-                valid_list.append(full_path_file) 
-    return valid_list
+	valid_list = []
+	for root_, dirnames, filenames in os.walk(path2dir):
+		for file_ in filenames:
+			full_path_file = os.path.join(root_, file_) 
+			if (file_.endswith( constants.PY_FILE_EXTENSION ) and (py_parser.checkIfParsablePython( full_path_file ) ) ):
+				valid_list.append(full_path_file) 
+	valid_list = np.unique(  valid_list )
+	return valid_list
 
 
 def runFameML(inp_dir, csv_fil):
@@ -161,18 +171,28 @@ def runFameML(inp_dir, csv_fil):
 
 
 if __name__=='__main__':
-	
+	command_line_flag = False ## after acceptance   
 	t1 = time.time()
 	print('Started at:', giveTimeStamp() )
 	print('*'*100 )
-	
-	repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
-	output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V2_OUTPUT_MODELZOO.csv'
-	full_dict  = runFameML(repo_dir, output_csv)
 
-	# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/TEST/'
-	# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V2_OUTPUT_TEST.csv'
-	# full_dict = runFameML(repo_dir, output_csv)
+	if command_line_flag:
+		dir_path = input(constants.ASK_INPUT_FROM_USER)   
+		dir_path = dir_path.strip() 
+		if(os.path.exists( dir_path ) ):
+			repo_dir    = dir_path 
+			output_file = dir_path.split('/')[-2]
+			output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V3_' + output_file + '.csv'
+			full_dict  = runFameML(repo_dir, output_csv)
+
+	else: 
+		repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
+		output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V3_OUTPUT_MODELZOO.csv'
+		full_dict  = runFameML(repo_dir, output_csv)
+		
+		# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/TEST/'
+		# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V3_OUTPUT_TEST.csv'
+		# full_dict = runFameML(repo_dir, output_csv)
 
 	print('*'*100 )
 	print('Ended at:', giveTimeStamp() )
