@@ -179,16 +179,16 @@ if __name__=='__main__':
 		if(os.path.exists( dir_path ) ):
 			repo_dir    = dir_path 
 			output_file = dir_path.split('/')[-2]
-			output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V4_' + output_file + '.csv'
+			output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_' + output_file + '.csv'
 			full_dict  = runFameML(repo_dir, output_csv)
 
 	else: 
 		repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
-		output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V4_OUTPUT_MODELZOO.csv'
+		output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_MODELZOO.csv'
 		full_dict  = runFameML(repo_dir, output_csv)
 		
 		# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/TEST/'
-		# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V4_OUTPUT_TEST.csv'
+		# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_TEST.csv'
 		# full_dict = runFameML(repo_dir, output_csv)
 
 	print('*'*100 )

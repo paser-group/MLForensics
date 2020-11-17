@@ -18,6 +18,9 @@ ELT_KW = 'elt'
 GENERATORS_KW = 'generators'
 KEY_WORDS_KW = 'keywords'
 EMPTY_STRING = ""
+TARGETS_KW = 'targets'
+LINE_NO_KW = 'lineno'
+FUNC_CALL_ARG_STR = 'FUNC_CALL_ARG:'
 
 DATA_KW = 'data'
 LOAD_KW = 'load'

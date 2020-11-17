@@ -62,10 +62,10 @@ if __name__=='__main__':
 
 
     # DATASET_NAME = 'TEST'
-    # RESULTS_FILE = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V4_OUTPUT_TEST.csv'
+    # RESULTS_FILE = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_TEST.csv'
 
     DATASET_NAME = 'MODEL_ZOO'
-    RESULTS_FILE = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V4_OUTPUT_MODELZOO.csv'    
+    RESULTS_FILE = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_MODELZOO.csv'    
     
     reportProportion( RESULTS_FILE )
     print('*'*100) 
