@@ -117,26 +117,28 @@ def getAllFileCount(df_):
 
 
 def getGeneralStats(all_dataset_list):
+    all_repos = [] 
     for result_file in all_dataset_list:
         print('='*50)
         print(result_file)
         print('='*50)
+        res_df    = pd.read_csv( result_file ) 
         if 'ZOO' in result_file:
-            all_repos = [] 
-            res_df    = pd.read_csv( result_file ) 
             temp_dirs = np.unique( res_df['REPO_FULL_PATH'].tolist() ) 
             for temp_dir in temp_dirs:
                 list_subfolders_with_paths = [f.path for f in os.scandir(temp_dir) if f.is_dir()]
                 all_repos = all_repos + list_subfolders_with_paths 
+        else: 
+            all_repos = np.unique( res_df['REPO_FULL_PATH'].tolist() )
         print('REPO_COUNT:', len(all_repos) ) 
         file_size, file_count   = getAllFileCount(res_df)
         print('ALL_FILE_COUNT:', file_count  ) 
         print('ALL_FILE_SIZE:', file_size  )   
-        # start_date, end_date, coms, devs  = getAllCommits( all_repos ) 
-        # print('COMMIT_COUNT:', coms )
-        # print('DEVS_COUNT:', devs )
-        # print('START_DATE:', start_date )
-        # print('END_DATE:', end_date )
+        start_date, end_date, coms, devs  = getAllCommits( all_repos ) 
+        print('COMMIT_COUNT:', coms )
+        print('DEVS_COUNT:', devs )
+        print('START_DATE:', start_date )
+        print('END_DATE:', end_date )
         print('='*50)
 
 
@@ -207,18 +209,22 @@ def cleanAllButPy(dir_name):
 
 if __name__=='__main__':
     MODEL_ZOO_RESULTS_FILE = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_MODELZOO.csv'
-    all_datasets = [MODEL_ZOO_RESULTS_FILE]
+    GITLAB_RESULTS_FILE    = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_GITLAB.csv'
+
+    all_datasets = [GITLAB_RESULTS_FILE] 
     
-    # getGeneralStats(all_datasets)
+    getGeneralStats(all_datasets)
+ 
     # 
 
     
+    
     '''
     for some auxilliary tasks 
+    
+    cleanAllButPy( '/Users/arahman/FSE2021_ML_REPOS/GITLAB_REPOS/' )
 
-    cleanAllButPy( '/Users/arahman/FSE2021_ML_REPOS/MODELZOO' )
-
-    deleteRepos()  
+    deleteRepos() 
 
     # getDevEmails( all_datasets )
 

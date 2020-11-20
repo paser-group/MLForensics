@@ -430,8 +430,7 @@ def getImport(pyTree):
 def checkIfParsablePython( pyFile ):
 	flag = True 
 	try:
-		flag = True 
-	except SyntaxError:
+		full_tree = ast.parse( open( pyFile ).read())    
+	except (SyntaxError, UnicodeDecodeError) as err_ :
 		flag = False 
-
 	return flag 	

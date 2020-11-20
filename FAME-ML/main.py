@@ -142,8 +142,9 @@ def getAllPythonFilesinRepo(path2dir):
 	for root_, dirnames, filenames in os.walk(path2dir):
 		for file_ in filenames:
 			full_path_file = os.path.join(root_, file_) 
-			if (file_.endswith( constants.PY_FILE_EXTENSION ) and (py_parser.checkIfParsablePython( full_path_file ) ) ):
-				valid_list.append(full_path_file) 
+			if( os.path.exists( full_path_file ) ):
+				if (file_.endswith( constants.PY_FILE_EXTENSION ) and (py_parser.checkIfParsablePython( full_path_file ) )   ):
+					valid_list.append(full_path_file) 
 	valid_list = np.unique(  valid_list )
 	return valid_list
 
@@ -183,9 +184,13 @@ if __name__=='__main__':
 			full_dict  = runFameML(repo_dir, output_csv)
 
 	else: 
-		repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
-		output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_MODELZOO.csv'
+		repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/GITLAB_REPOS/'
+		output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_GITLAB.csv'
 		full_dict  = runFameML(repo_dir, output_csv)
+
+		# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
+		# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_MODELZOO.csv'
+		# full_dict  = runFameML(repo_dir, output_csv)
 		
 		# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/TEST/'
 		# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_TEST.csv'
