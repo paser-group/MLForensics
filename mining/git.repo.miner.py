@@ -73,9 +73,9 @@ def cloneRepos(repo_list):
                if(prop_py < 0.25):
                    deleteRepo(dirName, 'LOW_PYTHON_' + str( round(prop_py, 5) ) )
             print("So far we have processed {} repos".format(counter) )
-            if((counter % 100) == 0):
+            if((counter % 10) == 0):
                 dumpContentIntoFile(str_, 'tracker_completed_repos.csv')
-            elif((counter % 1000) == 0):
+            elif((counter % 100) == 0):
                 print(str_)                
             print('#'*100)
 
@@ -85,6 +85,6 @@ if __name__=='__main__':
     list_    = np.unique(list_)
     print('Repos to download:', len(list_)) 
     ## need to create chunks as too many repos 
-    chunked_list = list(makeChunks(list_, 1000))  ### list of lists, at each batch download 1000 repos 
+    chunked_list = list(makeChunks(list_, 100))  ### list of lists, at each batch download 100 repos 
     cloneRepos(chunked_list)
 

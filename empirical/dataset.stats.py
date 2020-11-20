@@ -11,6 +11,7 @@ import os
 from datetime import datetime
 import subprocess
 from collections import Counter 
+import shutil 
 
 def getBranch(path):
     dict_ = { 
@@ -138,8 +139,87 @@ def getGeneralStats(all_dataset_list):
         # print('END_DATE:', end_date )
         print('='*50)
 
+
+def getDevEmails(ds_list): 
+    repo_emails = [] 
+    for result_file in ds_list:
+        print('='*50)
+        print(result_file)
+        print('='*50)
+        if 'ZOO' in result_file:
+            all_repos = [] 
+            res_df    = pd.read_csv( result_file ) 
+            temp_dirs = np.unique( res_df['REPO_FULL_PATH'].tolist() ) 
+            for temp_dir in temp_dirs:
+                list_subfolders_with_paths = [f.path for f in os.scandir(temp_dir) if f.is_dir()]
+                all_repos = all_repos + list_subfolders_with_paths 
+        print('REPO_COUNT:', len(all_repos) ) 
+        for full_path_to_repo in all_repos:
+            branchName = getBranch(full_path_to_repo) 
+            if os.path.exists(full_path_to_repo):
+                repo_  = Repo(full_path_to_repo)
+                try:
+                    all_commits = list(repo_.iter_commits(branchName))   
+                except exc.GitCommandError:
+                    print('Skipping this repo ... due to branch name problem', full_path_to_repo )
+                for commit_ in all_commits:
+                    commit_hash = commit_.hexsha
+                    emails = getDevEmailForCommit(full_path_to_repo, commit_hash)
+                    repo_emails = repo_emails + emails
+            else:
+                repo_emails = [ str(x_) for x_ in range(10) ]
+    repo_emails = np.unique( repo_emails ) 
+    print( list(repo_emails) )
+
+
+
+def deleteRepo(dirName, type_):
+    print(':::' + type_ + ':::Deleting ', dirName)
+    try:
+        if os.path.exists(dirName):
+            shutil.rmtree(dirName)
+    except OSError:
+        print('Failed deleting, will try manually')     
+
+def deleteRepos():
+    repos_df = pd.read_csv('/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Datasets/DELETE_CANDIDATES.csv')
+    repos    = np.unique( repos_df['REPO'].tolist() ) 
+    for x_ in repos:
+        deleteRepo( x_, 'THRESHOLD_FILTER_FINAL' )
+
+
+def cleanAllButPy(dir_name):
+    valid_, non_valid = [], []
+    for root_, dirs, files_ in os.walk(dir_name):
+       for file_ in files_:
+           full_p_file = os.path.join(root_, file_)
+           if(os.path.exists(full_p_file)):
+             if (full_p_file.endswith('.py')):
+               valid_.append(full_p_file)
+             else:
+               non_valid.append(full_p_file)
+    for f_ in non_valid:
+        os.remove(f_)
+    print("="*50)
+    print(dir_name)
+    print('removed {} non-Python files, kept {} Python files #savespace '.format(len(non_valid), len(valid_)) )
+    print("="*50 )
+
 if __name__=='__main__':
     MODEL_ZOO_RESULTS_FILE = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_MODELZOO.csv'
     all_datasets = [MODEL_ZOO_RESULTS_FILE]
     
-    getGeneralStats(all_datasets)  
+    # getGeneralStats(all_datasets)
+    # 
+
+    
+    '''
+    for some auxilliary tasks 
+
+    cleanAllButPy( '/Users/arahman/FSE2021_ML_REPOS/MODELZOO' )
+
+    deleteRepos()  
+
+    # getDevEmails( all_datasets )
+
+    '''
