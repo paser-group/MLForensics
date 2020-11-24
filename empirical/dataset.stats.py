@@ -69,7 +69,8 @@ def getDevDayCommits(full_path_to_repo, branchName='master', explore=1000):
 
     else:
         repo_emails = [ str(x_) for x_ in range(10) ]
-    all_day_list   = [datetime(int(x_.split('-')[0]), int(x_.split('-')[1]), int(x_.split('-')[2]), 12, 30) for x_ in all_time_list]
+    all_day_list   = [ datetime(2020, 11, 20, 00, 15) ]
+    all_day_list   = all_day_list + [datetime(int(x_.split('-')[0]), int(x_.split('-')[1]), int(x_.split('-')[2]), 12, 30) for x_ in all_time_list]
 
     repo_emails = np.unique( repo_emails ) 
     return len(repo_emails) , len(all_commits) , all_day_list
@@ -87,13 +88,13 @@ def getAllCommits(all_repos):
     for repo_ in all_repos:
         tracker += 1 
         branchName = getBranch(repo_) 
+        print(tracker, repo_)  
+        # print(the_tuple) 
         dev_cnt, com_cnt, _days = getDevDayCommits(repo_, branchName)  
         per_repo_min_day        = min(_days) 
         per_repo_max_day        = max(_days)   
         day_diff                = days_between( per_repo_min_day, per_repo_max_day  )       
         the_tuple = (repo_, dev_cnt, com_cnt, per_repo_min_day, per_repo_max_day, day_diff) 
-        print(tracker) 
-        print(the_tuple) 
         full_list.append(  the_tuple  )
         total_commits = total_commits + com_cnt 
         total_devs    = total_devs + dev_cnt 
@@ -130,10 +131,12 @@ def getGeneralStats(all_dataset_list):
                 all_repos = all_repos + list_subfolders_with_paths 
         else: 
             all_repos = np.unique( res_df['REPO_FULL_PATH'].tolist() )
-        print('REPO_COUNT:', len(all_repos) ) 
-        file_size, file_count   = getAllFileCount(res_df)
-        print('ALL_FILE_COUNT:', file_count  ) 
-        print('ALL_FILE_SIZE:', file_size  )   
+
+
+        # print('REPO_COUNT:', len(all_repos) ) 
+        # file_size, file_count   = getAllFileCount(res_df)
+        # print('ALL_FILE_COUNT:', file_count  ) 
+        # print('ALL_FILE_SIZE:', file_size  )   
         start_date, end_date, coms, devs  = getAllCommits( all_repos ) 
         print('COMMIT_COUNT:', coms )
         print('DEVS_COUNT:', devs )
@@ -184,10 +187,10 @@ def deleteRepo(dirName, type_):
         print('Failed deleting, will try manually')     
 
 def deleteRepos():
-    repos_df = pd.read_csv('/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Datasets/DELETE_CANDIDATES.csv')
+    repos_df = pd.read_csv('/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Datasets/DELETE_CANDIDATES_GITHUB.csv')
     repos    = np.unique( repos_df['REPO'].tolist() ) 
     for x_ in repos:
-        deleteRepo( x_, 'THRESHOLD_FILTER_FINAL' )
+        deleteRepo( x_, 'ML_LIBRARY_THRESHOLD' )
 
 
 def cleanAllButPy(dir_name):
@@ -207,24 +210,65 @@ def cleanAllButPy(dir_name):
     print('removed {} non-Python files, kept {} Python files #savespace '.format(len(non_valid), len(valid_)) )
     print("="*50 )
 
+def getMLLibraryUsage(path2dir): 
+    usageCount  = 0 
+    for root_, dirnames, filenames in os.walk(path2dir):
+        for file_ in filenames:
+            full_path_file = os.path.join(root_, file_) 
+            if(os.path.exists(full_path_file)):
+                if (file_.endswith('py'))  :
+                    f = open(full_path_file, 'r', encoding='latin-1')
+                    fileContent  = f.read()
+                    fileContent  = fileContent.split('\n') 
+                    fileContents = [z_.lower() for z_ in fileContent if z_!='\n' ]
+                    # print(fileContent) 
+                    for fileContent in fileContents:
+                        if('sklearn' in fileContent) or ('keras' in fileContent) or ('gym' in fileContent) or ('pyqlearning' in fileContent) or ('tensorflow' in fileContent) or ('torch' in fileContent):
+                                usageCount = usageCount + 1
+                        elif('rl_coach' in fileContent) or ('tensorforce' in fileContent) or ('stable_baselines' in fileContent) :
+                                usageCount = usageCount + 1
+                        # elif('rl_coach' in fileContent) or ('tensorforce' in fileContent) or ('stable_baselines' in fileContent) or ('keras' in fileContent) or ('tf' in fileContent):
+                        #         usageCount = usageCount + 1
+    return usageCount                         
+
+
+def getMLStats(repo_path):
+    repo_statLs = []
+    repo_count  = 0 
+    all_repos = [f.path for f in os.scandir(repo_path) if f.is_dir()]
+    print('REPO_COUNT:', len(all_repos) )    
+    for repo_ in all_repos:
+        repo_count += 1 
+        ml_lib_cnt = getMLLibraryUsage( repo_ ) 
+        repo_statLs.append( (repo_, ml_lib_cnt ) )
+        print(repo_count, ml_lib_cnt)
+    return repo_statLs 
+
+
+
 if __name__=='__main__':
     MODEL_ZOO_RESULTS_FILE = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_MODELZOO.csv'
     GITLAB_RESULTS_FILE    = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_GITLAB.csv'
+    GITHUB_RESULTS_FILE    = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Datasets/FOR_DEV_COUNT.csv'
 
-    all_datasets = [GITLAB_RESULTS_FILE] 
-    
-    getGeneralStats(all_datasets)
- 
-    # 
+    all_datasets = [GITHUB_RESULTS_FILE ] 
 
     
-    
+    # getGeneralStats(all_datasets)
+
     '''
     for some auxilliary tasks 
-    
-    cleanAllButPy( '/Users/arahman/FSE2021_ML_REPOS/GITLAB_REPOS/' )
 
-    deleteRepos() 
+    cleanAllButPy( '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/' )
+
+    di_ = '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/'
+    ls_ = getMLStats(  di_  )
+    df_ = pd.DataFrame( ls_ )
+    df_.to_csv('LIB_BREAKDOWN.csv', header=['REPO', 'LIB_COUNT'] , index=False, encoding='utf-8')          
+    
+
+
+    deleteRepos()     
 
     # getDevEmails( all_datasets )
 

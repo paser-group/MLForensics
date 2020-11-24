@@ -182,11 +182,14 @@ if __name__=='__main__':
 			output_file = dir_path.split('/')[-2]
 			output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_' + output_file + '.csv'
 			full_dict  = runFameML(repo_dir, output_csv)
-
 	else: 
-		repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/GITLAB_REPOS/'
-		output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_GITLAB.csv'
+		repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/'
+		output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_GITHUB.csv'
 		full_dict  = runFameML(repo_dir, output_csv)
+
+		# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/GITLAB_REPOS/'
+		# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_GITLAB.csv'
+		# full_dict  = runFameML(repo_dir, output_csv)
 
 		# repo_dir   = '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/'
 		# output_csv = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_MODELZOO.csv'

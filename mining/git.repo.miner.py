@@ -61,7 +61,7 @@ def cloneRepos(repo_list):
         for repo_ in repo_batch:
             counter += 1 
             print('Cloning ', repo_ )
-            dirName = '/Users/arahman/FSE2021_ML_REPOS/GITLAB_REPOS/' + repo_.split('/')[-2] + '@' + repo_.split('/')[-1] 
+            dirName = '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/' + repo_.split('/')[-2] + '@' + repo_.split('/')[-1] 
             cloneRepo(repo_, dirName )
             ### get file count 
             all_fil_cnt = sum([len(files) for r_, d_, files in os.walk(dirName)])
@@ -80,7 +80,7 @@ def cloneRepos(repo_list):
             print('#'*100)
 
 if __name__=='__main__':
-    repos_df = pd.read_csv('/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Datasets/INITIAL_PYTHON_REPOS_GITLAB.csv')
+    repos_df = pd.read_csv('PARTIAL_REMAINING_GITHUB.csv')
     list_    = repos_df['URL'].tolist()
     list_    = np.unique(list_)
     print('Repos to download:', len(list_)) 
