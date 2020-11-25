@@ -178,21 +178,6 @@ def getDevEmails(ds_list):
 
 
 
-def deleteRepo(dirName, type_):
-    print(':::' + type_ + ':::Deleting ', dirName)
-    try:
-        if os.path.exists(dirName):
-            shutil.rmtree(dirName)
-    except OSError:
-        print('Failed deleting, will try manually')     
-
-def deleteRepos():
-    repos_df = pd.read_csv('/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Datasets/DELETE_CANDIDATES_GITHUB.csv')
-    repos    = np.unique( repos_df['REPO'].tolist() ) 
-    for x_ in repos:
-        deleteRepo( x_, 'ML_LIBRARY_THRESHOLD' )
-
-
 def cleanAllButPy(dir_name):
     valid_, non_valid = [], []
     for root_, dirs, files_ in os.walk(dir_name):
@@ -210,40 +195,6 @@ def cleanAllButPy(dir_name):
     print('removed {} non-Python files, kept {} Python files #savespace '.format(len(non_valid), len(valid_)) )
     print("="*50 )
 
-def getMLLibraryUsage(path2dir): 
-    usageCount  = 0 
-    for root_, dirnames, filenames in os.walk(path2dir):
-        for file_ in filenames:
-            full_path_file = os.path.join(root_, file_) 
-            if(os.path.exists(full_path_file)):
-                if (file_.endswith('py'))  :
-                    f = open(full_path_file, 'r', encoding='latin-1')
-                    fileContent  = f.read()
-                    fileContent  = fileContent.split('\n') 
-                    fileContents = [z_.lower() for z_ in fileContent if z_!='\n' ]
-                    # print(fileContent) 
-                    for fileContent in fileContents:
-                        if('sklearn' in fileContent) or ('keras' in fileContent) or ('gym' in fileContent) or ('pyqlearning' in fileContent) or ('tensorflow' in fileContent) or ('torch' in fileContent):
-                                usageCount = usageCount + 1
-                        elif('rl_coach' in fileContent) or ('tensorforce' in fileContent) or ('stable_baselines' in fileContent) :
-                                usageCount = usageCount + 1
-                        # elif('rl_coach' in fileContent) or ('tensorforce' in fileContent) or ('stable_baselines' in fileContent) or ('keras' in fileContent) or ('tf' in fileContent):
-                        #         usageCount = usageCount + 1
-    return usageCount                         
-
-
-def getMLStats(repo_path):
-    repo_statLs = []
-    repo_count  = 0 
-    all_repos = [f.path for f in os.scandir(repo_path) if f.is_dir()]
-    print('REPO_COUNT:', len(all_repos) )    
-    for repo_ in all_repos:
-        repo_count += 1 
-        ml_lib_cnt = getMLLibraryUsage( repo_ ) 
-        repo_statLs.append( (repo_, ml_lib_cnt ) )
-        print(repo_count, ml_lib_cnt)
-    return repo_statLs 
-
 
 
 if __name__=='__main__':
@@ -254,21 +205,12 @@ if __name__=='__main__':
     all_datasets = [GITHUB_RESULTS_FILE ] 
 
     
-    # getGeneralStats(all_datasets)
+    getGeneralStats(all_datasets)
 
     '''
     for some auxilliary tasks 
 
     cleanAllButPy( '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/' )
-
-    di_ = '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/'
-    ls_ = getMLStats(  di_  )
-    df_ = pd.DataFrame( ls_ )
-    df_.to_csv('LIB_BREAKDOWN.csv', header=['REPO', 'LIB_COUNT'] , index=False, encoding='utf-8')          
-    
-
-
-    deleteRepos()     
 
     # getDevEmails( all_datasets )
 

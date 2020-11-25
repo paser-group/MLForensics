@@ -79,12 +79,65 @@ def cloneRepos(repo_list):
                 print(str_)                
             print('#'*100)
 
+def getMLStats(repo_path):
+    repo_statLs = []
+    repo_count  = 0 
+    all_repos = [f.path for f in os.scandir(repo_path) if f.is_dir()]
+    print('REPO_COUNT:', len(all_repos) )    
+    for repo_ in all_repos:
+        repo_count += 1 
+        ml_lib_cnt = getMLLibraryUsage( repo_ ) 
+        repo_statLs.append( (repo_, ml_lib_cnt ) )
+        print(repo_count, ml_lib_cnt)
+    return repo_statLs 
+
+
+def getMLLibraryUsage(path2dir): 
+    usageCount  = 0 
+    for root_, dirnames, filenames in os.walk(path2dir):
+        for file_ in filenames:
+            full_path_file = os.path.join(root_, file_) 
+            if(os.path.exists(full_path_file)):
+                if (file_.endswith('py'))  :
+                    f = open(full_path_file, 'r', encoding='latin-1')
+                    fileContent  = f.read()
+                    fileContent  = fileContent.split('\n') 
+                    fileContents = [z_.lower() for z_ in fileContent if z_!='\n' ]
+                    # print(fileContent) 
+                    for fileContent in fileContents:
+                        if('sklearn' in fileContent) or ('keras' in fileContent) or ('gym.' in fileContent) or ('pyqlearning' in fileContent) or ('tensorflow' in fileContent) or ('torch' in fileContent):
+                                usageCount = usageCount + 1
+                        elif('rl_coach' in fileContent) or ('tensorforce' in fileContent) or ('stable_baselines' in fileContent) or ('tf.' in fileContent) :
+                                usageCount = usageCount + 1
+                        # elif('rl_coach' in fileContent) or ('tensorforce' in fileContent) or ('stable_baselines' in fileContent) or ('keras' in fileContent) or ('tf' in fileContent):
+                        #         usageCount = usageCount + 1
+    return usageCount      
+
+
+def deleteRepos():
+    repos_df = pd.read_csv('DELETE_CANDIDATES_GITHUB_V2.csv')
+    repos    = np.unique( repos_df['REPO'].tolist() ) 
+    for x_ in repos:
+        deleteRepo( x_, 'ML_LIBRARY_THRESHOLD' )
+
 if __name__=='__main__':
-    repos_df = pd.read_csv('PARTIAL_REMAINING_GITHUB.csv')
-    list_    = repos_df['URL'].tolist()
-    list_    = np.unique(list_)
-    print('Repos to download:', len(list_)) 
-    ## need to create chunks as too many repos 
-    chunked_list = list(makeChunks(list_, 100))  ### list of lists, at each batch download 100 repos 
-    cloneRepos(chunked_list)
+    # repos_df = pd.read_csv('PARTIAL_REMAINING_GITHUB.csv')
+    # list_    = repos_df['URL'].tolist()
+    # list_    = np.unique(list_)
+    # # print('Repos to download:', len(list_)) 
+    # ## need to create chunks as too many repos 
+    # chunked_list = list(makeChunks(list_, 100))  ### list of lists, at each batch download 100 repos 
+    # cloneRepos(chunked_list)
+
+    '''
+    some utils  
+
+    deleteRepos()     
+
+    di_ = '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/'
+    ls_ = getMLStats(  di_  )
+    df_ = pd.DataFrame( ls_ )
+    df_.to_csv('LIB_BREAKDOWN_GITHUB_BATCH2.csv', header=['REPO', 'LIB_COUNT'] , index=False, encoding='utf-8')              
+    '''
+
 
