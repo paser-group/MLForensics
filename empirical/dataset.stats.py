@@ -15,7 +15,31 @@ import shutil
 
 def getBranch(path):
     dict_ = { 
-             '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/NATURAL_LANGUAGE_PROCESSING/magic282@MXNMT':'next' 
+             '/Users/arahman/FSE2021_ML_REPOS/MODELZOO/NATURAL_LANGUAGE_PROCESSING/magic282@MXNMT':'next' , 
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/zetaops@zengine':'develop', 
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/zentralopensource@zentral':'main',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/zenoss@zenoss-prodbin':'develop',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/zenoss@ZenPacks.zenoss.OpenStackInfrastructure':'develop',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/zenoss@ZenPacks.zenoss.OpenStack':'develop', 
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/zenoss@ZenPacks.zenoss.Microsoft.Windows':'develop',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/zatosource@zato':'main',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/yeasy@easyOVS':'dev',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/xbianonpi@Sick-Beard-TPB':'ThePirateBay',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/vincentlab@PyFR':'develop',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/twisted@twisted':'trunk', 
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/twilio@twilio-python':'main',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/torchbox@wagtail-template':'develop', 
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/tcalmant@ipopo':'v1',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/tariqdaouda@pyGeno':'bloody',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/tanghaibao@jcvi':'main',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/tanghaibao@goatools':'main',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/sendgrid@sendgrid-python':'main',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/scieloorg@scielo-manager':'beta',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/scheibler@khard':'develop' ,
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/satanas@libturpial':'development',
+             '/Users/arahman/FSE2021_ML_REPOS/GITHUB_REPOS/sabnzbd@sabnzbd':'develop' 
+
+
     } 
     if path in dict_:
         return dict_[path] 
@@ -52,11 +76,14 @@ def getDevDayCommits(full_path_to_repo, branchName='master', explore=1000):
     repo_emails = []
     all_time_list = []
     if os.path.exists(full_path_to_repo):
-        repo_  = Repo(full_path_to_repo)
         try:
-           all_commits = list(repo_.iter_commits(branchName))   
-        except exc.GitCommandError:
-           print('Skipping this repo ... due to branch name problem', full_path_to_repo )
+            repo_  = Repo(full_path_to_repo)
+            try:
+                all_commits = list(repo_.iter_commits(branchName))   
+            except (exc.GitCommandError, exc.InvalidGitRepositoryError ) :
+                print('Skipping this repo ... due to branch name problem', full_path_to_repo )
+        except (exc.GitCommandError, exc.InvalidGitRepositoryError ) :
+           print('Skipping this repo ... due to git problem', full_path_to_repo )
         for commit_ in all_commits:
                 commit_hash = commit_.hexsha
 
@@ -89,7 +116,7 @@ def getAllCommits(all_repos):
         tracker += 1 
         branchName = getBranch(repo_) 
         print(tracker, repo_)  
-        # print(the_tuple) 
+        print(the_tuple) 
         dev_cnt, com_cnt, _days = getDevDayCommits(repo_, branchName)  
         per_repo_min_day        = min(_days) 
         per_repo_max_day        = max(_days)   
@@ -131,12 +158,10 @@ def getGeneralStats(all_dataset_list):
                 all_repos = all_repos + list_subfolders_with_paths 
         else: 
             all_repos = np.unique( res_df['REPO_FULL_PATH'].tolist() )
-
-
-        # print('REPO_COUNT:', len(all_repos) ) 
-        # file_size, file_count   = getAllFileCount(res_df)
-        # print('ALL_FILE_COUNT:', file_count  ) 
-        # print('ALL_FILE_SIZE:', file_size  )   
+        print('REPO_COUNT:', len(all_repos) ) 
+        file_size, file_count   = getAllFileCount(res_df)
+        print('ALL_FILE_COUNT:', file_count  ) 
+        print('ALL_FILE_SIZE:', file_size  )   
         start_date, end_date, coms, devs  = getAllCommits( all_repos ) 
         print('COMMIT_COUNT:', coms )
         print('DEVS_COUNT:', devs )
@@ -200,12 +225,14 @@ def cleanAllButPy(dir_name):
 if __name__=='__main__':
     MODEL_ZOO_RESULTS_FILE = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_MODELZOO.csv'
     GITLAB_RESULTS_FILE    = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_GITLAB.csv'
-    GITHUB_RESULTS_FILE    = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Datasets/FOR_DEV_COUNT.csv'
+    GITHUB_RESULTS_FILE    = '/Users/arahman/Documents/OneDriveWingUp/OneDrive-TennesseeTechUniversity/Research/VulnStrategyMining/ForensicsinML/Output/V5_OUTPUT_GITHUB.csv'
 
     all_datasets = [GITHUB_RESULTS_FILE ] 
 
     
     getGeneralStats(all_datasets)
+
+
 
     '''
     for some auxilliary tasks 

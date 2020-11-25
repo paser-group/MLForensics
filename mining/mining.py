@@ -139,15 +139,13 @@ def getPythonFileCount(path2dir):
     
     
 
-def cloneRepos(repo_list, dev_threshold=10, python_threshold=0.25, commit_threshold = 5): 
+def cloneRepos(repo_list, dev_threshold=3, python_threshold=0.10, commit_threshold = 25): 
     counter = 0     
     str_ = ''
     all_list = []
     for repo_batch in repo_list:
         for repo_ in repo_batch:
             counter += 1 
-            repo_ = repo_.replace('api.', '')
-            repo_ = repo_.replace('repos/', '')
             print('Cloning ', repo_ )
             dirName = '../FSE2021_REPOS/' + repo_.split('/')[-2] + '@' + repo_.split('/')[-1] ## '/' at the end messes up the index 
             cloneRepo(repo_, dirName )
@@ -193,7 +191,7 @@ def cloneRepos(repo_list, dev_threshold=10, python_threshold=0.25, commit_thresh
    
 
 if __name__=='__main__':
-    repos_df = pd.read_csv('INITIAL_PYTHON_REPOS_GITHUB.csv', sep='delimiter')
+    repos_df = pd.read_csv('PARTIAL_REMAINING_GITHUB.csv', sep='delimiter')
     print(repos_df.head())
     list_    = repos_df['url'].tolist()
     list_ = np.unique(list_)
@@ -205,7 +203,7 @@ if __name__=='__main__':
     
     print('Repos to download:', len(list_)) 
     ## need to create chunks as too many repos 
-    chunked_list = list(makeChunks(list_, 1000))  ### list of lists, at each batch download 1000 repos 
+    chunked_list = list(makeChunks(list_, 100))  ### list of lists, at each batch download 1000 repos 
     cloneRepos(chunked_list)
 
 
